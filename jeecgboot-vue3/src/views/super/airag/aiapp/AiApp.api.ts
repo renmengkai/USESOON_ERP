@@ -52,7 +52,7 @@ export const saveApp = (params) => {
 export const deleteApp = (params, handleSuccess) => {
   Modal.confirm({
     title: '确认删除',
-    content: '是否删除名称为'+params.name+'的应用吗？',
+    content: '是否删除名称为' + params.name + '的应用吗？',
     okText: '确认',
     cancelText: '取消',
     onOk: () => {
@@ -62,7 +62,6 @@ export const deleteApp = (params, handleSuccess) => {
     },
   });
 };
-
 
 /**
  * 根据应用id查询流程
@@ -77,5 +76,5 @@ export const queryFlowById = (params) => {
  * @param params
  */
 export const promptGenerate = (params) => {
-  return defHttp.get({ url: Api.promptGenerate, params,timeout: 5 * 60 * 1000 }, { isTransformResponse: false });
+  return defHttp.get({ url: Api.promptGenerate, params, timeout: 5 * 60 * 1000 }, { isTransformResponse: false });
 };

@@ -49,7 +49,7 @@ export const editModel = (params) => {
 export const deleteModel = (params, handleSuccess) => {
   Modal.confirm({
     title: '确认删除',
-    content: '是否删除名称为'+params.name+'的模型吗？',
+    content: '是否删除名称为' + params.name + '的模型吗？',
     okText: '确认',
     cancelText: '取消',
     onOk: () => {

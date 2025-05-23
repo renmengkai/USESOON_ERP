@@ -1,16 +1,16 @@
 import { defHttp } from '/@/utils/http/axios';
-import { useMessage } from "/@/hooks/web/useMessage";
+import { useMessage } from '/@/hooks/web/useMessage';
 
 const { createConfirm } = useMessage();
 
 enum Api {
   list = '/openapi/auth/list',
-  save='/openapi/auth/add',
-  edit='/openapi/auth/edit',
-  apiList= '/openapi/list',
+  save = '/openapi/auth/add',
+  edit = '/openapi/auth/edit',
+  apiList = '/openapi/list',
   genAKSK = '/openapi/auth/genAKSK',
-  permissionList='/openapi/permission/getOpenApi',
-  permissionAdd='/openapi/permission/add',
+  permissionList = '/openapi/permission/getOpenApi',
+  permissionAdd = '/openapi/permission/add',
   deleteOne = '/openapi/auth/delete',
   deleteBatch = '/openapi/auth/deleteBatch',
   importExcel = '/openapi/auth/importExcel',
@@ -55,11 +55,11 @@ export const list = (params) => defHttp.get({ url: Api.list, params });
  * @param params
  * @param handleSuccess
  */
-export const deleteOne = (params,handleSuccess) => {
-  return defHttp.delete({url: Api.deleteOne, params}, {joinParamsToUrl: true}).then(() => {
+export const deleteOne = (params, handleSuccess) => {
+  return defHttp.delete({ url: Api.deleteOne, params }, { joinParamsToUrl: true }).then(() => {
     handleSuccess();
   });
-}
+};
 
 /**
  * 批量删除
@@ -74,12 +74,12 @@ export const batchDelete = (params, handleSuccess) => {
     okText: '确认',
     cancelText: '取消',
     onOk: () => {
-      return defHttp.delete({url: Api.deleteBatch, data: params}, {joinParamsToUrl: true}).then(() => {
+      return defHttp.delete({ url: Api.deleteBatch, data: params }, { joinParamsToUrl: true }).then(() => {
         handleSuccess();
       });
-    }
+    },
   });
-}
+};
 
 /**
  * 保存或者更新
@@ -89,7 +89,7 @@ export const batchDelete = (params, handleSuccess) => {
 export const saveOrUpdate = (params, isUpdate) => {
   let url = isUpdate ? Api.edit : Api.save;
   return defHttp.post({ url: url, params }, { isTransformResponse: false });
-}
+};
 
 /**
  * 全部权限列表接口
@@ -109,7 +109,7 @@ export const getPermissionList = (params) => defHttp.get({ url: Api.permissionLi
  */
 export const permissionAddFunction = (params) => {
   return defHttp.post({ url: Api.permissionAdd, params }, { isTransformResponse: false });
-}
+};
 /**
  * 授权保存方法
  * @param params
@@ -117,4 +117,4 @@ export const permissionAddFunction = (params) => {
  */
 export const getGenAKSK = (params) => {
   return defHttp.get({ url: Api.genAKSK, params });
-}
+};

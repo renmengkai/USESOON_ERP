@@ -74,11 +74,11 @@
       //pop是否展示
       const avalid = ref(true);
       const showText = ref('');
-      const innerShowText = ref('')
+      const innerShowText = ref('');
       //注册model
       const [regModal, { openModal }] = useModal();
       //表单值
-      let {code, fieldConfig } = props;
+      let { code, fieldConfig } = props;
       // update-begin--author:liaozhiyang---date:20230811---for：【issues/675】子表字段Popup弹框数据不更新
       //唯一分组groupId
       const uniqGroupId = computed(() => (props.groupId ? `${props.groupId}_${code}_${fieldConfig[0]['source']}_${fieldConfig[0]['target']}` : ''));
@@ -127,7 +127,7 @@
         let { fieldConfig } = props;
         //匹配popup设置的回调值
         let values = {};
-        let labels = []
+        let labels = [];
         for (let item of fieldConfig) {
           let val = rows.map((row) => row[item.source]);
           // update-begin--author:liaozhiyang---date:20230831---for：【QQYUN-7535】数组只有一个且是number类型，join会改变值的类型为string
@@ -147,7 +147,6 @@
               labels.push(val);
             }
           }
-
         }
         innerShowText.value = labels.join(',');
         //传入表单示例方式赋值

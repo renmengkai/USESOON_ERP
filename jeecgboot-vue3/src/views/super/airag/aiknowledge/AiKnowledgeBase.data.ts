@@ -84,7 +84,7 @@ export const docTextSchema: FormSchema[] = [
     field: 'type',
     required: true,
     component: 'Input',
-    show: false
+    show: false,
   },
   {
     label: '内容',
@@ -92,34 +92,33 @@ export const docTextSchema: FormSchema[] = [
     rules: [{ required: true, message: '请输入内容' }],
     component: 'JMarkdownEditor',
     componentProps: {
-      placeholder: "请输入内容",
-      preview:{ mode: 'view', action: [] }
+      placeholder: '请输入内容',
+      preview: { mode: 'view', action: [] },
     },
-    ifShow:({ values})=>{
-      if(values.type === 'text'){
+    ifShow: ({ values }) => {
+      if (values.type === 'text') {
         return true;
       }
       return false;
-    }
+    },
   },
   {
     label: '文件',
     field: 'filePath',
     rules: [{ required: true, message: '请上传文件' }],
     component: 'JUpload',
-    helpMessage:'支持txt、markdown、pdf、docx、xlsx、pptx',
-    componentProps:{
+    helpMessage: '支持txt、markdown、pdf、docx、xlsx、pptx',
+    componentProps: {
       fileType: 'file',
       maxCount: 1,
       multiple: false,
-      text: '上传文档'
+      text: '上传文档',
     },
-    ifShow:({ values })=>{
-      if(values.type === 'file'){
+    ifShow: ({ values }) => {
+      if (values.type === 'file') {
         return true;
       }
       return false;
-    }
+    },
   },
 ];
-

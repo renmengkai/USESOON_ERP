@@ -2,15 +2,15 @@ import { useGlobSetting } from '/@/hooks/setting';
 import { merge, random } from 'lodash-es';
 import { isArray } from '/@/utils/is';
 import { FormSchema } from '/@/components/Form';
-import { reactive } from "vue";
-import { getTenantId, getToken } from "/@/utils/auth";
-import { useUserStoreWithOut } from "/@/store/modules/user";
+import { reactive } from 'vue';
+import { getTenantId, getToken } from '/@/utils/auth';
+import { useUserStoreWithOut } from '/@/store/modules/user';
 import dayjs from 'dayjs';
 import Big from 'big.js';
 
-import { Modal } from "ant-design-vue";
-import { defHttp } from "@/utils/http/axios";
-import { useI18n } from "@/hooks/web/useI18n";
+import { Modal } from 'ant-design-vue';
+import { defHttp } from '@/utils/http/axios';
+import { useI18n } from '@/hooks/web/useI18n';
 
 const globSetting = useGlobSetting();
 const baseApiUrl = globSetting.domainUrl;
@@ -350,37 +350,37 @@ export function stringIsNull(str) {
  * @param node
  */
 export function getAutoScrollContainer(node: HTMLElement) {
-  let element: Nullable<HTMLElement> = node
+  let element: Nullable<HTMLElement> = node;
   while (element != null) {
     if (element.classList.contains('scrollbar__view')) {
       // 判断是否有滚动条
       if (element.clientHeight < element.scrollHeight) {
         // 有滚动条时，挂载到父级，解决滚动问题
-        return node.parentElement
+        return node.parentElement;
       } else {
         // 无滚动条时，挂载到body上，解决下拉框遮盖问题
-        return document.body
+        return document.body;
       }
     } else {
-      element = element.parentElement
+      element = element.parentElement;
     }
   }
   // 不在弹窗内，走默认逻辑
-  return node.parentElement
+  return node.parentElement;
 }
 
 /**
  * 判断子菜单是否全部隐藏
  * @param menuTreeItem
  */
-export  function checkChildrenHidden(menuTreeItem){
+export function checkChildrenHidden(menuTreeItem) {
   //是否是聚合路由
-  let alwaysShow=menuTreeItem.alwaysShow;
-  if(alwaysShow){
+  let alwaysShow = menuTreeItem.alwaysShow;
+  if (alwaysShow) {
     return false;
   }
-  if(!menuTreeItem.children){
-    return false
+  if (!menuTreeItem.children) {
+    return false;
   }
   return menuTreeItem.children?.find((item) => item.hideMenu == false) != null;
 }
@@ -462,7 +462,7 @@ export function replaceUserInfoByExpression(expression: string | any[]) {
     return expression;
   }
   const isString = typeof expression === 'string';
-  const isArray = Array.isArray(expression)
+  const isArray = Array.isArray(expression);
   if (!isString && !isArray) {
     return expression;
   }
@@ -486,26 +486,26 @@ export function replaceUserInfoByExpression(expression: string | any[]) {
 
 /**
  * 设置租户缓存，当租户退出的时候
- * 
+ *
  * @param tenantId
  */
-export async function userExitChangeLoginTenantId(tenantId){
+export async function userExitChangeLoginTenantId(tenantId) {
   const userStore = useUserStoreWithOut();
   //step 1 获取用户租户
-  const url = '/sys/tenant/getCurrentUserTenant'
+  const url = '/sys/tenant/getCurrentUserTenant';
   let currentTenantId = null;
   const data = await defHttp.get({ url });
-  if(data && data.list){
+  if (data && data.list) {
     let arr = data.list;
-    if(arr.length>0){
+    if (arr.length > 0) {
       //step 2.判断当前id是否存在用户租户中
       let filterTenantId = arr.filter((item) => item.id == tenantId);
       //存在说明不是退出的不是当前租户，还用用来的租户即可
-      if(filterTenantId && filterTenantId.length>0){
+      if (filterTenantId && filterTenantId.length > 0) {
         currentTenantId = tenantId;
-      }else{
+      } else {
         //不存在默认第一个
-        currentTenantId = arr[0].id
+        currentTenantId = arr[0].id;
       }
     }
   }
@@ -514,7 +514,7 @@ export async function userExitChangeLoginTenantId(tenantId){
 
   //update-begin---author:wangshuai---date:2023-11-07---for:【QQYUN-7005】退租户，判断退出的租户ID与当前租户ID一致，再刷新---
   //租户为空，说明没有租户了，需要刷新页面。或者当前租户和退出的租户一致则需要刷新浏览器
-  if(!currentTenantId || tenantId == loginTenantId){
+  if (!currentTenantId || tenantId == loginTenantId) {
     window.location.reload();
   }
   //update-end---author:wangshuai---date:2023-11-07---for:【QQYUN-7005】退租户，判断退出的租户ID与当前租户ID一致，再刷新---
@@ -522,20 +522,20 @@ export async function userExitChangeLoginTenantId(tenantId){
 
 /**
  * 我的租户模块需要开启多租户提示
- * 
+ *
  * @param title 标题
  */
-export function tenantSaasMessage(title){
+export function tenantSaasMessage(title) {
   let tenantId = getTenantId();
-  if(!tenantId){
+  if (!tenantId) {
     Modal.confirm({
-      title:title,
+      title: title,
       content: '此菜单需要在多租户模式下使用，否则数据会出现混乱',
       okText: '确认',
       okType: 'danger',
       // @ts-ignore
       cancelButtonProps: { style: { display: 'none' } },
-    })
+    });
   }
 }
 
@@ -566,7 +566,6 @@ export function sameDay(dateStr) {
     return false;
   }
 }
-
 
 /**
  * 翻译菜单名称
@@ -599,13 +598,13 @@ export function translateTitle(data) {
 export function freezeDeep(obj: Recordable | Recordable[]) {
   if (obj != null) {
     if (Array.isArray(obj)) {
-      obj.forEach(item => freezeDeep(item))
+      obj.forEach((item) => freezeDeep(item));
     } else if (typeof obj === 'object') {
-      Object.values(obj).forEach(value => {
-        freezeDeep(value)
-      })
+      Object.values(obj).forEach((value) => {
+        freezeDeep(value);
+      });
     }
-    Object.freeze(obj)
+    Object.freeze(obj);
   }
-  return obj
+  return obj;
 }

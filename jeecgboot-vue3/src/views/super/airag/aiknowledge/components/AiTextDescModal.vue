@@ -4,14 +4,13 @@
     <div class="p-2">
       <div class="header">
         <a-tag color="#a9c8ff">
-          <span>{{hitTextDescData.source}}</span>
+          <span>{{ hitTextDescData.source }}</span>
         </a-tag>
       </div>
       <div class="content">
         <MarkdownViewer :value="hitTextDescData.content" />
       </div>
     </div>
-
   </BasicModal>
 </template>
 
@@ -32,18 +31,18 @@
     },
     emits: ['success', 'register'],
     setup(props, { emit }) {
-      let hitTextDescData = ref<any>({})
-      
+      let hitTextDescData = ref<any>({});
+
       //注册modal
       const [registerModal, { closeModal, setModalProps }] = useModalInner(async (data) => {
         hitTextDescData.value.source = 'score' + ' ' + data.score.toFixed(2);
         hitTextDescData.value.content = data.content;
-        setModalProps({ header: '300px' })
+        setModalProps({ header: '300px' });
       });
 
       return {
         registerModal,
-        hitTextDescData
+        hitTextDescData,
       };
     },
   };

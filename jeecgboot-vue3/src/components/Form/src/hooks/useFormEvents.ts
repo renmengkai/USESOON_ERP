@@ -58,10 +58,10 @@ export function useFormEvents({
       let value = values[key];
 
       //antd3升级后，online表单时间控件选中值报js错 TypeError: Reflect.has called on non-object
-      if(!(values instanceof Object)){
+      if (!(values instanceof Object)) {
         return;
       }
-      
+
       const hasKey = Reflect.has(values, key);
 
       value = handleInputNumberValue(schema?.component, value);
@@ -101,14 +101,14 @@ export function useFormEvents({
    */
   function getSchemaByField(field: string): Nullable<FormSchema> {
     if (!isString(field)) {
-      return null
+      return null;
     }
     const schemaList: FormSchema[] = unref(getSchema);
     const index = schemaList.findIndex((schema) => schema.field === field);
     if (index !== -1) {
       return cloneDeep(schemaList[index]);
     }
-    return null
+    return null;
   }
 
   /**
@@ -273,7 +273,7 @@ export function useFormEvents({
     } catch (error) {
       //update-begin-author:taoyan date:2022-11-4 for: 列表查询表单会触发校验错误导致重置失败，原因不明
       emit('submit', {});
-      console.error('query form validate error, please ignore!', error)
+      console.error('query form validate error, please ignore!', error);
       //throw new Error(error);
       //update-end-author:taoyan date:2022-11-4 for: 列表查询表单会触发校验错误导致重置失败，原因不明
     }

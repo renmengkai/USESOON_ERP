@@ -2,7 +2,14 @@
   <div class="model">
     <!--查询区域-->
     <div class="jeecg-basic-table-form-container">
-      <a-form ref="formRef" @keyup.enter.native="searchQuery" :model="queryParam" :label-col="labelCol" :wrapper-col="wrapperCol" style="background-color: #f7f8fc !important;">
+      <a-form
+        ref="formRef"
+        @keyup.enter.native="searchQuery"
+        :model="queryParam"
+        :label-col="labelCol"
+        :wrapper-col="wrapperCol"
+        style="background-color: #f7f8fc !important"
+      >
         <a-row :gutter="24">
           <a-col :lg="6">
             <a-form-item name="name" label="模板名称">
@@ -34,7 +41,7 @@
           </div>
         </a-card>
       </a-col>
-      <a-col :xxl="4" :xl="6" :lg="6" :md="6" :sm="12" :xs="24" v-for="item in modalList" v-if="modalList && modalList.length>0">
+      <a-col :xxl="4" :xl="6" :lg="6" :md="6" :sm="12" :xs="24" v-for="item in modalList" v-if="modalList && modalList.length > 0">
         <a-card class="model-card" @click="handleEditClick(item)">
           <div class="model-header">
             <div class="flex">
@@ -180,7 +187,7 @@
           pageNo: pageNo.value,
           pageSize: pageSize.value,
           column: 'createTime',
-          order: 'desc'
+          order: 'desc',
         };
         Object.assign(params, queryParam);
         list(params).then((res) => {
@@ -350,14 +357,14 @@
     margin-bottom: 20px;
     background: #fcfcfd;
     border: 1px solid #f0f0f0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     border-radius: 10px;
     height: 152px;
     cursor: pointer;
   }
   .model-card:hover {
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     .model-btn {
       display: flex;
     }
@@ -385,7 +392,7 @@
     margin-bottom: 20px;
     background: #fcfcfd;
     border: 1px solid #f0f0f0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     border-radius: 10px;
     display: inline-flex;
@@ -403,26 +410,26 @@
     }
     .add-knowledge-card-title {
       font-size: 16px;
-      color:#1f2329;
+      color: #1f2329;
       font-weight: 400;
       align-self: center;
     }
   }
 
   .add-knowledge-card:hover {
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
-  .model-icon{
+  .model-icon {
     background-color: unset;
     border: none;
     margin-right: 2px;
   }
-  .model-icon:hover{
+  .model-icon:hover {
     color: #000000;
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0, 0, 0, 0.05);
     border: none;
   }
-  .ant-dropdown-link{
+  .ant-dropdown-link {
     font-size: 14px;
     height: 24px;
     padding: 0 7px;

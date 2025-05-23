@@ -76,10 +76,10 @@ export const exceptionColumns: BasicColumn[] = [
     customRender: ({ record }) => {
       let pname = record.username;
       let pid = record.userid;
-      if(!pname && !pid){
-        return "";
+      if (!pname && !pid) {
+        return '';
       }
-      return pname + " (账号: "+ pid + " )";
+      return pname + ' (账号: ' + pid + ' )';
     },
   },
   {

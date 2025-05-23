@@ -26,7 +26,7 @@ export const useGlobSetting = (): Readonly<GlobConfig> => {
   // }
 
   // 短标题：替换shortName的下划线为空格
-  const shortTitle = VITE_GLOB_APP_SHORT_NAME.replace(/_/g, " ");
+  const shortTitle = VITE_GLOB_APP_SHORT_NAME.replace(/_/g, ' ');
   // Take global configuration
   const glob: Readonly<GlobConfig> = {
     title: VITE_GLOB_APP_TITLE,
@@ -49,7 +49,7 @@ export const useGlobSetting = (): Readonly<GlobConfig> => {
 
   // 【JEECG作为乾坤子应用】乾坤子应用下，需要定义一下
   if (!window['_CONFIG']) {
-    window['_CONFIG'] = {}
+    window['_CONFIG'] = {};
   }
 
   // update-begin--author:sunjianlei---date:220250115---for：【QQYUN-10956】配置了自定义前缀，外部连接打不开，需要兼容处理

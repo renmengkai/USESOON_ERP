@@ -65,5 +65,5 @@ export const getThirdUserBindByWechat = () => {
  * @param params
  */
 export const deleteThirdAccount = (params) => {
-  return defHttp.delete({ url: Api.deleteThirdAccount, params }, { isTransformResponse:false, joinParamsToUrl: true });
+  return defHttp.delete({ url: Api.deleteThirdAccount, params }, { isTransformResponse: false, joinParamsToUrl: true });
 };

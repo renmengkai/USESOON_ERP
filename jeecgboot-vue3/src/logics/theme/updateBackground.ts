@@ -76,7 +76,7 @@ export function updateSidebarBgColor(color?: string) {
   let isThemeBright = false;
   if (['#fff', '#ffffff'].includes(color!.toLowerCase()) && !darkMode) {
     theme = ThemeEnum.LIGHT;
-  } else if (['#009688', '#e74c3c','#037bd5'].includes(color!.toLowerCase()) && !darkMode) {
+  } else if (['#009688', '#e74c3c', '#037bd5'].includes(color!.toLowerCase()) && !darkMode) {
     theme = ThemeEnum.DARK;
     isThemeBright = true;
   } else {

@@ -8,8 +8,8 @@ import { h } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useMethods } from '/@/hooks/system/useMethods';
 import { importViewsFile, _eval } from '/@/utils';
-import {getToken} from "@/utils/auth";
-import {replaceUserInfoByExpression} from "@/utils/common/compUtils";
+import { getToken } from '@/utils/auth';
+import { replaceUserInfoByExpression } from '@/utils/common/compUtils';
 import { isString } from '/@/utils/is';
 
 export function usePopBiz(ob, tableRef?) {
@@ -196,7 +196,7 @@ export function usePopBiz(ob, tableRef?) {
    * 加载列信息
    */
   function loadColumnsInfo() {
-    const {code} = handleCodeParams(true)
+    const { code } = handleCodeParams(true);
     let url = `${configUrl.getColumns}${code}`;
     //缓存key
     let groupIdKey = props.groupId ? `${props.groupId}${url}` : '';
@@ -259,9 +259,9 @@ export function usePopBiz(ob, tableRef?) {
     pagination.isTotal = '';
     let url = `${configUrl.getColumnsAndData}${props.id}`;
 
-    const {query} = handleCodeParams()
+    const { query } = handleCodeParams();
     if (query) {
-      url = url + query
+      url = url + query;
     }
     //缓存key
     let groupIdKey = props.groupId ? `${props.groupId}${url}` : '';
@@ -316,34 +316,33 @@ export function usePopBiz(ob, tableRef?) {
   // 处理动态参数和系统变量
   function handleCodeParams(onlyCode: boolean = false) {
     if (!props.code) {
-      return {code: '', query: ''}
+      return { code: '', query: '' };
     }
-    const firstIndex = props.code.indexOf('?')
+    const firstIndex = props.code.indexOf('?');
     if (firstIndex === -1) {
-      return {code: props.code, query: ''}
+      return { code: props.code, query: '' };
     }
-    const code = props.code.substring(0, firstIndex)
+    const code = props.code.substring(0, firstIndex);
     if (onlyCode) {
-      return {code: code, query: ''}
+      return { code: code, query: '' };
     }
     const queryOrigin = props.code.substring(firstIndex, props.code.length);
-    let query: string
+    let query: string;
     // 替换系统变量
-    query = replaceUserInfoByExpression(queryOrigin)
+    query = replaceUserInfoByExpression(queryOrigin);
     // 获取表单值
     if (typeof props.getFormValues === 'function') {
-      const values = props.getFormValues()
+      const values = props.getFormValues();
       // 替换动态参数，如果有 ${xxx} 则替换为实际值
       query = query.replace(/\${([^}]+)}/g, (_$0, $1) => {
         if (values[$1] == null) {
-          return ''
+          return '';
         }
-        return values[$1]
+        return values[$1];
       });
-
     }
 
-    return {code, query, queryOrigin}
+    return { code, query, queryOrigin };
   }
 
   /**
@@ -401,7 +400,7 @@ export function usePopBiz(ob, tableRef?) {
       if (column.isTotal === '1') {
         arr.push(column.dataIndex!);
       }
-        // 【VUEN-1569】【online报表】合计无效
+      // 【VUEN-1569】【online报表】合计无效
       if (column.children && column.children.length > 0) {
         let subArray = getNeedSumColumns(column.children);
         if (subArray.length > 0) {
@@ -534,7 +533,7 @@ export function usePopBiz(ob, tableRef?) {
           try {
             // 支持 {{ ACCESS_TOKEN }} 占位符
             if (s0.trim() === 'ACCESS_TOKEN') {
-              return getToken()
+              return getToken();
             }
 
             // update-begin--author:liaozhiyang---date:20230904---for：【QQYUN-6390】eval替换成new Function，解决build警告
@@ -567,9 +566,7 @@ export function usePopBiz(ob, tableRef?) {
     // 【VUEN-1568】如果选中了某些行，就只导出选中的行
     let keys = unref(checkedKeys);
     if (keys.length > 0) {
-      keys = keys
-        .map((i) => selectRows.value.find((item) => combineRowKey(item) === i)?.id)
-        .filter((i) => i != null && i !== '');
+      keys = keys.map((i) => selectRows.value.find((item) => combineRowKey(item) === i)?.id).filter((i) => i != null && i !== '');
       // 判断是否有ID字段
       if (keys.length === 0) {
         createMessage.warning('由于数据中缺少ID字段，故无法使用选中导出功能');
@@ -662,9 +659,9 @@ export function usePopBiz(ob, tableRef?) {
     // update-begin--author:liaozhiyang---date:20240603---for：【TV360X-578】online报表SQL翻译，第二页不翻页数据
     let url = `${configUrl.getColumnsAndData}${unref(cgRpConfigId)}`;
     // update-end--author:liaozhiyang---date:20240603---for：【TV360X-578】online报表SQL翻译，第二页不翻页数据
-    const {query} = handleCodeParams()
+    const { query } = handleCodeParams();
     if (query) {
-      url = url + query
+      url = url + query;
     }
     //缓存key
     let groupIdKey = props.groupId ? `${props.groupId}${url}${JSON.stringify(params)}` : '';
@@ -685,14 +682,14 @@ export function usePopBiz(ob, tableRef?) {
    * 获取地址栏的参数
    */
   function getUrlParamString() {
-   let query = route.query;
-   let arr:any[] = []
-   if(query && Object.keys(query).length>0){
-     Object.keys(query).map(k=>{
-       arr.push(`${k}=${query[k]}`)
-     })
-   }
-   return arr.join('&')
+    let query = route.query;
+    let arr: any[] = [];
+    if (query && Object.keys(query).length > 0) {
+      Object.keys(query).map((k) => {
+        arr.push(`${k}=${query[k]}`);
+      });
+    }
+    return arr.join('&');
   }
 
   /**
@@ -710,9 +707,10 @@ export function usePopBiz(ob, tableRef?) {
       dataSource.value = data.records;
       //update-begin-author:taoyan date:2023-2-11 for:issues/356 在线报表分页有问题
       //update-begin-author:liusq date:2023-4-04 for:issues/426 修复356时候引入的回归错误 JPopupOnlReportModal.vue 中未修改
-      tableRef?.value && tableRef?.value?.setPagination({
-        total: Number(data.total)
-      })
+      tableRef?.value &&
+        tableRef?.value?.setPagination({
+          total: Number(data.total),
+        });
       //update-end-author:liusq date:2023-4-04  for:issues/426 修复356时候引入的回归错误 JPopupOnlReportModal.vue 中未修改
       //update-end-author:taoyan date:2023-2-11 for:issues/356 在线报表分页有问题
     } else {

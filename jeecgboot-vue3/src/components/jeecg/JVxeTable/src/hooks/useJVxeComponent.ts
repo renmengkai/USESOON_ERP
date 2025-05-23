@@ -7,7 +7,7 @@ import { JVxeRenderType } from '../types/JVxeTypes';
 import { isBoolean, isFunction, isObject, isPromise } from '/@/utils/is';
 import { JVxeComponent } from '../types/JVxeComponent';
 import { filterDictText } from '/@/utils/dict/JDictSelectUtil';
-import { getAreaTextByCode } from "@/components/Form/src/utils/Area";
+import { getAreaTextByCode } from '@/components/Form/src/utils/Area';
 
 export function useJVxeCompProps() {
   return {
@@ -47,14 +47,14 @@ export function useJVxeComponent(props: JVxeComponent.Props) {
   const scrolling = computed(() => !!props.renderOptions.scrolling);
   // 当有formatter时，优先使用formatter
   const innerLabel = computed(() => {
-    if(typeof column.value?.formatter === 'function'){
+    if (typeof column.value?.formatter === 'function') {
       return column.value.formatter({
         cellValue: innerValue.value,
         row: row.value,
         column: column.value,
       });
     }
-    return innerValue.value
+    return innerValue.value;
   });
   const cellProps = computed(() => {
     let renderOptions = props.renderOptions;

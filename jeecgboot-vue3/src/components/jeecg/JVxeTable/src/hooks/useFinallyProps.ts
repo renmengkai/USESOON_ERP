@@ -48,17 +48,17 @@ export function useFinallyProps(props: JVxeTableProps, data: JVxeDataProps, meth
       rowClass = {
         rowClassName: (params) => {
           let { row } = params;
-          const find = props.notAllowDrag?.find((item:any) => {
-            const {key, value} = item;
+          const find = props.notAllowDrag?.find((item: any) => {
+            const { key, value } = item;
             return row[key] == value;
           });
           // 业务传进的来的rowClassName
           const popsRowClassName = props.rowClassName ?? '';
           let outClass = '';
-          if(typeof popsRowClassName==='string'){
+          if (typeof popsRowClassName === 'string') {
             popsRowClassName && (outClass = popsRowClassName);
-          }else if(typeof popsRowClassName==='function'){
-            outClass = popsRowClassName(params)
+          } else if (typeof popsRowClassName === 'function') {
+            outClass = popsRowClassName(params);
           }
           return find ? `not-allow-drag ${outClass}` : `allow-drag ${outClass}`;
         },
@@ -104,7 +104,7 @@ export function useFinallyProps(props: JVxeTableProps, data: JVxeDataProps, meth
         checkboxConfig: {
           checkMethod: methods.handleCheckMethod,
         },
-        ...rowClass
+        ...rowClass,
         // rowClassName:(params)=>{
         //   const { row } = params;
         //   return row.dbFieldName=='id'?"not-allow-drag":"allow-drag"

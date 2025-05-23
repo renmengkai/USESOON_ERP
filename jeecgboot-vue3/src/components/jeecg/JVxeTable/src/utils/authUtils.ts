@@ -9,7 +9,7 @@ export function getJVxeAuths(prefix) {
   const permissionStore = usePermissionStoreWithOut();
   prefix = getPrefix(prefix);
   let { authList, allAuthList } = permissionStore;
-  let authsMap = new Map<string, typeof allAuthList[0]>();
+  let authsMap = new Map<string, (typeof allAuthList)[0]>();
   if (!prefix || prefix.length == 0) {
     return authsMap;
   }

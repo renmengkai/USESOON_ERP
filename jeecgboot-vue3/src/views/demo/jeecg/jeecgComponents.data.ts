@@ -674,7 +674,7 @@ export const schemas: FormSchema[] = [
     label: '选中值',
     colProps: { span: 12 },
   },
-  
+
   {
     field: 'userSelect2',
     component: 'UserSelect',
@@ -688,7 +688,7 @@ export const schemas: FormSchema[] = [
     label: '选中值',
     colProps: { span: 12 },
   },
-  
+
   {
     field: 'superQuery',
     component: 'Input',
@@ -724,7 +724,7 @@ export const schemas: FormSchema[] = [
     colProps: {
       span: 12,
     },
-    componentProps:{
+    componentProps: {
       placeholder: '请选择',
       dictCode: 'report_user,username,id',
       multi: true,
@@ -742,7 +742,7 @@ export const schemas: FormSchema[] = [
     field: 'sex',
     component: 'JDictSelectTag',
     label: '性别(控制下方课程options)',
-    helpMessage: ['component模式','性别不同，下方课程展示选项不同'],
+    helpMessage: ['component模式', '性别不同，下方课程展示选项不同'],
     componentProps: {
       dictCode: 'sex',
       type: 'radioButton',
@@ -802,7 +802,7 @@ export const schemas: FormSchema[] = [
     componentProps: {
       selectPlaceholder: '可选择系统变量',
       inputPlaceholder: '请输入',
-      selectWidth:'200px',
+      selectWidth: '200px',
       options: [
         {
           label: '登录用户账号',
@@ -875,5 +875,4 @@ export const schemas: FormSchema[] = [
     label: '选中值',
     colProps: { span: 12 },
   },
-  
 ];

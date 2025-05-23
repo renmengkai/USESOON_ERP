@@ -1,7 +1,7 @@
 <template>
   <div class="model-params-popover">
     <div class="params" v-if="type === 'model'">
-      <span style="font-size:14px">参数</span>
+      <span style="font-size: 14px">参数</span>
       <a-select value="加载预设" style="width: 96px" size="small" @change="onLoadPreset">
         <a-select-option v-for="(preset, idx) of presets" :value="idx" :key="idx">
           <a-space>
@@ -20,9 +20,9 @@
         </a-tooltip>
       </div>
       <a-space>
-        <a-switch v-model:checked="temperatureEnable" size="small"/>
-        <a-slider v-bind="temperatureProps" v-model:value="model.temperature" :disabled="model['temperature'] === null"/>
-        <a-input-number v-bind="temperatureProps" v-model:value="model.temperature" :disabled="model['temperature'] === null"/>
+        <a-switch v-model:checked="temperatureEnable" size="small" />
+        <a-slider v-bind="temperatureProps" v-model:value="model.temperature" :disabled="model['temperature'] === null" />
+        <a-input-number v-bind="temperatureProps" v-model:value="model.temperature" :disabled="model['temperature'] === null" />
       </a-space>
     </div>
     <!-- 词汇属性 -->
@@ -34,9 +34,9 @@
         </a-tooltip>
       </div>
       <a-space>
-        <a-switch v-model:checked="topPEnable" size="small"/>
-        <a-slider v-bind="topPProps" v-model:value="model.topP" :disabled="model['topP'] === null"/>
-        <a-input-number v-bind="topPProps" v-model:value="model.topP" :disabled="model['topP'] === null"/>
+        <a-switch v-model:checked="topPEnable" size="small" />
+        <a-slider v-bind="topPProps" v-model:value="model.topP" :disabled="model['topP'] === null" />
+        <a-input-number v-bind="topPProps" v-model:value="model.topP" :disabled="model['topP'] === null" />
       </a-space>
     </div>
     <!-- 话题属性 -->
@@ -49,8 +49,8 @@
       </div>
       <a-space>
         <a-switch v-model:checked="presencePenaltyEnable" size="small" />
-        <a-slider v-bind="presencePenaltyProps" v-model:value="model.presencePenalty" :disabled="model['presencePenalty'] === null"/>
-        <a-input-number v-bind="presencePenaltyProps" v-model:value="model.presencePenalty" :disabled="model['presencePenalty'] === null"/>
+        <a-slider v-bind="presencePenaltyProps" v-model:value="model.presencePenalty" :disabled="model['presencePenalty'] === null" />
+        <a-input-number v-bind="presencePenaltyProps" v-model:value="model.presencePenalty" :disabled="model['presencePenalty'] === null" />
       </a-space>
     </div>
     <!-- 重复属性 -->
@@ -63,8 +63,8 @@
       </div>
       <a-space>
         <a-switch v-model:checked="frequencyPenaltyEnable" size="small" />
-        <a-slider v-bind="frequencyPenaltyProps" v-model:value="model.frequencyPenalty" :disabled="model['frequencyPenalty'] === null"/>
-        <a-input-number v-bind="frequencyPenaltyProps" v-model:value="model.frequencyPenalty" :disabled="model['frequencyPenalty'] === null"/>
+        <a-slider v-bind="frequencyPenaltyProps" v-model:value="model.frequencyPenalty" :disabled="model['frequencyPenalty'] === null" />
+        <a-input-number v-bind="frequencyPenaltyProps" v-model:value="model.frequencyPenalty" :disabled="model['frequencyPenalty'] === null" />
       </a-space>
     </div>
     <!-- 最大回复 -->
@@ -77,8 +77,8 @@
       </div>
       <a-space>
         <a-switch v-model:checked="maxTokensEnable" size="small" />
-        <a-slider v-bind="maxTokensProps" v-model:value="model.maxTokens" :disabled="model['maxTokens'] === null"/>
-        <a-input-number v-bind="maxTokensProps" v-model:value="model.maxTokens" :disabled="model['maxTokens'] === null"/>
+        <a-slider v-bind="maxTokensProps" v-model:value="model.maxTokens" :disabled="model['maxTokens'] === null" />
+        <a-input-number v-bind="maxTokensProps" v-model:value="model.maxTokens" :disabled="model['maxTokens'] === null" />
       </a-space>
     </div>
     <!-- top k -->
@@ -91,8 +91,8 @@
       </div>
       <a-space>
         <a-switch v-model:checked="topNumberEnable" size="small" />
-        <a-slider v-bind="topNumberProps" v-model:value="model.topNumber" :disabled="model['topNumber'] === null"/>
-        <a-input-number v-bind="topNumberProps" v-model:value="model.topNumber" :disabled="model['topNumber'] === null"/>
+        <a-slider v-bind="topNumberProps" v-model:value="model.topNumber" :disabled="model['topNumber'] === null" />
+        <a-input-number v-bind="topNumberProps" v-model:value="model.topNumber" :disabled="model['topNumber'] === null" />
       </a-space>
     </div>
     <!-- Score 阈值 -->
@@ -105,8 +105,8 @@
       </div>
       <a-space>
         <a-switch v-model:checked="similarityEnable" size="small" />
-        <a-slider v-bind="similarityProps" v-model:value="model.similarity" :disabled="model['similarity'] === null"/>
-        <a-input-number v-bind="similarityProps" v-model:value="model.similarity" :disabled="model['similarity'] === null"/>
+        <a-slider v-bind="similarityProps" v-model:value="model.similarity" :disabled="model['similarity'] === null" />
+        <a-input-number v-bind="similarityProps" v-model:value="model.similarity" :disabled="model['similarity'] === null" />
       </a-space>
     </div>
   </div>
@@ -122,12 +122,12 @@
     props: {
       modelParams: {
         type: Object,
-        default: {}
+        default: {},
       },
       type: {
         type: String,
-        default: 'model'
-      }
+        default: 'model',
+      },
     },
     emits: ['success', 'register', 'updateModel'],
     setup(props, { emit }) {
@@ -177,7 +177,7 @@
         maxTokens:
           '设置Ai最大回复内容大小，会影响返回结果的长度。普通聊天建议500-800；短文生成建议800-2000；代码生成建议2000-3600；长文生成建议4000左右（或选择长回复模型)',
         topNumber: '用于筛选与用户问题相似度最高的文本片段。系统同时会根据选用模型上下文窗口大小动态调整分段数量。',
-        similarity: '用于设置文本片段筛选的相似度阅值。'
+        similarity: '用于设置文本片段筛选的相似度阅值。',
       };
 
       // 参数：温度
@@ -210,68 +210,67 @@
         min: 1,
         max: 16000,
         step: 1,
-      });    
-      
+      });
+
       // 参数：topk
       const topNumberProps = ref<any>({
         min: 1,
         max: 10,
         step: 1,
-      });     
-      
+      });
+
       // 参数：Score 阈值
       const similarityProps = ref<any>({
         min: 0.1,
         max: 1,
         step: 0.1,
       });
-      
-      
+
       //参数对象
-      const model = ref<any>(props.modelParams || {})
-      
+      const model = ref<any>(props.modelParams || {});
+
       //模型温度是否勾选
       const temperatureEnable = computed({
-        get:()=> model.value.temperature != null,
-        set:(value) => model.value.temperature = !value? null: 0.7
-      });    
-      
+        get: () => model.value.temperature != null,
+        set: (value) => (model.value.temperature = !value ? null : 0.7),
+      });
+
       //词汇属性是否勾选
       const topPEnable = computed({
-        get:()=> model.value.topP != null,
-        set:(value) => model.value.topP = !value? null: 0
+        get: () => model.value.topP != null,
+        set: (value) => (model.value.topP = !value ? null : 0),
       });
-      
+
       //词汇属性是否勾选
       const presencePenaltyEnable = computed({
-        get:()=> model.value.presencePenalty != null,
-        set:(value) => model.value.presencePenalty = !value? null: 0
-      });  
-      
+        get: () => model.value.presencePenalty != null,
+        set: (value) => (model.value.presencePenalty = !value ? null : 0),
+      });
+
       //重复属性是否勾选
       const frequencyPenaltyEnable = computed({
-        get:()=> model.value.frequencyPenalty != null,
-        set:(value) => model.value.frequencyPenalty = !value? null: 0
-      });   
-      
+        get: () => model.value.frequencyPenalty != null,
+        set: (value) => (model.value.frequencyPenalty = !value ? null : 0),
+      });
+
       //最大回复
       const maxTokensEnable = computed({
-        get:()=> model.value.maxTokens != null,
-        set:(value) => model.value.maxTokens = !value? null: 520
+        get: () => model.value.maxTokens != null,
+        set: (value) => (model.value.maxTokens = !value ? null : 520),
       });
-        
+
       //top k
       const topNumberEnable = computed({
-        get:()=> model.value.topNumber != null,
-        set:(value) => model.value.topNumber = !value? null: 4
-      });   
-      
+        get: () => model.value.topNumber != null,
+        set: (value) => (model.value.topNumber = !value ? null : 4),
+      });
+
       //Score 阈值
       const similarityEnable = computed({
-        get:()=> model.value.similarity != null,
-        set:(value) => model.value.similarity = !value? null: 0.74
+        get: () => model.value.similarity != null,
+        set: (value) => (model.value.similarity = !value ? null : 0.74),
       });
-      
+
       // 加载预设
       function onLoadPreset(idx: number) {
         const preset = presets[idx];
@@ -294,10 +293,10 @@
        * 设置modal值
        * @param values
        */
-      function setModalParams(values){
-        model.value = values
+      function setModalParams(values) {
+        model.value = values;
       }
-      
+
       return {
         presets,
         onLoadPreset,
@@ -328,11 +327,11 @@
   .model-params-popover {
     font-size: 14px;
     width: 100%;
-     .params{
-       display: flex;
-       justify-content: space-between;
-     } 
-    .setting-item{
+    .params {
+      display: flex;
+      justify-content: space-between;
+    }
+    .setting-item {
       margin-top: 10px;
     }
     .setting-item .label {

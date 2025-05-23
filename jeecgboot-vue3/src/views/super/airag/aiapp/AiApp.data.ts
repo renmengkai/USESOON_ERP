@@ -42,7 +42,7 @@ export const formSchema: FormSchema[] = [
     label: '选择应用类型',
     field: 'type',
     component: 'Input',
-    ifShow:({ values })=>{
+    ifShow: ({ values }) => {
       return !values.id;
     },
     slot: 'typeSlot',
@@ -83,6 +83,6 @@ export const quickCommandFormSchema: FormSchema[] = [
       autosize: { minRows: 4, maxRows: 4 },
       showCount: true,
       maxLength: 100,
-    }
+    },
   },
 ];

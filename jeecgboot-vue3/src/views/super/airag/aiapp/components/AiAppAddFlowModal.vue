@@ -13,15 +13,15 @@
       <a-row :span="24">
         <a-col :span="12" v-for="item in flowList" @click="handleSelect(item)">
           <a-card :style="item.id === flowId ? { border: '1px solid #3370ff' } : {}" hoverable class="checkbox-card" :body-style="{ width: '100%' }">
-            <div style="display: flex; width: 100%;align-items:center">
-              <img :src="getImage(item.icon)" class="flow-icon"/>
-              <div style="display: grid;margin-left: 5px;align-items: center">
+            <div style="display: flex; width: 100%; align-items: center">
+              <img :src="getImage(item.icon)" class="flow-icon" />
+              <div style="display: grid; margin-left: 5px; align-items: center">
                 <span class="checkbox-name ellipsis">{{ item.name }}</span>
-                <div class="flex text-status" v-if="item.metadata && item.metadata.length>0">
+                <div class="flex text-status" v-if="item.metadata && item.metadata.length > 0">
                   <span class="tag-input">输入</span>
                   <div v-for="(metaItem, index) in item.metadata">
                     <a-tag color="rgba(87,104,161,0.08)" class="tags-meadata">
-                      <span v-if="index<3" class="tag-text">{{ metaItem.field }}</span>
+                      <span v-if="index < 3" class="tag-text">{{ metaItem.field }}</span>
                     </a-tag>
                   </div>
                 </div>
@@ -34,7 +34,7 @@
         </a-col>
       </a-row>
       <div v-if="flowId" class="use-select">
-        已选择 <span class="ellipsis" style="max-width: 150px">{{flowData.name}}</span>
+        已选择 <span class="ellipsis" style="max-width: 150px">{{ flowData.name }}</span>
         <span style="margin-left: 8px; color: #3d79fb; cursor: pointer" @click="handleClearClick">清空</span>
       </div>
       <Pagination
@@ -60,11 +60,11 @@
   import { Pagination } from 'ant-design-vue';
   import { list } from '@/views/super/airag/aiknowledge/AiKnowledgeBase.api';
   // import {pageApi} from "@/views/super/airag/aiflow/pages/api";
-  import { defHttp } from "@/utils/http/axios";
+  import { defHttp } from '@/utils/http/axios';
   import knowledge from '/@/views/super/airag/aiknowledge/icon/knowledge.png';
   import { cloneDeep } from 'lodash-es';
-  import { getFileAccessHttpUrl } from "@/utils/common/compUtils";
-  import defaultFlowImg from "@/assets/images/ai/aiflow.png";
+  import { getFileAccessHttpUrl } from '@/utils/common/compUtils';
+  import defaultFlowImg from '@/assets/images/ai/aiflow.png';
 
   export default {
     name: 'AiAppAddFlowModal',
@@ -80,7 +80,7 @@
       //流程数据
       const flowList = ref<any>({});
       //选中的数据
-      const flowData = ref<any>({})
+      const flowData = ref<any>({});
       //当前页数
       const pageNo = ref<number>(1);
       //每页条数
@@ -103,7 +103,7 @@
        * 保存
        */
       async function handleOk() {
-        emit('success',{ flowId: flowId.value, flowData: flowData.value });
+        emit('success', { flowId: flowId.value, flowData: flowData.value });
         handleCancel();
       }
 
@@ -116,8 +116,8 @@
 
       //复选框选中事件
       const handleSelect = (item) => {
-        if(flowId.value === item.id){
-          flowId.value = "";
+        if (flowId.value === item.id) {
+          flowId.value = '';
           flowData.value = null;
           return;
         }
@@ -135,10 +135,10 @@
           column: 'createTime',
           order: 'desc',
           name: searchText.value,
-          status:'enable'
+          status: 'enable',
         };
-        getAiFlowList(params).then((res) =>{
-          if(res){
+        getAiFlowList(params).then((res) => {
+          if (res) {
             for (const data of res.records) {
               data.metadata = getMetadata(data.metadata);
             }
@@ -152,7 +152,7 @@
       }
 
       async function getAiFlowList(params?: any) {
-        return defHttp.get({url: '/airag/flow/list', params});
+        return defHttp.get({ url: '/airag/flow/list', params });
       }
 
       /**
@@ -170,7 +170,7 @@
        * 清空选中状态
        */
       function handleClearClick() {
-        flowId.value = "";
+        flowId.value = '';
         flowData.value = null;
       }
 
@@ -180,7 +180,7 @@
       function getImage(icon) {
         return icon ? getFileAccessHttpUrl(icon) : defaultFlowImg;
       }
-      
+
       /**
        * 获取输入输出参入
        *
@@ -194,7 +194,7 @@
         let inputsArr = parse['inputs'];
         return [...inputsArr];
       }
-      
+
       return {
         registerModal,
         title,
@@ -273,15 +273,15 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .flow-icon{
+  .flow-icon {
     width: 34px;
     height: 34px;
     border-radius: 10px;
   }
-  :deep(.ant-card .ant-card-body){
-    padding:16px !important;
+  :deep(.ant-card .ant-card-body) {
+    padding: 16px !important;
   }
-  .header-create-by{
+  .header-create-by {
     font-size: 12px;
     color: #646a73;
   }
@@ -293,17 +293,17 @@
     overflow: hidden;
     text-wrap: nowrap;
     font-size: 12px;
-    color: #676F83;
+    color: #676f83;
   }
-  .mt-10{
+  .mt-10 {
     margin-top: 10px;
   }
-  .flex{
+  .flex {
     display: flex;
   }
-  .text-status{
+  .text-status {
     font-size: 12px;
-    color: #676F83;
+    color: #676f83;
   }
   .tag-text {
     display: flow;
@@ -313,11 +313,11 @@
     white-space: nowrap;
     height: 20px;
     font-size: 12px;
-    color: rgba(15, 21, 40,0.82);
+    color: rgba(15, 21, 40, 0.82);
   }
-  .tag-input{
+  .tag-input {
     align-self: center;
-    color: rgba(55,67,106,0.7);
+    color: rgba(55, 67, 106, 0.7);
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
@@ -326,7 +326,7 @@
     text-align: right;
     white-space: nowrap;
   }
-  .tags-meadata{
+  .tags-meadata {
     padding-inline: 2px;
     border-radius: 4px;
     display: flex;

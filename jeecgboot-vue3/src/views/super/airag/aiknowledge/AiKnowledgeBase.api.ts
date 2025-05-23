@@ -56,7 +56,7 @@ export const editKnowledge = (params) => {
 export const deleteModel = (params, handleSuccess) => {
   Modal.confirm({
     title: '确认删除',
-    content: '是否删除名称为'+params.name+'的知识库吗？',
+    content: '是否删除名称为' + params.name + '的知识库吗？',
     okText: '确认',
     cancelText: '取消',
     onOk: () => {
@@ -81,7 +81,7 @@ export const knowledgeDocList = (params) => {
  * @param params
  */
 export const rebuild = (params) => {
-  return defHttp.put({ url: Api.rebuild, params,timeout: 2 * 60 * 1000 }, { joinParamsToUrl: true, isTransformResponse: false });
+  return defHttp.put({ url: Api.rebuild, params, timeout: 2 * 60 * 1000 }, { joinParamsToUrl: true, isTransformResponse: false });
 };
 
 /**

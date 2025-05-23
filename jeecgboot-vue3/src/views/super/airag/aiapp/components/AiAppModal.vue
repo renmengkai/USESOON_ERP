@@ -89,10 +89,10 @@
             //关闭弹窗
             closeModal();
             //update-begin---author:wangshuai---date:2025-03-11---for: 【QQYUN-11324】8.修改弹窗head---
-            if(isUpdate.value){
+            if (isUpdate.value) {
               //刷新列表
               emit('success', values);
-            }else{
+            } else {
               //刷新列表
               emit('success', result);
             }

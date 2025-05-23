@@ -1,6 +1,15 @@
 <template>
   <div class="p-2">
-    <BasicModal destroyOnClose @register="registerModal" :canFullscreen="false" width="1000px" @ok="handleOk" @cancel="handleCancel" okText="替换" wrapClassName='ai-rag-generate-prompt-modal'>
+    <BasicModal
+      destroyOnClose
+      @register="registerModal"
+      :canFullscreen="false"
+      width="1000px"
+      @ok="handleOk"
+      @cancel="handleCancel"
+      okText="替换"
+      wrapClassName="ai-rag-generate-prompt-modal"
+    >
       <div class="prompt">
         <div class="prompt-left">
           <div class="prompt-left-title">提示词生成器</div>

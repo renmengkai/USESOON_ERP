@@ -29,7 +29,7 @@ export function useTreeBiz(treeRef, getList, props, realProps, emit) {
   watch(
     selectValues,
     ({ value: values }: Recordable) => {
-      if(!values){
+      if (!values) {
         return;
       }
       if (openModal.value == false && values.length > 0) {
@@ -120,9 +120,9 @@ export function useTreeBiz(treeRef, getList, props, realProps, emit) {
     //update-begin---author:wangshuai ---date:20230403  for：【issues/394】所属部门树操作全部勾选不生效/【issues/4646】部门全部勾选后，点击确认按钮，部门信息丢失------------
     await nextTick();
     checkedKeys.value = getTree().getCheckedKeys();
-    if(checkAll){
+    if (checkAll) {
       getTreeRow();
-    }else{
+    } else {
       selectRows.value = [];
     }
     //update-end---author:wangshuai ---date:20230403  for：【issues/394】所属部门树操作全部勾选不生效/【issues/4646】部门全部勾选后，点击确认按钮，部门信息丢失------------
@@ -133,13 +133,13 @@ export function useTreeBiz(treeRef, getList, props, realProps, emit) {
    * @param res
    */
   function getTreeRow() {
-    let ids = "";
-    if(unref(checkedKeys).length>0){
-      ids = checkedKeys.value.join(",");
+    let ids = '';
+    if (unref(checkedKeys).length > 0) {
+      ids = checkedKeys.value.join(',');
     }
-    getList({ids:ids}).then((res) =>{
+    getList({ ids: ids }).then((res) => {
       selectRows.value = res;
-    })
+    });
   }
 
   /**

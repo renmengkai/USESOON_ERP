@@ -42,7 +42,7 @@ export const formSchema: FormSchema[] = [
     label: 'API域名',
     field: 'baseUrl',
     required: true,
-    component: 'Input'
+    component: 'Input',
   },
   {
     label: 'API Key',
@@ -50,7 +50,7 @@ export const formSchema: FormSchema[] = [
     required: true,
     component: 'InputPassword',
     ifShow: ({ values }) => {
-      if(values.provider==="OLLAMA"){
+      if (values.provider === 'OLLAMA') {
         return false;
       }
       return true;
@@ -62,8 +62,13 @@ export const formSchema: FormSchema[] = [
     required: true,
     component: 'InputPassword',
     ifShow: ({ values }) => {
-      if(values.provider==='DEEPSEEK' || values.provider==="OLLAMA" || values.provider==="OPENAI"
-        || values.provider==="ZHIPU" || values.provider==="QWEN"){
+      if (
+        values.provider === 'DEEPSEEK' ||
+        values.provider === 'OLLAMA' ||
+        values.provider === 'OPENAI' ||
+        values.provider === 'ZHIPU' ||
+        values.provider === 'QWEN'
+      ) {
         return false;
       }
       return true;

@@ -89,12 +89,12 @@
       if (localData) {
         const obj = JSON.parse(localData);
         obj.level && toggleRelationAll(obj.level == 'relation' ? false : true);
-        obj.expand && toggleExpandAll(obj.expand == 'openAll' ? true :false);
+        obj.expand && toggleExpandAll(obj.expand == 'openAll' ? true : false);
       } else {
         // expandedKeys.value = ids;
       }
       // update-end--author:liaozhiyang---date:20240704---for：【TV360X-1689】同步系统角色改法加上缓存层级关联等功能
-    }
+    },
   });
   watch(departId, () => loadDepartPermission(), { immediate: true });
 
@@ -261,7 +261,7 @@
     const localData = localStorage.getItem(DEPART_MANGE_AUTH_CONFIG_KEY);
     const obj = localData ? JSON.parse(localData) : {};
     obj[key] = value;
-    localStorage.setItem(DEPART_MANGE_AUTH_CONFIG_KEY, JSON.stringify(obj))
+    localStorage.setItem(DEPART_MANGE_AUTH_CONFIG_KEY, JSON.stringify(obj));
   };
 </script>
 

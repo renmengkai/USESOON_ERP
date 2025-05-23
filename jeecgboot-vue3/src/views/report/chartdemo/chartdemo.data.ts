@@ -48,5 +48,5 @@ export const getData = (() => {
     }
     barLineColors.push(colors[j]);
   }
-  return { barDataSource, barMultiData, pieData, barLineData, barLineColors,radarData };
+  return { barDataSource, barMultiData, pieData, barLineData, barLineColors, radarData };
 })();

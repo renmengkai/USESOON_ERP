@@ -22,7 +22,6 @@ export const getDictItemsByCode = (code) => {
   //update-end-author:liusq---date:2023-10-13--for:【issues/777】列表 分类字典不显示
 
   // update-end--author:liaozhiyang---date:20230908---for：【QQYUN-6417】生产环境字典慢的问题
-
 };
 /**
  * Popup字典翻译方法

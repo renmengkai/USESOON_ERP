@@ -3,7 +3,9 @@
     <div class="modal">
       <div class="header">
         <span class="header-title">
-          <span v-if="dataIndex ==='list' || dataIndex ==='add'" :class="dataIndex === 'list' ? '' : 'add-header-title pointer'" @click="goToList">选择供应商</span>
+          <span v-if="dataIndex === 'list' || dataIndex === 'add'" :class="dataIndex === 'list' ? '' : 'add-header-title pointer'" @click="goToList"
+            >选择供应商</span
+          >
           <span v-if="dataIndex === 'add'" class="add-header-title"> > </span>
           <span v-if="dataIndex === 'add'" style="color: #1f2329">添加 {{ providerName }}</span>
         </span>
@@ -42,12 +44,12 @@
               <template #modelName="{ model, field }">
                 <AutoComplete v-model:value="model[field]" :options="modelNameAddOption" :filter-option="filterOption">
                   <template #option="{ value, label, descr, type }">
-                    <a-tooltip placement="right" color="#ffffff" :overlayInnerStyle="{ color:'#646a73' }">
+                    <a-tooltip placement="right" color="#ffffff" :overlayInnerStyle="{ color: '#646a73' }">
                       <template #title>
                         <div v-html="getTitle(descr)"></div>
                       </template>
-                      <div style="display: flex;justify-content: space-between;">
-                        <span>{{label}}</span>
+                      <div style="display: flex; justify-content: space-between">
+                        <span>{{ label }}</span>
                         <div>
                           <a-tag v-if="type && type.indexOf('text') != -1" color="#E8D7C3">文本</a-tag>
                           <a-tag v-if="type && type.indexOf('image') != -1" color="#C3D9DC">图像分析</a-tag>
@@ -62,11 +64,10 @@
             </BasicForm>
           </div>
         </a-tab-pane>
-        <a-tab-pane :key="2" tab="高级配置"  v-if="modelParamsShow">
+        <a-tab-pane :key="2" tab="高级配置" v-if="modelParamsShow">
           <AiModelSeniorForm ref="modelParamsRef" :modelParams="modelParams"></AiModelSeniorForm>
         </a-tab-pane>
       </a-tabs>
-
     </div>
     <template v-if="dataIndex === 'add' || dataIndex === 'edit'" #footer>
       <a-button @click="cancel">关闭</a-button>
@@ -133,9 +134,9 @@
         return imageList.value[name];
       };
       //自动填充文本搜索事件
-      const filterOption = (input: string, option: any)=>{
+      const filterOption = (input: string, option: any) => {
         return option.value.toUpperCase().indexOf(input.toUpperCase()) >= 0;
-      }
+      };
 
       //表单配置
       const [registerForm, { resetFields, setFieldsValue, validate, clearValidate }] = useForm({
@@ -149,7 +150,7 @@
       const [registerModal, { closeModal, setModalProps }] = useModalInner(async (data) => {
         activeKey.value = 1;
         modelParamsShow.value = false;
-        if(dataIndex.value !== 'list') {
+        if (dataIndex.value !== 'list') {
           //重置表单
           await resetFields();
         }
@@ -158,12 +159,12 @@
           dataIndex.value = 'edit';
           let values = await queryById({ id: data.id });
           if (values) {
-            if(values.result.credential){
+            if (values.result.credential) {
               let credential = JSON.parse(values.result.credential);
-              if(credential.secretKey){
+              if (credential.secretKey) {
                 values.result.secretKey = credential.secretKey;
               }
-              if(credential.apiKey){
+              if (credential.apiKey) {
                 values.result.apiKey = credential.apiKey;
               }
             }
@@ -175,11 +176,11 @@
               modelTypeAddOption.value = data[0].type;
               modelNameAddOption.value = data[0][values.result.modelType];
             }
-            if(values.result.modelType && values.result.modelType === 'LLM'){
+            if (values.result.modelType && values.result.modelType === 'LLM') {
               modelParamsShow.value = true;
             }
-            if(values.result.modelParams){
-              modelParams.value = JSON.parse(values.result.modelParams)
+            if (values.result.modelParams) {
+              modelParams.value = JSON.parse(values.result.modelParams);
             }
             modelTypeDisabled.value = true;
             //表单赋值
@@ -200,7 +201,7 @@
 
       //初始化模型类型
       initModelTypeOption();
-      
+
       /**
        * 初始化 模型类型字典
        */
@@ -208,7 +209,7 @@
         initDictOptions('model_type').then((data) => {
           modelTypeOption.value = data;
           //update-begin---author:wangshuai---date:2025-03-04---for: 解决页面tab刷新一次就多一个全部类型的选项---
-          if(data[0].value != 'all'){
+          if (data[0].value != 'all') {
             modelTypeOption.value.unshift({
               text: '全部类型',
               value: 'all',
@@ -250,9 +251,9 @@
         modelData.value = item;
         providerName.value = item.title;
         modelTypeAddOption.value = item.type;
-        setTimeout(()=>{
-          setFieldsValue({ 'provider': item.value, 'baseUrl': item.baseUrl })
-        },100)
+        setTimeout(() => {
+          setFieldsValue({ provider: item.value, baseUrl: item.baseUrl });
+        }, 100);
       }
 
       /**
@@ -264,11 +265,11 @@
           let values = await validate();
           let credential = {
             apiKey: values.apiKey,
-            secretKey: values.secretKey
-          }
-          if(modelParamsRef.value){
+            secretKey: values.secretKey,
+          };
+          if (modelParamsRef.value) {
             let modelParams = modelParamsRef.value.emitChange();
-            if(modelParams){
+            if (modelParams) {
               values.modelParams = JSON.stringify(modelParams);
             }
           }
@@ -284,8 +285,8 @@
             closeModal();
             emit('success');
           }
-        }catch(e){
-          if(e.hasOwnProperty('errorFields')){
+        } catch (e) {
+          if (e.hasOwnProperty('errorFields')) {
             activeKey.value = 1;
           }
         } finally {
@@ -309,12 +310,12 @@
         await setFieldsValue({ modelName: '' });
         await clearValidate('modelName');
         await setFieldsValue({
-          modelName: modelData.value[value+'DefaultValue']
-        })
+          modelName: modelData.value[value + 'DefaultValue'],
+        });
         modelNameAddOption.value = modelData.value[value];
-        if(value === 'LLM'){
+        if (value === 'LLM') {
           modelParamsShow.value = true;
-        }else{
+        } else {
           modelParamsShow.value = false;
         }
       }
@@ -333,12 +334,12 @@
        * @param title
        */
       function getTitle(title) {
-        if(!title){
-          return "暂无描述内容";
+        if (!title) {
+          return '暂无描述内容';
         }
-        return title.replaceAll("\n","<br>")
+        return title.replaceAll('\n', '<br>');
       }
-      
+
       return {
         registerModal,
         modelTypeData,
@@ -416,17 +417,17 @@
   .pointer {
     cursor: pointer;
   }
-  
-  :deep(.jeecg-basic-modal-close){
-    span{
+
+  :deep(.jeecg-basic-modal-close) {
+    span {
       margin-left: 0 !important;
     }
   }
 </style>
 <style lang="less">
-.ai-model-modal{
-  .jeecg-basic-modal-close > span{
-    margin-left: 0 !important;
+  .ai-model-modal {
+    .jeecg-basic-modal-close > span {
+      margin-left: 0 !important;
+    }
   }
-}
 </style>

@@ -29,7 +29,7 @@ export function useDragSort(props: JVxeTableProps, methods: JVxeTableMethods) {
         handle: '.drag-btn',
         // update-begin--author:liaozhiyang---date:20240417---for:【QQYUN-8785】online表单列位置的id未做限制，拖动其他列到id列上面，同步数据库时报错
         filter: '.not-allow-drag',
-        draggable: ".allow-drag",
+        draggable: '.allow-drag',
         // update-end--author:liaozhiyang---date:20240417---for:【QQYUN-8785】online表单列位置的id未做限制，拖动其他列到id列上面，同步数据库时报错
         direction: 'vertical',
         animation: 300,

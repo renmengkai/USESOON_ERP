@@ -51,5 +51,3 @@ export function replaceProps(col, value) {
   }
   return value;
 }
-
-

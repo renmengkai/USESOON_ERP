@@ -210,7 +210,7 @@ export function useMethods(props: JVxeTableProps, { emit }, data: JVxeDataProps,
    * @param force 是否强制判断
    */
   function isDisabledRow(row, rowIndex: number | boolean = -1, force = true) {
-    if(typeof rowIndex === 'boolean'){
+    if (typeof rowIndex === 'boolean') {
       force = rowIndex;
       rowIndex = -1;
     }
@@ -371,7 +371,7 @@ export function useMethods(props: JVxeTableProps, { emit }, data: JVxeDataProps,
             insertIndex: index,
             $table: xTable,
             target: instanceRef.value,
-            isModalData: options?.isModalData
+            isModalData: options?.isModalData,
           });
         }
       }
@@ -386,9 +386,9 @@ export function useMethods(props: JVxeTableProps, { emit }, data: JVxeDataProps,
     // 是否激活编辑状态
     setActive?: boolean;
     //是否需要触发change事件
-    emitChange?:boolean
+    emitChange?: boolean;
     // 是否是modal弹窗添加的数据
-    isModalData?:boolean
+    isModalData?: boolean;
   }
 
   /**
@@ -401,8 +401,8 @@ export function useMethods(props: JVxeTableProps, { emit }, data: JVxeDataProps,
   async function addRows(rows: Recordable | Recordable[] = {}, options?: IAddRowsOptions) {
     //update-begin-author:taoyan date:2022-8-12 for: VUEN-1892【online子表弹框】有主从关联js时，子表弹框修改了数据，主表字段未修改
     let result = await addOrInsert(rows, -1, 'added', options);
-    if(options && options!.emitChange==true){
-      trigger('valueChange', {column: 'all', row: result.row})
+    if (options && options!.emitChange == true) {
+      trigger('valueChange', { column: 'all', row: result.row });
     }
     // update-begin--author:liaozhiyang---date:20240607---for：【TV360X-279】行编辑添加新字段滚动对应位置
     let xTable = getXTable();
@@ -464,7 +464,7 @@ export function useMethods(props: JVxeTableProps, { emit }, data: JVxeDataProps,
     rowIds?: string[];
     // 是否保留新行的id
     keepNewId?: boolean;
-  }
+  };
 
   /** 获取表格数据 */
   function getTableData(options: getTableDataOptions = {}) {
@@ -529,10 +529,12 @@ export function useMethods(props: JVxeTableProps, { emit }, data: JVxeDataProps,
     return null;
   }
 
-  type filterNewRowsOptions = {
-    keepNewId?: boolean;
-    removeNewLine?: boolean;
-  } | boolean
+  type filterNewRowsOptions =
+    | {
+        keepNewId?: boolean;
+        removeNewLine?: boolean;
+      }
+    | boolean;
 
   /**
    * 过滤添加的行
@@ -540,7 +542,7 @@ export function useMethods(props: JVxeTableProps, { emit }, data: JVxeDataProps,
    * @param optOrRm 如果传 boolean 则是 removeNewLine 参数（true = 删除新增，false=只删除id），如果传对象则是配置参数
    * @param handler function
    */
-  function filterNewRows(rows, optOrRm:filterNewRowsOptions = true, handler?: Fn) {
+  function filterNewRows(rows, optOrRm: filterNewRowsOptions = true, handler?: Fn) {
     let insertRecords = getXTable().getInsertRecords();
     let records: Recordable[] = [];
     optOrRm = typeof optOrRm === 'boolean' ? { removeNewLine: optOrRm } : optOrRm;
@@ -621,7 +623,7 @@ export function useMethods(props: JVxeTableProps, { emit }, data: JVxeDataProps,
               col: column.params,
               column: column,
               isSetValues: true,
-              row: {...row}
+              row: { ...row },
             });
             count++;
           }
@@ -763,7 +765,7 @@ export function useMethods(props: JVxeTableProps, { emit }, data: JVxeDataProps,
       // 4.1.0
       //await xTable.updateCache();
       // 4.1.1
-      await xTable.cacheRowMap()
+      await xTable.cacheRowMap();
       // update-end--author:liaozhiyang---date:20231011---for：【QQYUN-5133】JVxeTable 行编辑升级
       return await xTable.updateData();
     }
@@ -858,15 +860,15 @@ export function useMethods(props: JVxeTableProps, { emit }, data: JVxeDataProps,
    */
   function getSelectedData(isFull?: boolean) {
     const xTable = getXTable();
-    let rows:any[] = []
+    let rows: any[] = [];
     if (['radio', JVxeTypes.rowRadio].includes(props.rowSelectionType ?? '')) {
       let row = xTable.getRadioRecord(isFull);
       if (isNull(row)) {
         return [];
       }
-      rows = [row]
+      rows = [row];
     } else {
-      rows = xTable.getCheckboxRecords(isFull)
+      rows = xTable.getCheckboxRecords(isFull);
     }
     let records: Recordable[] = [];
     for (let row of rows) {

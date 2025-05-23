@@ -1,7 +1,12 @@
 <!--职务选择组件-->
 <template>
   <div class="JSelectPosition">
-    <JSelectBiz @handleOpen="handleOpen" :loading="loadingEcho" v-bind="attrs" @change="(changeValue) => $emit('update:value', changeValue)"></JSelectBiz>
+    <JSelectBiz
+      @handleOpen="handleOpen"
+      :loading="loadingEcho"
+      v-bind="attrs"
+      @change="(changeValue) => $emit('update:value', changeValue)"
+    ></JSelectBiz>
     <!-- update-begin--author:liaozhiyang---date:20240515---for：【QQYUN-9260】必填模式下会影响到弹窗内antd组件的样式 -->
     <a-form-item>
       <PositionSelectModal @register="regModal" @getSelectResult="setValue" v-bind="getBindValue"></PositionSelectModal>
@@ -121,7 +126,6 @@
         //update-begin-author:liusq date:20230517 for:选择职务组件v-model方式绑定值不生效
         emit('update:value', values.join(','));
         //update-begin-author:liusq date:20230517 for:选择职务组件v-model方式绑定值不生效
-
       }
 
       const getBindValue = Object.assign({}, unref(props), unref(attrs));

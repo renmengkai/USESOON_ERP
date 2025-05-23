@@ -1,6 +1,6 @@
 import { ref, computed, watch } from 'vue';
 
-import {getTenantId, getToken} from '/@/utils/auth';
+import { getTenantId, getToken } from '/@/utils/auth';
 import { getFileAccessHttpUrl } from '/@/utils/common/compUtils';
 import { JVxeComponent } from '../../types/JVxeComponent';
 import { useJVxeComponent } from '../useJVxeComponent';

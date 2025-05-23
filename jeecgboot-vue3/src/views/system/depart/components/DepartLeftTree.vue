@@ -324,11 +324,11 @@
 
   function onExportXls() {
     //update-begin---author:wangshuai---date:2024-07-05---for:【TV360X-1671】部门管理不支持选中的记录导出---
-    let params = {}
-    if(checkedKeys.value && checkedKeys.value.length > 0) {
-      params['selections'] = checkedKeys.value.join(',')
+    let params = {};
+    if (checkedKeys.value && checkedKeys.value.length > 0) {
+      params['selections'] = checkedKeys.value.join(',');
     }
-    handleExportXls('部门信息', Api.exportXlsUrl,params);
+    handleExportXls('部门信息', Api.exportXlsUrl, params);
     //update-end---author:wangshuai---date:2024-07-05---for:【TV360X-1671】部门管理不支持选中的记录导出---
   }
 

@@ -17,27 +17,27 @@
   import AiChat from './AiChat.vue';
   import { useRouter } from 'vue-router';
 
-  //aiChatµÄref
+  //aiChatï¿½ï¿½ref
   const aiChatRef = ref();
-  //Ó¦ÓÃid
+  //Ó¦ï¿½ï¿½id
   const appId = ref<string>('');
 
-  //ÊÇ·ñÏÔÊ¾ÁÄÌì
+  //ï¿½Ç·ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
   const showChat = ref<any>(false);
   const router = useRouter();
-  //ÅÐ¶ÏÊÇ·ñÎª³õÊ¼»¯
+  //ï¿½Ð¶ï¿½ï¿½Ç·ï¿½Îªï¿½ï¿½Ê¼ï¿½ï¿½
   const isInit = ref<boolean>(false);
-  
+
   /**
-   * chatÍ¼±êµã»÷ÊÂ¼þ
+   * chatÍ¼ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
    */
   function chatClick() {
     showChat.value = !showChat.value;
-    if(showChat.value && !isInit.value){
-      setTimeout(()=>{
+    if (showChat.value && !isInit.value) {
+      setTimeout(() => {
         isInit.value = true;
         aiChatRef.value.initChat(appId.value);
-      },100)
+      }, 100);
     }
   }
 

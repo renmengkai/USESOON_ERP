@@ -31,7 +31,6 @@ export function registerJVxeTable(app: App) {
   app.component('JVxeTable', JVxeTable);
 }
 
-
 /**
  * 阻止行编辑中关闭弹窗
  * @param params

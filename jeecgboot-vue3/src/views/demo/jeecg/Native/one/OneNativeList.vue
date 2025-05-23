@@ -44,15 +44,15 @@
         @change="handleTableChange"
       >
         <template #bodyCell="{ column, text, record }">
-          <template v-if="column.dataIndex==='tupian'">
+          <template v-if="column.dataIndex === 'tupian'">
             <span v-if="!text" style="font-size: 12px; font-style: italic">无图片</span>
             <img v-else :src="getImgView(text)" :preview="record.id" alt="" class="anty-img-wrap" />
           </template>
-          <template v-else-if="column.dataIndex==='wenjian'">
+          <template v-else-if="column.dataIndex === 'wenjian'">
             <span v-if="!text" style="font-size: 12px; font-style: italic">无文件</span>
             <a-button v-else :ghost="true" type="primary" preIcon="ant-design:download" size="small" @click="downloadFile(text)"> 下载 </a-button>
           </template>
-          <template v-else-if="column.dataIndex==='action'">
+          <template v-else-if="column.dataIndex === 'action'">
             <a @click="handleEdit(record)">编辑</a>
             <a-divider type="vertical" />
             <a-dropdown>

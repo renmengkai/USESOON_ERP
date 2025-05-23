@@ -86,7 +86,7 @@ export const getRecycleBinList = (params) => defHttp.get({ url: Api.recycleBinLi
  * @param params
  */
 export const batchPutRecycleBin = (params, handleSuccess) => {
-  return defHttp.put({ url: Api.batchPutRecycleBin, params}).then(() => {
+  return defHttp.put({ url: Api.batchPutRecycleBin, params }).then(() => {
     handleSuccess();
   });
 };
@@ -104,7 +104,7 @@ export const putRecycleBin = (id, handleSuccess) => {
  * @param params
  */
 export const batchDeleteRecycleBin = (params, handleSuccess) => {
-  return defHttp.delete({ url: `${Api.batchDeleteRecycleBin}?ids=${params.ids}`}).then(() => {
+  return defHttp.delete({ url: `${Api.batchDeleteRecycleBin}?ids=${params.ids}` }).then(() => {
     handleSuccess();
   });
 };

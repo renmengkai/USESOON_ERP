@@ -16,11 +16,11 @@
         </a-layout-sider>
         <a-layout-content :style="contentStyle">
           <div v-if="selectedKey === 'document'">
-            <a-input v-model:value="searchText" placeholder="请输入文档名称，回车搜索" class="search-title" @pressEnter="reload"/>
+            <a-input v-model:value="searchText" placeholder="请输入文档名称，回车搜索" class="search-title" @pressEnter="reload" />
             <a-row :span="24" class="knowledge-row">
               <a-col :xxl="4" :xl="6" :lg="6" :md="6" :sm="12" :xs="24">
                 <a-card class="add-knowledge-card" :bodyStyle="cardBodyStyle">
-                  <span style="line-height: 18px;font-weight: 500;color:#676f83;font-size: 12px">创建文档</span>
+                  <span style="line-height: 18px; font-weight: 500; color: #676f83; font-size: 12px">创建文档</span>
                   <div class="add-knowledge-doc" @click="handleCreateText">
                     <Icon icon="ant-design:form-outlined" size="13"></Icon><span>手动录入</span>
                   </div>
@@ -29,14 +29,14 @@
                   </div>
                   <div class="add-knowledge-doc" @click="handleCreateUploadLibrary">
                     <a-upload
-                        accept=".zip"
-                        name="file"
-                        :data="{ knowId: knowledgeId }"
-                        :showUploadList="false"
-                        :headers="headers"
-                        :beforeUpload="beforeUpload"
-                        :action="uploadUrl"
-                        @change="handleUploadChange"
+                      accept=".zip"
+                      name="file"
+                      :data="{ knowId: knowledgeId }"
+                      :showUploadList="false"
+                      :headers="headers"
+                      :beforeUpload="beforeUpload"
+                      :action="uploadUrl"
+                      @change="handleUploadChange"
                     >
                       <Icon style="margin-left: 0" icon="ant-design:project-outlined" size="13"></Icon>
                       <span>文档库上传</span>
@@ -48,14 +48,49 @@
                 <a-card class="knowledge-card pointer" @click="handleEdit(item)">
                   <div class="knowledge-header">
                     <div class="header-text flex">
-                      <Icon v-if="item.type==='text'" icon="ant-design:file-text-outlined" size="32" color="#00a7d0"></Icon>
-                      <Icon v-if="item.type==='file' && getFileSuffix(item.metadata) === 'pdf'" icon="ant-design:file-pdf-outlined" size="32" color="rgb(211, 47, 47)"></Icon>
-                      <Icon v-if="item.type==='file' && getFileSuffix(item.metadata) === 'docx'" icon="ant-design:file-word-outlined" size="32" color="rgb(68, 138, 255)"></Icon>
-                      <Icon v-if="item.type==='file' && getFileSuffix(item.metadata) === 'pptx'" icon="ant-design:file-ppt-outlined" size="32" color="rgb(245, 124, 0)"></Icon>
-                      <Icon v-if="item.type==='file' && getFileSuffix(item.metadata) === 'xlsx'" icon="ant-design:file-excel-outlined" size="32" color="rgb(98, 187, 55)"></Icon>
-                      <Icon v-if="item.type==='file' && getFileSuffix(item.metadata) === 'txt'" icon="ant-design:file-text-outlined" size="32" color="#00a7d0"></Icon>
-                      <Icon v-if="item.type==='file' && getFileSuffix(item.metadata) === 'md'" icon="ant-design:file-markdown-outlined" size="32" color="#292929"></Icon>
-                      <Icon v-if="item.type==='file' && getFileSuffix(item.metadata) === ''" icon="ant-design:file-unknown-outlined" size="32" color="#f5f5dc"></Icon>
+                      <Icon v-if="item.type === 'text'" icon="ant-design:file-text-outlined" size="32" color="#00a7d0"></Icon>
+                      <Icon
+                        v-if="item.type === 'file' && getFileSuffix(item.metadata) === 'pdf'"
+                        icon="ant-design:file-pdf-outlined"
+                        size="32"
+                        color="rgb(211, 47, 47)"
+                      ></Icon>
+                      <Icon
+                        v-if="item.type === 'file' && getFileSuffix(item.metadata) === 'docx'"
+                        icon="ant-design:file-word-outlined"
+                        size="32"
+                        color="rgb(68, 138, 255)"
+                      ></Icon>
+                      <Icon
+                        v-if="item.type === 'file' && getFileSuffix(item.metadata) === 'pptx'"
+                        icon="ant-design:file-ppt-outlined"
+                        size="32"
+                        color="rgb(245, 124, 0)"
+                      ></Icon>
+                      <Icon
+                        v-if="item.type === 'file' && getFileSuffix(item.metadata) === 'xlsx'"
+                        icon="ant-design:file-excel-outlined"
+                        size="32"
+                        color="rgb(98, 187, 55)"
+                      ></Icon>
+                      <Icon
+                        v-if="item.type === 'file' && getFileSuffix(item.metadata) === 'txt'"
+                        icon="ant-design:file-text-outlined"
+                        size="32"
+                        color="#00a7d0"
+                      ></Icon>
+                      <Icon
+                        v-if="item.type === 'file' && getFileSuffix(item.metadata) === 'md'"
+                        icon="ant-design:file-markdown-outlined"
+                        size="32"
+                        color="#292929"
+                      ></Icon>
+                      <Icon
+                        v-if="item.type === 'file' && getFileSuffix(item.metadata) === ''"
+                        icon="ant-design:file-unknown-outlined"
+                        size="32"
+                        color="#f5f5dc"
+                      ></Icon>
                       <span class="ellipsis header-title">{{ item.title }}</span>
                     </div>
                   </div>
@@ -65,16 +100,16 @@
                   <div class="flex" style="justify-content: space-between">
                     <div class="card-text">
                       状态：
-                      <div v-if="item.status==='complete'" class="card-text-status">
+                      <div v-if="item.status === 'complete'" class="card-text-status">
                         <Icon icon="ant-design:check-circle-outlined" size="16" color="#56D1A7"></Icon>
                         <span class="ml-2">已完成</span>
                       </div>
-                      <div v-else-if="item.status==='building'" class="card-text-status">
+                      <div v-else-if="item.status === 'building'" class="card-text-status">
                         <a-spin v-if="item.loading" :spinning="item.loading" :indicator="indicator"></a-spin>
                         <span class="ml-2">构建中</span>
                       </div>
-                      <div v-else-if="item.status==='draft'" class="card-text-status">
-                        <img src="../icon/draft.png" style="width: 16px;height: 16px" />
+                      <div v-else-if="item.status === 'draft'" class="card-text-status">
+                        <img src="../icon/draft.png" style="width: 16px; height: 16px" />
                         <span class="ml-2">草稿</span>
                       </div>
                     </div>
@@ -129,13 +164,13 @@
                   <span>{{ hitShowSearchText }}</span>
                 </div>
                 <div class="content-card">
-                  <a-row :span="24" class="knowledge-row" v-if="hitTextList.length>0">
+                  <a-row :span="24" class="knowledge-row" v-if="hitTextList.length > 0">
                     <a-col :xxl="6" :xl="6" :lg="6" :md="6" :sm="12" :xs="24" v-for="item in hitTextList">
                       <a-card class="hit-card pointer" style="border-color: #ffffff" @click="hitTextDescClick(item)">
                         <div class="card-title">
-                          <div style="display: flex;">
+                          <div style="display: flex">
                             <Icon icon="ant-design:appstore-outlined" size="14"></Icon>
-                            <span style="margin-left: 4px">Chunk-{{item.chunk}}</span>
+                            <span style="margin-left: 4px">Chunk-{{ item.chunk }}</span>
                             <span style="margin-left: 10px">{{ item.content.length }} 字符</span>
                           </div>
                           <a-tag class="card-title-tag" color="#a9c8ff">
@@ -146,7 +181,7 @@
                           {{ item.content }}
                         </div>
                         <div class="card-footer">
-                          {{item.docName}}
+                          {{ item.docName }}
                         </div>
                       </a-card>
                     </a-col>
@@ -154,9 +189,7 @@
                   <div v-else-if="notHit">
                     <a-empty :image-style="{ margin: '0 auto', height: '160px', verticalAlign: 'middle', borderStyle: 'none' }">
                       <template #description>
-                        <div style="margin-top: 26px; font-size: 20px; color: #000; text-align: center !important">
-                          没有命中的分段
-                        </div>
+                        <div style="margin-top: 26px; font-size: 20px; color: #000; text-align: center !important"> 没有命中的分段 </div>
                       </template>
                     </a-empty>
                   </div>
@@ -206,11 +239,11 @@
   import AiTextDescModal from './AiTextDescModal.vue';
   import { useMessage } from '@/hooks/web/useMessage';
   import { LoadingOutlined } from '@ant-design/icons-vue';
-  import {Avatar, message, Modal, Pagination} from 'ant-design-vue';
+  import { Avatar, message, Modal, Pagination } from 'ant-design-vue';
   import { useUserStore } from '@/store/modules/user';
   import { getFileAccessHttpUrl, getHeaders } from '@/utils/common/compUtils';
   import defaultImg from '/@/assets/images/header.jpg';
-  import Icon from "@/components/Icon";
+  import Icon from '@/components/Icon';
   import { useGlobSetting } from '/@/hooks/setting';
 
   export default {
@@ -273,8 +306,8 @@
       const headers = getHeaders();
       const globSetting = useGlobSetting();
       //上传路径
-      const uploadUrl = ref<string>(globSetting.domainUrl+"/airag/knowledge/doc/import/zip");
-      
+      const uploadUrl = ref<string>(globSetting.domainUrl + '/airag/knowledge/doc/import/zip');
+
       //菜单项
       const menuItems = ref<any>([
         {
@@ -322,28 +355,28 @@
       /**
        * 加载指示符
        */
-      const indicator =  h(LoadingOutlined, {
+      const indicator = h(LoadingOutlined, {
         style: {
           fontSize: '16px',
-          marginRight: '2px'
+          marginRight: '2px',
         },
         spin: true,
       });
-      
+
       const { createMessage } = useMessage();
 
       /**
        * 手工录入文本
        */
       function handleCreateText() {
-        docTextOpenModal(true, { knowledgeId: knowledgeId.value, type: "text" });
+        docTextOpenModal(true, { knowledgeId: knowledgeId.value, type: 'text' });
       }
 
       /**
        * 文件上传
        */
       function handleCreateUpload() {
-        docTextOpenModal(true, { knowledgeId: knowledgeId.value, type: "file" });
+        docTextOpenModal(true, { knowledgeId: knowledgeId.value, type: 'file' });
       }
 
       /**
@@ -377,8 +410,8 @@
           cancelText: '取消',
           onOk: () => {
             knowledgeDeleteBatchDoc({ ids: id }, reload);
-          }
-        })
+          },
+        });
       }
 
       /**
@@ -394,7 +427,7 @@
        * 文档新增和编辑成功回调
        */
       function handleSuccess() {
-        if(!timer.value){
+        if (!timer.value) {
           reload();
         }
         clearInterval(timer.value);
@@ -408,7 +441,7 @@
       function triggeringTimer() {
         timer.value = setInterval(() => {
           reload();
-        },5000)
+        }, 5000);
       }
 
       /**
@@ -420,8 +453,8 @@
           setTimeout(() => {
             pageNo.value = 1;
             pageSize.value = 10;
-            searchText.value = "";
-            
+            searchText.value = '';
+
             reload();
           });
         } else {
@@ -446,22 +479,24 @@
             knowId: knowledgeId.value,
             topNumber: topNumber.value,
             similarity: similarity.value,
-          }).then((res) => {
-            if (res.success) {
-              if (res.result) {
-                hitTextList.value = res.result;
-              } else {
-                hitTextList.value = [];
+          })
+            .then((res) => {
+              if (res.success) {
+                if (res.result) {
+                  hitTextList.value = res.result;
+                } else {
+                  hitTextList.value = [];
+                }
               }
-            }
-            hitShowSearchText.value = hitText.value;
-            avatar.value = userStore.getUserInfo.avatar ? getFileAccessHttpUrl(userStore.getUserInfo.avatar) : defaultImg;
-            hitText.value = '';
-            notHit.value = hitTextList.value.length == 0;
-            spinning.value = false;
-          }).catch(()=>{
-            spinning.value = false;
-          });
+              hitShowSearchText.value = hitText.value;
+              avatar.value = userStore.getUserInfo.avatar ? getFileAccessHttpUrl(userStore.getUserInfo.avatar) : defaultImg;
+              hitText.value = '';
+              notHit.value = hitTextList.value.length == 0;
+              spinning.value = false;
+            })
+            .catch(() => {
+              spinning.value = false;
+            });
         }
       }
 
@@ -491,22 +526,22 @@
           knowledgeId: knowledgeId.value,
           title: '*' + searchText.value + '*',
           column: 'createTime',
-          order: 'desc'
+          order: 'desc',
         };
         await knowledgeDocList(params).then((res) => {
           if (res.success) {
             //update-begin---author:wangshuai---date:2025-03-21---for:【QQYUN-11636】向量化功能改成异步---
-            if(res.result.records){
+            if (res.result.records) {
               let clearTimer = true;
               for (const item of res.result.records) {
-                if(item.status && item.status === 'building' ){
+                if (item.status && item.status === 'building') {
                   clearTimer = false;
                   item.loading = true;
-                }else{
+                } else {
                   item.loading = false;
                 }
               }
-              if(clearTimer){
+              if (clearTimer) {
                 clearInterval(timer.value);
               }
             }
@@ -519,7 +554,7 @@
           }
         });
       }
-      
+
       /**
        * 分页改变事件
        * @param page
@@ -535,7 +570,7 @@
        * 获取文件后缀
        */
       function getFileSuffix(metadata) {
-        if(metadata){
+        if (metadata) {
           let filePath = JSON.parse(metadata).filePath;
           const index = filePath.lastIndexOf('.');
           return index > 0 ? filePath.substring(index + 1).toLowerCase() : '';
@@ -549,8 +584,8 @@
       function beforeUpload(file) {
         let fileType = file.type;
         if (fileType !== 'application/x-zip-compressed') {
-            createMessage.warning('请上传zip文件');
-            return false;
+          createMessage.warning('请上传zip文件');
+          return false;
         }
         return true;
       }
@@ -562,10 +597,10 @@
       function handleUploadChange(info) {
         let { file } = info;
         if (file.status === 'error') {
-          createMessage.error(file.response.message ||`${file.name} 上传失败.`);
+          createMessage.error(file.response.message || `${file.name} 上传失败.`);
         }
         if (file.status === 'done') {
-          if(!file.response.success){
+          if (!file.response.success) {
             createMessage.warning(file.response.message);
             return;
           }
@@ -574,11 +609,11 @@
         }
       }
 
-      onBeforeMount(()=>{
+      onBeforeMount(() => {
         clearInterval(timer.value);
         timer.value = null;
-      })
-      
+      });
+
       return {
         registerModal,
         title,
@@ -615,7 +650,7 @@
         handlePageChange,
         searchText,
         reload,
-        cardBodyStyle:{ textAlign: 'left', width: '100%' },
+        cardBodyStyle: { textAlign: 'left', width: '100%' },
         getFileSuffix,
         notHit,
         indicator,
@@ -703,7 +738,7 @@
         border-radius: 10px;
         background: #fcfcfd;
         border: 1px solid #f0f0f0;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
         .card-title {
           justify-content: space-between;
@@ -715,12 +750,12 @@
     }
   }
   .hit-card:hover {
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
   }
   .pointer {
     cursor: pointer;
   }
-  
+
   .card-description {
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -732,18 +767,18 @@
     margin-top: 16px;
     text-align: left;
     font-size: 12px;
-    color: #676F83;
+    color: #676f83;
   }
-  
+
   .card-title-tag {
     color: #477dee;
   }
-  
+
   .knowledge-row {
     padding: 16px;
     overflow-y: auto;
   }
-  
+
   .add-knowledge-card {
     border-radius: 10px;
     margin-bottom: 20px;
@@ -753,14 +788,14 @@
     width: calc(100% - 20px);
     background: #fcfcfd;
     border: 1px solid #f0f0f0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     .add-knowledge-card-icon {
       padding: 8px;
       margin-right: 12px;
     }
   }
-  
+
   .knowledge-card {
     border-radius: 10px;
     margin-right: 20px;
@@ -768,7 +803,7 @@
     height: 166px;
     background: #fcfcfd;
     border: 1px solid #f0f0f0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     .knowledge-header {
       position: relative;
@@ -780,13 +815,13 @@
         height: 40px;
         margin-right: 12px;
       }
-      .header-title{
+      .header-title {
         font-weight: bold;
         color: #354052;
         margin-left: 4px;
         align-self: center;
       }
-      
+
       .header-text {
         overflow: hidden;
         position: relative;
@@ -796,40 +831,42 @@
     }
   }
 
-  .add-knowledge-card,.knowledge-card{
+  .add-knowledge-card,
+  .knowledge-card {
     transition: box-shadow 0.3s ease;
   }
 
-  .add-knowledge-card:hover,.knowledge-card:hover{
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  .add-knowledge-card:hover,
+  .knowledge-card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
-  
+
   .ellipsis {
     text-overflow: ellipsis;
     overflow: hidden;
     text-wrap: nowrap;
     width: calc(100% - 30px);
   }
-  
+
   :deep(.ant-card .ant-card-body) {
     padding: 16px;
   }
-  
-  .card-text{
+
+  .card-text {
     font-size: 12px;
     display: flex;
     margin-top: 10px;
     align-items: center;
   }
-  
-  .search-title{
+
+  .search-title {
     width: 200px;
     margin-top: 10px;
     display: block;
     margin-left: 20px;
   }
-  
-  .operation{
+
+  .operation {
     border: none;
     margin-top: 10px;
     align-items: end;
@@ -838,39 +875,39 @@
     right: 4px;
     position: absolute;
   }
-  
-  .knowledge-card:hover{
-    .operation{
+
+  .knowledge-card:hover {
+    .operation {
       display: block !important;
     }
   }
-  
-  .add-knowledge-doc{
+
+  .add-knowledge-doc {
     margin-top: 6px;
-    color:#6F6F83;
+    color: #6f6f83;
     font-size: 13px;
     width: 100%;
     cursor: pointer;
     display: flex;
-    span{
+    span {
       margin-left: 4px;
       line-height: 28px;
     }
   }
-  .add-knowledge-doc:hover{
+  .add-knowledge-doc:hover {
     background: #c8ceda33;
   }
-  .operation{
+  .operation {
     background-color: unset;
     border: none;
     margin-right: 2px;
   }
-  .operation:hover{
+  .operation:hover {
     color: #000000;
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0, 0, 0, 0.05);
     border: none;
   }
-  .ant-dropdown-link{
+  .ant-dropdown-link {
     font-size: 14px;
     height: 24px;
     padding: 0 7px;
@@ -878,18 +915,18 @@
     align-content: center;
     text-align: center;
   }
-  .card-footer{
+  .card-footer {
     margin-top: 4px;
     font-weight: 400;
     color: #1f2329;
     text-align: left;
     font-size: 12px;
   }
-  .card-text-status{
+  .card-text-status {
     display: flex;
     align-items: center;
   }
-  .ml-2{
+  .ml-2 {
     margin-left: 2px;
   }
 </style>

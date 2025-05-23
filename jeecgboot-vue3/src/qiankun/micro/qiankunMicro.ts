@@ -1,14 +1,14 @@
 /*
-* 【JEECG作为乾坤子应用】
-*/
-import type {App} from 'vue';
-import type {MainAppProps} from "#/main";
+ * 【JEECG作为乾坤子应用】
+ */
+import type { App } from 'vue';
+import type { MainAppProps } from '#/main';
 
-import {destroyStore} from "@/store";
-import {destroyRouter} from "@/router";
-import {clearComponent} from "@/components/jeecg/JVxeTable/src/componentMap";
+import { destroyStore } from '@/store';
+import { destroyRouter } from '@/router';
+import { clearComponent } from '@/components/jeecg/JVxeTable/src/componentMap';
 
-import {renderWithQiankun} from 'vite-plugin-qiankun/dist/helper';
+import { renderWithQiankun } from 'vite-plugin-qiankun/dist/helper';
 
 /**
  * 以乾坤子应用模式运行
@@ -20,7 +20,7 @@ export async function useQiankunMicroApp(render: (props?: MainAppProps) => Promi
   // 注册乾坤子应用生命周期函数
   renderWithQiankun({
     async mount(props) {
-      console.debug('[qiankun-micro] mount - props :', props)
+      console.debug('[qiankun-micro] mount - props :', props);
       instance = await render({
         container: props.container!,
         hideSider: props.hideSider,
@@ -49,9 +49,9 @@ export async function useQiankunMicroApp(render: (props?: MainAppProps) => Promi
     },
   });
 
-  return instance!
+  return instance!;
 }
 
 export async function autoUseQiankunMicro(fn: Fn) {
-  return useQiankunMicroApp(fn)
+  return useQiankunMicroApp(fn);
 }

@@ -33,8 +33,11 @@
       },
     },
   });
-  const [registerTable, { reload, collapseAll, updateTableDataRecord, findTableDataRecord, getDataSource,setSelectedRowKeys }, { rowSelection, selectedRowKeys,selectedRows }] =
-    tableContext;
+  const [
+    registerTable,
+    { reload, collapseAll, updateTableDataRecord, findTableDataRecord, getDataSource, setSelectedRowKeys },
+    { rowSelection, selectedRowKeys, selectedRows },
+  ] = tableContext;
 
   const props = defineProps({
     formDisabled: { type: Boolean, default: false },
@@ -86,12 +89,12 @@
       // 获取当前已授权的项目
       getPermissionList({ apiAuthId: record.id }).then((res) => {
         if (res.length > 0) {
-          let list =  res;
+          let list = res;
           let ids = [];
           list.forEach((item) => {
-            if(item.ifCheckBox == "1"){
-              selectedRowKeys.value.push(item.id)
-              selectedRows.value.push(item)
+            if (item.ifCheckBox == '1') {
+              selectedRowKeys.value.push(item.id);
+              selectedRows.value.push(item);
               setSelectedRowKeys(selectedRowKeys.value);
             }
             ids.push(item.apiId);
@@ -125,18 +128,18 @@
     //时间格式化
     let model = formData;
     // model.apiIdList = selectedRowKeys.value;
-    let apiId = ""
+    let apiId = '';
     selectedRowKeys.value.forEach((item) => {
-      apiId += item +",";
-    })
+      apiId += item + ',';
+    });
     model.apiId = apiId;
-    delete model.apiIdList
+    delete model.apiIdList;
     await permissionAddFunction(model)
       .then((res) => {
         if (res.success) {
           createMessage.success(res.message);
           emit('ok');
-          cleanData()
+          cleanData();
         } else {
           createMessage.warning(res.message);
         }
@@ -146,15 +149,15 @@
       });
   }
   const cleanData = () => {
-    selectedRows.value = []
-    selectedRowKeys.value = []
-  }
+    selectedRows.value = [];
+    selectedRowKeys.value = [];
+  };
 
   defineExpose({
     add,
     edit,
     submitForm,
-    cleanData
+    cleanData,
   });
 </script>
 

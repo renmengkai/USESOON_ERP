@@ -112,12 +112,12 @@
           },
           //update-begin-author:liusq date:2023-10-30 for: [issues/5514]组件页面显示错位
           actionColOptions: {
-              xs: 24,
-              sm: 12,
-              md: 12,
-              lg: 12,
-              xl: 8,
-              xxl: 8,
+            xs: 24,
+            sm: 12,
+            md: 12,
+            lg: 12,
+            xl: 8,
+            xxl: 8,
           },
           //update-end-author:liusq date:2023-10-30 for: [issues/5514]组件页面显示错位
           schemas: [
@@ -135,12 +135,12 @@
 
       function getTableList(params) {
         params = parseParams(params);
-        return getTableListOrigin({...params});
+        return getTableListOrigin({ ...params });
       }
 
       function queryDepartTreeSync(params) {
         params = parseParams(params);
-        return queryDepartTreeSyncOrigin({...params});
+        return queryDepartTreeSyncOrigin({ ...params });
       }
 
       /**
@@ -152,7 +152,7 @@
           return {
             ...params,
             ...props.params,
-          }
+          };
         }
         return params;
       }

@@ -102,7 +102,7 @@ export function useColumns(props: JVxeTableProps, data: JVxeDataProps, methods: 
           args.columns = container;
           handlerCol(args);
         }
-      }
+      };
 
       props.columns.forEach((column: JVxeColumn) => handleColumn(column, columns));
 

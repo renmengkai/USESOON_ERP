@@ -43,7 +43,7 @@ export const DictSearchInputCell = defineComponent({
     const filterOption = computed(() => {
       if (isAsync.value) {
         //【jeecgboot-vue3/issues/I5QRT8】JVxeTypes.selectDictSearch sync问题
-        return ()=>true;
+        return () => true;
       }
       return (input, option) => option.componentOptions.children[0].text.toLowerCase().indexOf(input.toLowerCase()) >= 0;
     });

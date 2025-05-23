@@ -348,7 +348,6 @@ export const useMultipleTabStore = defineStore({
       this.clearCacheTabs();
       this.goToPage(router);
     },
-    
 
     /**
      * Close other tabs
