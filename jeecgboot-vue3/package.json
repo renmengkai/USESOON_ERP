@@ -2,9 +2,9 @@
   "name": "jeecgboot-vue3",
   "version": "3.8.0",
   "author": {
-    "name": "北京国炬信息技术有限公司",
+    "name": "速尔",
     "email": "jeecgos@163.com",
-    "url": "https://www.jeecg.com"
+    "url": "https://usesoonfilter.com/"
   },
   "scripts": {
     "pinstall": "pnpm install",
