@@ -23,15 +23,15 @@ export const columns: BasicColumn[] = [
   },
   {
     title: 'IP 黑名单',
-    align: 'center',
-    dataIndex: 'blackList',
-  },
-  {
-    title: '状态',
-    align: 'center',
-    dataIndex: 'status',
-  },
-  {
+    align:"center",
+    dataIndex: 'blackList'
+   },
+   // {
+   //  title: '状态',
+   //  align:"center",
+   //  dataIndex: 'status'
+   // },
+   {
     title: '创建人',
     align: 'center',
     dataIndex: 'createBy',

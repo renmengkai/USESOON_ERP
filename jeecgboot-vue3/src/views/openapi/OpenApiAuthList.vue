@@ -81,12 +81,12 @@
   import { BasicTable, TableAction } from '/@/components/Table';
   import { useListPage } from '/@/hooks/system/useListPage';
   import { columns, superQuerySchema } from './OpenApiAuth.data';
-  import { list, deleteOne, batchDelete, getImportUrl, getExportUrl, getGenAKSK } from './OpenApiAuth.api';
+  import { list, deleteOne, batchDelete, getImportUrl, getExportUrl, getGenAKSK, saveOrUpdate
+  } from './OpenApiAuth.api';
   import OpenApiAuthModal from './components/OpenApiAuthModal.vue';
   import AuthModal from './components/AuthModal.vue';
   import { useUserStore } from '/@/store/modules/user';
-  import JSearchSelect from '../../components/Form/src/jeecg/components/JSearchSelect.vue';
-  import { saveOrUpdate } from '@/views/openapi/OpenApi.api';
+  import JSearchSelect from "../../components/Form/src/jeecg/components/JSearchSelect.vue";
 
   const formRef = ref();
   const queryParam = reactive<any>({});
