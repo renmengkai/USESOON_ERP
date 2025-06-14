@@ -33,9 +33,7 @@
   </div>
 </template>
 <script lang="ts">
-  import { CSSProperties, PropType, provide } from 'vue';
-
-  import { defineComponent, computed, watch, ref, unref } from 'vue';
+  import { computed, CSSProperties, defineComponent, PropType, provide, ref, unref, watch } from 'vue';
   import PageFooter from './PageFooter.vue';
 
   import { useDesign } from '/@/hooks/web/useDesign';

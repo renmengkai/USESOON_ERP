@@ -23,10 +23,10 @@
   </a-form-item-rest>
 </template>
 <script lang="ts">
-  import { defineComponent, PropType, ref, reactive, watchEffect, computed, unref, watch, onMounted, onUnmounted, toRefs } from 'vue';
+  import { computed, defineComponent, reactive, ref, toRefs, unref, watch, watchEffect } from 'vue';
   import { propTypes } from '/@/utils/propTypes';
   import { useRuleFormItem } from '/@/hooks/component/useFormItem';
-  import { provinceOptions, getDataByCode, getRealCode } from '../../utils/areaDataUtil';
+  import { getDataByCode, getRealCode, provinceOptions } from '../../utils/areaDataUtil';
 
   export default defineComponent({
     name: 'JAreaSelect',

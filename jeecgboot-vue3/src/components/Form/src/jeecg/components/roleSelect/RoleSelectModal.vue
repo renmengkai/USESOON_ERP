@@ -41,11 +41,12 @@
 
 <script lang="ts">
   import { BasicModal, useModalInner } from '/@/components/Modal';
-  import { SearchOutlined, CloseOutlined } from '@ant-design/icons-vue';
+  import { CloseOutlined, SearchOutlined } from '@ant-design/icons-vue';
   import SelectedUserItem from '../userSelect/SelectedUserItem.vue';
   import { defHttp } from '/@/utils/http/axios';
 
   import { computed, ref, toRaw, watch } from 'vue';
+
   export default {
     name: 'RoleSelectModal',
     components: {

@@ -1,13 +1,14 @@
 <script lang="tsx">
-  import type { ReplaceFields, Keys, CheckKeys, TreeActionType, TreeItem } from './typing';
+  import type { CheckKeys, Keys, ReplaceFields, TreeActionType, TreeItem } from './typing';
+  import { CheckEvent } from './typing';
 
-  import { defineComponent, reactive, computed, unref, ref, watchEffect, toRaw, watch, CSSProperties, onMounted } from 'vue';
-  import { Tree, Empty } from 'ant-design-vue';
+  import { computed, CSSProperties, defineComponent, onMounted, reactive, ref, toRaw, unref, watch, watchEffect } from 'vue';
+  import { Empty, Tree } from 'ant-design-vue';
   import { TreeIcon } from './TreeIcon';
   import TreeHeader from './TreeHeader.vue';
   import { ScrollContainer } from '/@/components/Container';
 
-  import { omit, get, difference } from 'lodash-es';
+  import { difference, get, omit } from 'lodash-es';
   import { isArray, isBoolean, isFunction } from '/@/utils/is';
   import { extendSlots, getSlot } from '/@/utils/helper/tsxHelper';
   import { filter } from '/@/utils/helper/treeHelper';
@@ -18,8 +19,6 @@
 
   import { basicProps } from './props';
   import { CreateContextOptions } from '/@/components/ContextMenu';
-
-  import { CheckEvent } from './typing';
 
   interface State {
     expandedKeys: Keys;

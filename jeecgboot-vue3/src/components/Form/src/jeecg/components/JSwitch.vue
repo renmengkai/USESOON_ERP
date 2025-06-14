@@ -19,6 +19,7 @@
   import { useAttrs } from '/@/hooks/core/useAttrs';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { useRuleFormItem } from '/@/hooks/component/useFormItem';
+
   const { prefixCls } = useDesign('j-switch');
   const props = defineProps({
     // v-model:value

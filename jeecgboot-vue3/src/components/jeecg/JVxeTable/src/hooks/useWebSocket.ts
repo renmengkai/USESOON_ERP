@@ -1,4 +1,4 @@
-import { watch, onUnmounted } from 'vue';
+import { onUnmounted, watch } from 'vue';
 import { buildUUID } from '/@/utils/uuid';
 import { useGlobSetting } from '/@/hooks/setting';
 import { useUserStore } from '/@/store/modules/user';

@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-  import { ref, watch, defineComponent } from 'vue';
+  import { defineComponent, ref, watch } from 'vue';
   import JVxeReloadEffect from '../JVxeReloadEffect';
   import { JVxeComponent } from '/@/components/jeecg/JVxeTable/types';
   import { useJVxeComponent, useJVxeCompProps } from '/@/components/jeecg/JVxeTable/hooks';

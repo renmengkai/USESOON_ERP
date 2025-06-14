@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref, unref, watchEffect, computed } from 'vue';
+  import { computed, defineComponent, ref, unref, watchEffect } from 'vue';
   import { BasicModal, useModalInner } from '/@/components/Modal';
   import { useAttrs } from '/@/hooks/core/useAttrs';
   import { defHttp } from '/@/utils/http/axios';

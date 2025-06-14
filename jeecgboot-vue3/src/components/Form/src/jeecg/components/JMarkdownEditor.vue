@@ -3,10 +3,11 @@
 </template>
 
 <script lang="ts">
-  import { computed, defineComponent, watch, nextTick } from 'vue';
+  import { computed, defineComponent, nextTick, watch } from 'vue';
   import { MarkDown } from '/@/components/Markdown';
   import { propTypes } from '/@/utils/propTypes';
   import { Form } from 'ant-design-vue';
+
   export default defineComponent({
     name: 'JMarkdownEditor',
     // 不将 attrs 的属性绑定到 html 标签上

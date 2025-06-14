@@ -19,7 +19,7 @@
 </template>
 <script lang="ts">
   import type { MenuState } from './types';
-  import { computed, defineComponent, unref, reactive, watch, toRefs, ref } from 'vue';
+  import { computed, defineComponent, reactive, ref, toRefs, unref, watch } from 'vue';
   import { Menu } from 'ant-design-vue';
   import BasicSubMenuItem from './components/BasicSubMenuItem.vue';
   import { MenuModeEnum, MenuTypeEnum } from '/@/enums/menuEnum';
@@ -30,12 +30,11 @@
   import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
   import { REDIRECT_NAME } from '/@/router/constant';
   import { useDesign } from '/@/hooks/web/useDesign';
-  import { getCurrentParentPath } from '/@/router/menus';
+  import { getCurrentParentPath, getMenus } from '/@/router/menus';
   import { listenerRouteChange } from '/@/logics/mitt/routeChange';
   import { getAllParentPath } from '/@/router/helper/menuHelper';
   import { createBasicRootMenuContext } from './useBasicMenuContext';
   import { URL_HASH_TAB } from '/@/utils';
-  import { getMenus } from '/@/router/menus';
 
   export default defineComponent({
     name: 'BasicMenu',

@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed, watch, ref } from 'vue';
+  import { computed, ref, watch } from 'vue';
   import showdown from 'showdown';
   import 'vditor/dist/index.css';
   import { useRootSetting } from '/@/hooks/setting/useRootSetting';

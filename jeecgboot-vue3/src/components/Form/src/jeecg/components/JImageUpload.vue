@@ -31,7 +31,7 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, PropType, ref, reactive, watchEffect, computed, unref, watch, onMounted, nextTick } from 'vue';
+  import { computed, defineComponent, nextTick, ref, watch } from 'vue';
   import { LoadingOutlined, UploadOutlined } from '@ant-design/icons-vue';
   import { useRuleFormItem } from '/@/hooks/component/useFormItem';
   import { propTypes } from '/@/utils/propTypes';
@@ -39,7 +39,6 @@
   import { useMessage } from '/@/hooks/web/useMessage';
   import { getFileAccessHttpUrl, getHeaders, getRandom } from '/@/utils/common/compUtils';
   import { uploadUrl } from '/@/api/common/api';
-  import { getToken } from '/@/utils/auth';
 
   const { createMessage, createErrorModal } = useMessage();
   export default defineComponent({

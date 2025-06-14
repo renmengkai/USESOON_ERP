@@ -18,14 +18,14 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { ref, reactive, watch, provide } from 'vue';
+  import { provide, reactive, ref, watch } from 'vue';
   import JSelectUserByDepartmentModal from './modal/JSelectUserByDepartmentModal.vue';
   import JSelectBiz from './base/JSelectBiz.vue';
   import { useModal } from '/@/components/Modal';
   import { propTypes } from '/@/utils/propTypes';
   import { useAttrs } from '/@/hooks/core/useAttrs';
   import { SelectValue } from 'ant-design-vue/es/select';
-  import { isArray, isString, isObject } from '/@/utils/is';
+  import { isArray, isObject, isString } from '/@/utils/is';
   import { getTableList as getTableListOrigin } from '/@/api/common/api';
   import { useMessage } from '/@/hooks/web/useMessage';
 

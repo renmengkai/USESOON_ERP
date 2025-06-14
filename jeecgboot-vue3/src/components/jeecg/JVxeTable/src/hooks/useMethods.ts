@@ -8,7 +8,7 @@ import { cloneDeep } from 'lodash-es';
 import { isArray, isEmpty, isNull, isString } from '/@/utils/is';
 import { useLinkage } from './useLinkage';
 import { useWebSocket } from './useWebSocket';
-import { getPrefix, getJVxeAuths } from '../utils/authUtils';
+import { getJVxeAuths, getPrefix } from '../utils/authUtils';
 import { excludeKeywords } from '../componentMap';
 import { useColumnsCache } from './useColumnsCache';
 import { isEnabledVirtualYScroll } from '/@/components/jeecg/JVxeTable/utils';

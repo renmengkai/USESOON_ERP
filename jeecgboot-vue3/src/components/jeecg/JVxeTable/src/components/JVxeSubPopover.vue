@@ -19,7 +19,7 @@
   </a-popover>
 </template>
 <script lang="ts">
-  import { ref, reactive, nextTick, defineComponent } from 'vue';
+  import { defineComponent, nextTick, reactive, ref } from 'vue';
   import domAlign from 'dom-align';
   import { getParentNodeByTagName } from '../utils/vxeUtils';
   import { triggerWindowResizeEvent } from '/@/utils/common/compUtils';

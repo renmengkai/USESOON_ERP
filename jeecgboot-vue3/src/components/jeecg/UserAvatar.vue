@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-  import { ref, watchEffect, defineComponent } from 'vue';
+  import { defineComponent, ref, watchEffect } from 'vue';
   import { defHttp } from '/@/utils/http/axios';
   import { getFileAccessHttpUrl } from '/@/utils/common/compUtils';
 

@@ -14,7 +14,7 @@
   </RadioGroup>
 </template>
 <script lang="ts">
-  import { defineComponent, PropType, ref, watchEffect, computed, unref, watch } from 'vue';
+  import { computed, defineComponent, PropType, ref, unref, watch, watchEffect } from 'vue';
   import { Radio } from 'ant-design-vue';
   import { isFunction } from '/@/utils/is';
   import { useRuleFormItem } from '/@/hooks/component/useFormItem';
@@ -22,6 +22,7 @@
   import { propTypes } from '/@/utils/propTypes';
   import { get, omit } from 'lodash-es';
   import { useI18n } from '/@/hooks/web/useI18n';
+
   type OptionsItem = { label: string; value: string | number | boolean; disabled?: boolean };
 
   export default defineComponent({

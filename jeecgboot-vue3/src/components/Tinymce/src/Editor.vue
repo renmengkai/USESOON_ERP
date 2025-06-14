@@ -40,10 +40,10 @@
   import 'tinymce/plugins/lists';
   import 'tinymce/plugins/preview';
   import 'tinymce/plugins/image';
-  import { defineComponent, computed, nextTick, ref, unref, watch, onDeactivated, onBeforeUnmount, onMounted } from 'vue';
+  import { computed, defineComponent, nextTick, onBeforeUnmount, onDeactivated, onMounted, ref, unref, watch } from 'vue';
   import ImgUpload from './ImgUpload.vue';
   import ProcessMask from './ProcessMask.vue';
-  import { simpleToolbar, menubar, simplePlugins } from './tinymce';
+  import { menubar, simplePlugins, simpleToolbar } from './tinymce';
   import { buildShortUUID } from '/@/utils/uuid';
   import { bindHandlers } from './helper';
   import { onMountedOrActivated } from '/@/hooks/core/onMountedOrActivated';
@@ -54,6 +54,7 @@
   import { uploadFile } from '/@/api/common/api';
   import { getFileAccessHttpUrl } from '/@/utils/common/compUtils';
   import { ThemeEnum } from '/@/enums/appEnum';
+
   const tinymceProps = {
     options: {
       type: Object as PropType<Partial<RawEditorOptions>>,

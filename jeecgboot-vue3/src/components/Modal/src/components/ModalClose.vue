@@ -25,8 +25,8 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, computed } from 'vue';
-  import { FullscreenExitOutlined, FullscreenOutlined, CloseOutlined, LeftSquareOutlined, RightSquareOutlined } from '@ant-design/icons-vue';
+  import { computed, defineComponent } from 'vue';
+  import { CloseOutlined, FullscreenExitOutlined, FullscreenOutlined, LeftSquareOutlined, RightSquareOutlined } from '@ant-design/icons-vue';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { Tooltip } from 'ant-design-vue';
   import { useI18n } from '/@/hooks/web/useI18n';

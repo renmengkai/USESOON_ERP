@@ -26,14 +26,14 @@
    * 异步树加载组件 通过传入表名 显示字段 存储字段 加载一个树控件
    * <j-tree-select dict="aa_tree_test,aad,id" pid-field="pid" ></j-tree-select>
    * */
-  import { ref, watch, unref, nextTick, computed } from 'vue';
+  import { computed, nextTick, ref, unref, watch } from 'vue';
   import { defHttp } from '/@/utils/http/axios';
   import { propTypes } from '/@/utils/propTypes';
   import { useAttrs } from '/@/hooks/core/useAttrs';
-  import { TreeSelect } from 'ant-design-vue';
   import { useMessage } from '/@/hooks/web/useMessage';
-  import { isObject, isArray } from '/@/utils/is';
+  import { isArray, isObject } from '/@/utils/is';
   import { useI18n } from '/@/hooks/web/useI18n';
+
   enum Api {
     url = '/sys/dict/loadTreeData',
     view = '/sys/dict/loadDictItem/',

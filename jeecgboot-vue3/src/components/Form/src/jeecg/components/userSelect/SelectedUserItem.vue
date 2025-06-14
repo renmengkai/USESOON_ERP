@@ -52,7 +52,7 @@
 </template>
 
 <script>
-  import { UserOutlined, CloseOutlined, MinusCircleFilled, TagsOutlined, TeamOutlined } from '@ant-design/icons-vue';
+  import { CloseOutlined, MinusCircleFilled, TagsOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons-vue';
   import { computed } from 'vue';
   import { getFileAccessHttpUrl } from '/@/utils/common/compUtils';
 

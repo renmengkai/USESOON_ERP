@@ -1,6 +1,6 @@
 import type { ComputedRef } from 'vue';
-import type { BasicTableProps, TableCustomRecord } from '../types/table';
 import { unref } from 'vue';
+import type { BasicTableProps, TableCustomRecord } from '../types/table';
 import { isFunction } from '/@/utils/is';
 import { ROW_KEY } from '/@/components/Table/src/const';
 

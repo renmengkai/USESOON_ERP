@@ -1,6 +1,6 @@
 <script lang="tsx">
-  import type { MoveData, DragVerifyActionType } from './typing';
-  import { defineComponent, computed, unref, reactive, watch, ref } from 'vue';
+  import type { DragVerifyActionType, MoveData } from './typing';
+  import { computed, defineComponent, reactive, ref, unref, watch } from 'vue';
   import { useTimeoutFn } from '/@/hooks/core/useTimeout';
   import BasicDragVerify from './DragVerify.vue';
   import { hackCss } from '/@/utils/domUtils';

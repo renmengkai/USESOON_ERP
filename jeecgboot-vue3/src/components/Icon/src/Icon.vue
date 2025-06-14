@@ -4,7 +4,7 @@
 </template>
 <script lang="ts">
   import type { PropType } from 'vue';
-  import { defineComponent, ref, watch, onMounted, nextTick, unref, computed, CSSProperties } from 'vue';
+  import { computed, CSSProperties, defineComponent, nextTick, onMounted, ref, unref, watch } from 'vue';
   import SvgIcon from './SvgIcon.vue';
   import Iconify from '@purge-icons/generated';
   import { isString } from '/@/utils/is';

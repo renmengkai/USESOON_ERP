@@ -4,7 +4,7 @@
 
 <script lang="ts">
   import { computed, defineComponent } from 'vue';
-  import { regionData, getRealCode } from '/@/components/Form/src/utils/areaDataUtil';
+  import { getRealCode, regionData } from '/@/components/Form/src/utils/areaDataUtil';
   import { JVxeComponent } from '/@/components/jeecg/JVxeTable/types';
   import { useJVxeComponent, useJVxeCompProps } from '/@/components/jeecg/JVxeTable/hooks';
   import { dispatchEvent } from '/@/components/jeecg/JVxeTable/utils';

@@ -1,12 +1,12 @@
 <script lang="tsx">
-  import type { DescriptionProps, DescInstance, DescItem } from './typing';
+  import type { DescInstance, DescItem, DescriptionProps } from './typing';
   import type { DescriptionsProps } from 'ant-design-vue/es/descriptions/index';
   import type { CSSProperties } from 'vue';
+  import { computed, defineComponent, ref, unref } from 'vue';
   import type { CollapseContainerOptions } from '/@/components/Container/index';
-  import { defineComponent, computed, ref, unref } from 'vue';
+  import { CollapseContainer } from '/@/components/Container/index';
   import { get } from 'lodash-es';
   import { Descriptions } from 'ant-design-vue';
-  import { CollapseContainer } from '/@/components/Container/index';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { isFunction } from '/@/utils/is';
   import { getSlot } from '/@/utils/helper/tsxHelper';

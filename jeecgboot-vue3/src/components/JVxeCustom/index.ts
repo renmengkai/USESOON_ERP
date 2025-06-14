@@ -1,7 +1,8 @@
-import { registerComponent, registerAsyncComponent, registerASyncComponentReal } from '/@/components/jeecg/JVxeTable';
+import { registerAsyncComponent, registerASyncComponentReal, registerComponent } from '/@/components/jeecg/JVxeTable';
 import { JVxeTypes } from '/@/components/jeecg/JVxeTable/types';
-import { DictSearchSpanCell, DictSearchInputCell } from './src/components/JVxeSelectDictSearchCell';
+import { DictSearchInputCell, DictSearchSpanCell } from './src/components/JVxeSelectDictSearchCell';
 import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent';
+
 export async function registerJVxeCustom() {
   // ----------------- ⚠ 注意事项 ⚠ -----------------
   //  当组件内包含 BasicModal 时，必须使用异步引入！

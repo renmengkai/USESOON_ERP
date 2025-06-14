@@ -61,9 +61,9 @@
 </template>
 
 <script lang="ts">
-  import { ref, watch, computed, inject } from 'vue';
+  import { computed, ref, watch } from 'vue';
   import { propTypes } from '/@/utils/propTypes';
-  import { UserAddOutlined, PaperClipOutlined, SmileOutlined } from '@ant-design/icons-vue';
+  import { PaperClipOutlined, SmileOutlined, UserAddOutlined } from '@ant-design/icons-vue';
   import { Tooltip } from 'ant-design-vue';
   import UserSelectModal from '/@/components/Form/src/jeecg/components/userSelect/UserSelectModal.vue';
   import { useModal } from '/@/components/Modal';

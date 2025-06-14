@@ -1,4 +1,4 @@
-import { ref, computed, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 import { getTenantId, getToken } from '/@/utils/auth';
 import { getFileAccessHttpUrl } from '/@/utils/common/compUtils';

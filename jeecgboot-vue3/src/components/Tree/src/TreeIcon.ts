@@ -1,5 +1,4 @@
-import type { VNode, FunctionalComponent } from 'vue';
-
+import type { FunctionalComponent, VNode } from 'vue';
 import { h } from 'vue';
 import { isString } from '@vue/shared';
 import { Icon } from '/@/components/Icon';

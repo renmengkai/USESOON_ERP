@@ -43,7 +43,7 @@
 
 <script lang="ts">
   import { useDebounceFn } from '@vueuse/core';
-  import { defineComponent, PropType, ref, reactive, watchEffect, computed, unref, watch, onMounted } from 'vue';
+  import { computed, defineComponent, ref, unref, watch } from 'vue';
   import { propTypes } from '/@/utils/propTypes';
   import { useAttrs } from '/@/hooks/core/useAttrs';
   import { initDictOptions } from '/@/utils/dict/index';

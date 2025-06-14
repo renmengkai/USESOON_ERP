@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-  import { ref, computed, defineComponent } from 'vue';
+  import { computed, defineComponent, ref } from 'vue';
   import { LoadingOutlined } from '@ant-design/icons-vue';
   import { filterDictText } from '/@/utils/dict/JDictSelectUtil';
   import { JVxeComponent, JVxeTypes } from '/@/components/jeecg/JVxeTable/types';

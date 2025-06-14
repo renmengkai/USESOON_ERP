@@ -28,15 +28,16 @@
   </BasicModal>
 </template>
 <script lang="ts">
-  import { defineComponent, unref, ref } from 'vue';
+  import { defineComponent, ref, unref } from 'vue';
   import { BasicModal, useModalInner } from '/@/components/Modal';
   import { BasicTree } from '/@/components/Tree/index';
-  import { queryTreeList, getTableList as getTableListOrigin } from '/@/api/common/api';
+  import { getTableList as getTableListOrigin } from '/@/api/common/api';
   import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent';
   import { useSelectBiz } from '/@/components/Form/src/jeecg/hooks/useSelectBiz';
   import { useAttrs } from '/@/hooks/core/useAttrs';
   import { queryDepartTreeSync as queryDepartTreeSyncOrigin } from '/@/views/system/depart/depart.api';
   import { selectProps } from '/@/components/Form/src/jeecg/props/props';
+
   export default defineComponent({
     name: 'UserSelectByDepModal',
     components: {

@@ -47,14 +47,14 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, watch, ref, computed, toRaw } from 'vue';
+  import { computed, defineComponent, ref, toRaw, watch } from 'vue';
   import { Form } from 'ant-design-vue';
   import { PlusOutlined } from '@ant-design/icons-vue';
   import { useModal } from '/@/components/Modal';
   import UserSelectModal from './UserSelectModal.vue';
   import { defHttp } from '/@/utils/http/axios';
   import SelectedUserItem from './SelectedUserItem.vue';
-  import { mySelfExpress, mySelfData } from './useUserSelect';
+  import { mySelfData, mySelfExpress } from './useUserSelect';
 
   export default defineComponent({
     name: 'UserSelect',

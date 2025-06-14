@@ -1,4 +1,4 @@
-import { ref, reactive, provide, resolveComponent } from 'vue';
+import { provide, reactive, ref, resolveComponent } from 'vue';
 import { useDesign } from '/@/hooks/web/useDesign';
 import { JVxeDataProps, JVxeRefs, JVxeTableProps } from '../types';
 import { VxeGridInstance } from 'vxe-table';

@@ -1,5 +1,5 @@
 import type { PropType } from 'vue';
-import type { ReplaceFields, ActionItem, Keys, CheckKeys, ContextMenuOptions, TreeItem } from './typing';
+import type { ActionItem, CheckKeys, ContextMenuOptions, Keys, ReplaceFields, TreeItem } from './typing';
 import type { ContextMenuItem } from '/@/hooks/web/useContextMenu';
 import type { TreeDataItem } from 'ant-design-vue/es/tree/Tree';
 import { propTypes } from '/@/utils/propTypes';

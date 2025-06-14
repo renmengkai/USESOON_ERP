@@ -48,6 +48,7 @@
   import { basicProps } from '@/components/Modal/src/props';
   import Modal from '/@/components/Modal/src/components/Modal';
   import { isFunction } from '@/utils/is';
+
   export default defineComponent({
     name: 'JModal',
     methods: { omit },

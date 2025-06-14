@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.erp.mapper.SupplierMapper">
+
+    <!-- 查询所有供应商 -->
+    <select id="selectAll" resultType="org.jeecg.modules.erp.entity.Supplier">
+        SELECT * FROM erp_supplier
+    </select>
+
+    <!-- 根据 ID 查询供应商 -->
+    <select id="selectById" resultType="org.jeecg.modules.erp.entity.Supplier">
+        SELECT * FROM erp_supplier WHERE id = #{id}
+    </select>
+
+    <!-- 插入供应商 -->
+    <insert id="insert">
+        INSERT INTO erp_supplier (
+            id, name, contactPerson, phone, email, address, taxId,
+            bankAccount, bankName, remark, isValid, tenantId, opter,
+            opterId, optTime, crter, crterName, crteTime
+        ) VALUES (
+            #{id}, #{name}, #{contactPerson}, #{phone}, #{email}, #{address}, #{taxId},
+            #{bankAccount}, #{bankName}, #{remark}, #{isValid}, #{tenantId}, #{opter},
+            #{opterId}, #{optTime}, #{crter}, #{crterName}, #{crteTime}
+        )
+    </insert>
+
+    <!-- 更新供应商 -->
+    <update id="updateById">
+        UPDATE erp_supplier
+        SET
+            name = #{name},
+            contactPerson = #{contactPerson},
+            phone = #{phone},
+            email = #{email},
+            address = #{address},
+            taxId = #{taxId},
+            bankAccount = #{bankAccount},
+            bankName = #{bankName},
+            remark = #{remark},
+            isValid = #{isValid},
+            tenantId = #{tenantId},
+            opter = #{opter},
+            opterId = #{opterId},
+            optTime = #{optTime},
+            crter = #{crter},
+            crterName = #{crterName},
+            crteTime = #{crteTime}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除供应商 -->
+    <delete id="deleteById">
+        DELETE FROM erp_supplier WHERE id = #{id}
+    </delete>
+</mapper>

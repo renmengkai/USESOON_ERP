@@ -23,8 +23,8 @@
 </template>
 
 <script>
-  import { PlusOutlined, EditOutlined } from '@ant-design/icons-vue';
-  import { getModalHeight, getLogList } from './useComment';
+  import { EditOutlined, PlusOutlined } from '@ant-design/icons-vue';
+  import { getLogList, getModalHeight } from './useComment';
   import { inject, ref, watchEffect } from 'vue';
   import { propTypes } from '/@/utils/propTypes';
   import { Tooltip } from 'ant-design-vue';

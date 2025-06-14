@@ -1,11 +1,11 @@
 import type { BasicTableProps, FetchParams, SorterResult } from '../types/table';
 import type { PaginationProps } from '../types/pagination';
-import { ref, unref, ComputedRef, computed, onMounted, watch, reactive, Ref, watchEffect } from 'vue';
+import { computed, ComputedRef, onMounted, reactive, ref, Ref, unref, watch, watchEffect } from 'vue';
 import { useTimeoutFn } from '/@/hooks/core/useTimeout';
 import { buildUUID } from '/@/utils/uuid';
-import { isFunction, isBoolean } from '/@/utils/is';
-import { get, cloneDeep } from 'lodash-es';
-import { FETCH_SETTING, ROW_KEY, PAGE_SIZE } from '../const';
+import { isBoolean, isFunction } from '/@/utils/is';
+import { cloneDeep, get } from 'lodash-es';
+import { FETCH_SETTING, PAGE_SIZE, ROW_KEY } from '../const';
 
 interface ActionType {
   getPaginationInfo: ComputedRef<boolean | PaginationProps>;

@@ -1,6 +1,6 @@
 import type { ComputedRef, Ref } from 'vue';
+import { computed, ref, toRaw, unref, watch } from 'vue';
 import type { BasicTableProps } from '../types/table';
-import { computed, unref, ref, toRaw, watch } from 'vue';
 import { ROW_KEY } from '../const';
 
 export function useTableExpand(propsRef: ComputedRef<BasicTableProps>, tableData: Ref<Recordable[]>, emit: EmitType) {

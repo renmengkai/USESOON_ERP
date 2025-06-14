@@ -12,7 +12,7 @@
 </template>
 <script lang="ts">
   import type { Menu as MenuType } from '/@/router/types';
-  import { defineComponent, computed, watch } from 'vue';
+  import { computed, defineComponent, watch } from 'vue';
   import { Menu } from 'ant-design-vue';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { checkChildrenHidden } from '/@/utils/common/compUtils';

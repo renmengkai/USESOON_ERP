@@ -1,4 +1,4 @@
-import { inject, reactive, ref, watch, unref, Ref } from 'vue';
+import { inject, reactive, ref, Ref, unref, watch } from 'vue';
 import { useMessage } from '/@/hooks/web/useMessage';
 import { isEmpty } from '@/utils/is';
 
@@ -32,7 +32,7 @@ export function useSelectBiz(getList, props, emit?) {
         //update-end-author:liusq---date:2023-10-19--for: [issues/788]判断有设置数值才去加载
         //update-begin---author:wangshuai ---date:20220412  for：[VUEN-672]发文草稿箱编辑时拟稿人显示用户名------------
         // update-begin-author:liaozhiyang---date:2024-11-11--for:【issues/7405】部门选择用户同时全部选择两页用户，回显到父页面。第二页用户显示的不是真是姓名
-        let params = { isMultiTranslate: 'true', pageSize: selectValues.value?.length };
+        const params = { isMultiTranslate: 'true', pageSize: selectValues.value?.length };
         // update-end-author:liaozhiyang---date:2024-10-11--for:【issues/7405】部门选择用户同时全部选择两页用户，回显到父页面。第二页用户显示的不是真是姓名
         params[props.rowKey] = selectValues['value'].join(',');
         //update-end---author:wangshuai ---date:20220412  for：[VUEN-672]发文草稿箱编辑时拟稿人显示用户名--------------
@@ -56,7 +56,7 @@ export function useSelectBiz(getList, props, emit?) {
     checkedKeys.value = selectedRowKeys;
     //判断全选的问题checkedKeys和selectRows必须一致
     if (props.showSelected && unref(checkedKeys).length !== unref(selectRow).length) {
-      let { records } = await getList({
+      const { records } = await getList({
         code: unref(checkedKeys).join(','),
         pageSize: unref(checkedKeys).length,
       });
@@ -96,10 +96,10 @@ export function useSelectBiz(getList, props, emit?) {
    * @param flag 是否是默认回显模式加载
    */
   async function getDataSource(params, flag) {
-    let { records } = await getList(params);
+    const { records } = await getList(params);
     dataSource.value = records;
     if (flag) {
-      let options = <any[]>[];
+      const options = <any[]>[];
       records.forEach((item) => {
         options.push({ label: item[props.labelKey], value: item[props.rowKey] });
       });
@@ -107,7 +107,7 @@ export function useSelectBiz(getList, props, emit?) {
     }
   }
   async function initSelectRows() {
-    let { records } = await getList({
+    const { records } = await getList({
       code: selectValues['value'].join(','),
       pageSize: selectValues['value'].length,
     });
@@ -138,8 +138,8 @@ export function useSelectBiz(getList, props, emit?) {
    * 确定选择
    */
   function getSelectResult(success) {
-    let options = <any[]>[];
-    let values = <any[]>[];
+    const options = <any[]>[];
+    const values = <any[]>[];
     selectRows.value.forEach((item) => {
       options.push({ label: item[props.labelKey], value: item[props.rowKey] });
     });

@@ -26,9 +26,8 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref, reactive, computed, watch, nextTick, createApp, unref } from 'vue';
+  import { computed, createApp, nextTick, ref, unref, watch } from 'vue';
   import { Icon } from '/@/components/Icon';
-  import { getToken } from '/@/utils/auth';
   import { uploadUrl } from '/@/api/common/api';
   import { propTypes } from '/@/utils/propTypes';
   import { useMessage } from '/@/hooks/web/useMessage';

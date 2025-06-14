@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref, unref, reactive, computed, nextTick } from 'vue';
+  import { computed, nextTick, reactive, ref, unref } from 'vue';
   import { BasicModal, useModalInner } from '/@/components/Modal';
   import { useMessage } from '/@/hooks/web/useMessage';
   import JUpload from './JUpload.vue';

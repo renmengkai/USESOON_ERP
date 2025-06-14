@@ -37,9 +37,8 @@
 </template>
 <script lang="ts">
   import type { PropType } from 'vue';
+  import { computed, defineComponent } from 'vue';
   import type { Menu } from '/@/router/types';
-
-  import { defineComponent, computed } from 'vue';
   import { useDesign } from '/@/hooks/web/useDesign';
   import Icon from '/@/components/Icon/index';
   import { checkChildrenHidden } from '/@/utils/common/compUtils';

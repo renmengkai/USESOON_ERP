@@ -1,7 +1,7 @@
 import type { Component } from 'vue';
 import { h } from 'vue';
 import VXETable from 'vxe-table';
-import { definedComponent, addComponent, componentMap, spanEnds, excludeKeywords } from '../componentMap';
+import { addComponent, componentMap, definedComponent, excludeKeywords, spanEnds } from '../componentMap';
 import { JVxeRenderType, JVxeTypePrefix, JVxeTypes } from '../types/JVxeTypes';
 import { getEnhanced } from './enhancedUtils';
 import { isFunction } from '/@/utils/is';

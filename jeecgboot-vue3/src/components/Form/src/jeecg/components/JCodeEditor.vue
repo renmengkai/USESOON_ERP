@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, onMounted, reactive, ref, watch, unref, computed } from 'vue';
+  import { computed, defineComponent, onMounted, reactive, ref, unref, watch } from 'vue';
   import { propTypes } from '/@/utils/propTypes';
   import { useRuleFormItem } from '/@/hooks/component/useFormItem';
   // 引入全局实例
@@ -55,6 +55,7 @@
 
   import { useRootSetting } from '/@/hooks/setting/useRootSetting';
   import { ThemeEnum } from '/@/enums/appEnum';
+
   export default defineComponent({
     name: 'JCodeEditor',
     // 不将 attrs 的属性绑定到 html 标签上

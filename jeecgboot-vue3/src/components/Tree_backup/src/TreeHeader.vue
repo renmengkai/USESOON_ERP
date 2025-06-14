@@ -32,10 +32,9 @@
   </div>
 </template>
 <script lang="ts">
-  import { PropType } from 'vue';
-  import { defineComponent, computed, ref, watch } from 'vue';
+  import { computed, defineComponent, PropType, ref, watch } from 'vue';
 
-  import { Dropdown, Menu, Input } from 'ant-design-vue';
+  import { Dropdown, Input, Menu } from 'ant-design-vue';
   import { Icon } from '/@/components/Icon';
   import { BasicTitle } from '/@/components/Basic';
 

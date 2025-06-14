@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-  import { ref, computed, watch, defineComponent } from 'vue';
+  import { computed, defineComponent, ref, watch } from 'vue';
   import dayjs from 'dayjs';
   import { TimePicker } from 'ant-design-vue';
   import { JVxeComponent } from '/@/components/jeecg/JVxeTable/types';

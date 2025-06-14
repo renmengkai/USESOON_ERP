@@ -8,10 +8,10 @@
 
 <script lang="ts" setup>
   import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
-  import { ref, computed, createVNode, h, resolveComponent } from 'vue';
+  import { computed, createVNode, h, ref } from 'vue';
   import { defHttp } from '/@/utils/http/axios';
-  import { backEndUrl, getEnabledTypes, doSyncThirdApp } from './jThirdApp.api';
-  import { Modal, Input } from 'ant-design-vue';
+  import { backEndUrl, getEnabledTypes } from './jThirdApp.api';
+  import { Modal } from 'ant-design-vue';
   import JThirdAppDropdown from './JThirdAppDropdown.vue';
   import { useMessage } from '/@/hooks/web/useMessage';
 

@@ -2,9 +2,10 @@
   <div ref="chartRef" :style="{ height, width }"></div>
 </template>
 <script lang="ts">
-  import { defineComponent, PropType, ref, Ref, reactive, watchEffect, watch } from 'vue';
+  import { defineComponent, PropType, reactive, Ref, ref, watch, watchEffect } from 'vue';
   import { useECharts } from '/@/hooks/web/useECharts';
   import { cloneDeep } from 'lodash-es';
+
   export default defineComponent({
     name: 'StackBar',
     props: {

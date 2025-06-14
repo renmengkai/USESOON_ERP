@@ -37,7 +37,7 @@
 <script lang="ts">
   import { defineComponent } from 'vue';
   import { InputNumber } from 'ant-design-vue';
-  import { useTabProps, useTabEmits, useTabSetup } from './useTabMixin';
+  import { useTabEmits, useTabProps, useTabSetup } from './useTabMixin';
 
   export default defineComponent({
     name: 'SecondUI',

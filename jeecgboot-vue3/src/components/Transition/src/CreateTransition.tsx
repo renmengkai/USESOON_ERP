@@ -1,5 +1,4 @@
 import type { PropType } from 'vue';
-
 import { defineComponent, Transition, TransitionGroup } from 'vue';
 import { getSlot } from '/@/utils/helper/tsxHelper';
 

@@ -35,9 +35,9 @@
 </template>
 
 <script lang="ts">
-  import { computed, watch, defineComponent } from 'vue';
+  import { computed, defineComponent, watch } from 'vue';
   import { InputNumber } from 'ant-design-vue';
-  import { useTabProps, useTabEmits, useTabSetup, TypeEnum } from './useTabMixin';
+  import { TypeEnum, useTabEmits, useTabProps, useTabSetup } from './useTabMixin';
 
   const WEEK_MAP_EN = {
     '1': 'SUN',

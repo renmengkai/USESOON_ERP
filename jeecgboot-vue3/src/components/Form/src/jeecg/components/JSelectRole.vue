@@ -12,7 +12,7 @@
 <script lang="ts">
   import RoleSelectModal from './modal/RoleSelectModal.vue';
   import JSelectBiz from './base/JSelectBiz.vue';
-  import { defineComponent, ref, unref, reactive, watchEffect, watch, provide } from 'vue';
+  import { defineComponent, provide, reactive, ref, unref, watch, watchEffect } from 'vue';
   import { useModal } from '/@/components/Modal';
   import { propTypes } from '/@/utils/propTypes';
   import { useRuleFormItem } from '/@/hooks/component/useFormItem';

@@ -97,18 +97,19 @@
 
 <script lang="ts">
   import { BasicModal, useModalInner } from '/@/components/Modal';
-  import { SearchOutlined, CloseOutlined } from '@ant-design/icons-vue';
+  import { CloseOutlined, SearchOutlined } from '@ant-design/icons-vue';
   import UserList from './UserList.vue';
   import SelectedUserItem from './SelectedUserItem.vue';
   import DepartUserList from './UserListAndDepart.vue';
   import RoleUserList from './UserListAndRole.vue';
   import { Pagination } from 'ant-design-vue';
-  const APagination = Pagination;
   import { defHttp } from '/@/utils/http/axios';
 
   import { computed, ref, toRaw, unref } from 'vue';
   import { useUserStore } from '/@/store/modules/user';
   import { mySelfData } from './useUserSelect';
+
+  const APagination = Pagination;
 
   export default {
     name: 'UserSelectModal',

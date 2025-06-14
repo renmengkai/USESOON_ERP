@@ -1,9 +1,7 @@
-import type { BasicColumn } from '/@/components/Table';
-import type { Ref, ComputedRef } from 'vue';
-import type { BasicTableProps, PaginationProps, TableRowSelection } from '/@/components/Table';
+import type { BasicColumn, BasicTableProps, PaginationProps, TableRowSelection } from '/@/components/Table';
+import type { ComputedRef, Ref } from 'vue';
 import { computed, nextTick, onUnmounted, ref, toRaw, unref, watch, watchEffect } from 'vue';
-import { omit, isEqual } from 'lodash-es';
-import { throttle } from 'lodash-es';
+import { isEqual, omit, throttle } from 'lodash-es';
 import { Checkbox, Radio } from 'ant-design-vue';
 import { isFunction } from '/@/utils/is';
 import { findNodeAll } from '/@/utils/helper/treeHelper';

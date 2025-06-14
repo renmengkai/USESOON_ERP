@@ -2,10 +2,9 @@
   <Cascader v-bind="attrs" :value="cascaderValue" :options="getOptions" @change="handleChange" />
 </template>
 <script lang="ts">
-  import { defineComponent, PropType, ref, reactive, watchEffect, computed, unref, watch, onMounted } from 'vue';
+  import { computed, defineComponent, ref, watchEffect } from 'vue';
   import { Cascader } from 'ant-design-vue';
-  import { provinceAndCityData, regionData, provinceAndCityDataPlus, regionDataPlus } from '../../utils/areaDataUtil';
-  import { useRuleFormItem } from '/@/hooks/component/useFormItem';
+  import { provinceAndCityData, provinceAndCityDataPlus, regionData, regionDataPlus } from '../../utils/areaDataUtil';
   import { propTypes } from '/@/utils/propTypes';
   import { useAttrs } from '/@/hooks/core/useAttrs';
   import { isArray } from '/@/utils/is';

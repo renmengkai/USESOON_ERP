@@ -18,9 +18,9 @@
 <script lang="ts">
   import type { JPromptProps } from './typing';
   import type { ModalProps } from '/@/components/Modal';
-  import { ref, defineComponent, computed, unref, onMounted, nextTick } from 'vue';
+  import { computed, defineComponent, nextTick, onMounted, ref, unref } from 'vue';
   import { BasicForm, useForm } from '/@/components/Form';
-  import { Modal, Spin, Input, ConfigProvider } from 'ant-design-vue';
+  import { ConfigProvider, Input, Modal, Spin } from 'ant-design-vue';
   import { useLocale } from '/@/locales/useLocale';
 
   export default defineComponent({

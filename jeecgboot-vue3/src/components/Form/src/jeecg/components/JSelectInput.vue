@@ -4,7 +4,7 @@
 
 <script lang="ts">
   import { propTypes } from '/@/utils/propTypes';
-  import { defineComponent, ref, watch, computed } from 'vue';
+  import { computed, defineComponent, ref, watch } from 'vue';
 
   // 可以输入的下拉框（此组件暂时没有人用）
   export default defineComponent({

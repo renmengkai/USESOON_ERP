@@ -18,7 +18,7 @@
   </a-select>
 </template>
 <script lang="ts">
-  import { computed, defineComponent, onMounted, ref, nextTick, watch } from 'vue';
+  import { defineComponent, nextTick, onMounted, ref, watch } from 'vue';
   import { useRuleFormItem } from '/@/hooks/component/useFormItem';
   import { propTypes } from '/@/utils/propTypes';
   import { useAttrs } from '/@/hooks/core/useAttrs';

@@ -61,7 +61,7 @@
   import { UploadTypeEnum } from '/@/components/Form/src/jeecg/components/JUpload';
   import { JVxeComponent } from '/@/components/jeecg/JVxeTable/types';
   import { useJVxeCompProps } from '/@/components/jeecg/JVxeTable/hooks';
-  import { useFileCell, enhanced, components } from '../hooks/useFileCell';
+  import { components, enhanced, useFileCell } from '../hooks/useFileCell';
 
   export default defineComponent({
     name: 'JVxeFileCell',

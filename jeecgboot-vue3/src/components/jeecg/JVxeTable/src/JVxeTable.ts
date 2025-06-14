@@ -1,4 +1,4 @@
-import { defineComponent, h, nextTick, ref, useSlots } from 'vue';
+import { defineComponent, h, ref, useSlots } from 'vue';
 import { vxeEmits, vxeProps } from './vxe.data';
 import { useData, useRefs, useResolveComponent as rc } from './hooks/useData';
 import { useColumns } from './hooks/useColumns';

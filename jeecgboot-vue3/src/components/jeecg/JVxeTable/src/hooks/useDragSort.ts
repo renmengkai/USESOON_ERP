@@ -1,4 +1,4 @@
-import { onMounted, onUnmounted, nextTick } from 'vue';
+import { nextTick, onMounted, onUnmounted } from 'vue';
 import { JVxeTableMethods, JVxeTableProps } from '/@/components/jeecg/JVxeTable/src/types';
 import Sortable from 'sortablejs';
 import { isEnabledVirtualYScroll } from '/@/components/jeecg/JVxeTable/utils';

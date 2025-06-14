@@ -46,6 +46,7 @@
   import { useI18n } from '@/hooks/web/useI18n';
   import { useMessage } from '@/hooks/web/useMessage';
   import { Empty, Pagination } from 'ant-design-vue';
+
   export default defineComponent({
     components: {
       SvgIcon,

@@ -1,83 +1,95 @@
 <!-- 代码已包含 CSS：使用 TailwindCSS , 安装 TailwindCSS 后方可看到布局样式效果 -->
 <template>
-  <div class="min-h-screen bg-gray-50 py-8">
-    <div class="mx-auto max-w-5xl bg-white rounded-lg shadow-sm">
-      <div class="p-8">
-        <h1 class="text-2xl font-bold mb-8">订单信息登记</h1>
+  <div style="min-height: 100vh; background-color: #f9fafb; padding: 2rem">
+    <div
+      style="
+        margin: 0 auto;
+        max-width: 1280px;
+        background-color: #ffffff;
+        border-radius: 0.5rem;
+        box-shadow:
+          0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      "
+    >
+      <div style="padding: 2rem">
+        <h1 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 2rem">订单信息登记</h1>
         <!-- 商品信息 -->
-        <div class="mb-8">
-          <h2 class="text-lg font-semibold mb-4 pb-2 border-b">商品信息</h2>
-          <div class="space-y-4">
-            <div class="grid grid-cols-2 gap-6">
+        <div style="margin-bottom: 2rem">
+          <h2 style="font-size: 1.125rem; font-weight: bold; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e5e7eb"
+            >商品信息</h2
+          >
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem">
+            <div>
+              <label style="display: block; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem">供货商</label>
+              <a-select v-model:value="supplier" show-search placeholder="请选择供货商" :options="supplierOptions" class="w-full" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem">商品分类</label>
+              <a-cascader v-model:value="category" :options="categoryOptions" placeholder="请选择商品分类" class="w-full" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem">商品批次</label>
+              <a-select v-model:value="batch" show-search placeholder="请选择商品批次" :options="batchOptions" class="w-full">
+                <template #option="{ label, value, cost }">
+                  <span>{{ label }} (成本价: ¥{{ cost }})</span>
+                </template>
+              </a-select>
+              <div style="font-size: 0.875rem; color: #6b7280; margin-top: 0.25rem" v-if="selectedBatchCost"> 成本价：¥{{ selectedBatchCost }} </div>
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem">商品售价</label>
               <div>
-                <label class="block text-sm font-medium mb-2">供货商</label>
-                <a-select v-model:value="supplier" show-search placeholder="请选择供货商" :options="supplierOptions" class="w-full" />
-              </div>
-              <div>
-                <label class="block text-sm font-medium mb-2">商品分类</label>
-                <a-cascader v-model:value="category" :options="categoryOptions" placeholder="请选择商品分类" class="w-full" />
-              </div>
-              <div>
-                <label class="block text-sm font-medium mb-2">商品批次</label>
-                <a-select v-model:value="batch" show-search placeholder="请选择商品批次" :options="batchOptions" class="w-full">
-                  <template #option="{ label, value, cost }">
-                    <span>{{ label }} (成本价: ¥{{ cost }})</span>
-                  </template>
-                </a-select>
-                <div class="text-sm text-gray-500 mt-1" v-if="selectedBatchCost"> 成本价：¥{{ selectedBatchCost }} </div>
-              </div>
-              <div>
-                <label class="block text-sm font-medium mb-2">商品售价</label>
-                <div>
-                  <a-input-number
-                    v-model:value="sellingPrice"
-                    :min="0"
-                    :precision="2"
-                    placeholder="请输入售价"
-                    class="w-full"
-                    @change="calculateProfit"
-                  />
-                </div>
+                <a-input-number
+                  v-model:value="sellingPrice"
+                  :min="0"
+                  :precision="2"
+                  placeholder="请输入售价"
+                  class="w-full"
+                  @change="calculateProfit"
+                />
               </div>
             </div>
-            <div class="grid grid-cols-2 gap-6">
-              <div>
-                <label class="block text-sm font-medium mb-2">商品规格</label>
-                <a-select v-model:value="specification" show-search placeholder="请选择商品规格" :options="specificationOptions" class="w-full" />
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem">
+            <div>
+              <label style="display: block; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem">商品规格</label>
+              <a-select v-model:value="specification" show-search placeholder="请选择商品规格" :options="specificationOptions" class="w-full" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem">商品数量</label>
+              <a-input-number v-model:value="quantity" :min="1" placeholder="请输入商品数量" class="w-full" />
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 1.5rem; column-span: 2">
+              <div style="background-color: #f9fafb; padding: 1.5rem; border-radius: 0.5rem; text-align: center">
+                <label style="display: block; font-size: 0.875rem; color: #6b7280; margin-bottom: 0.5rem">总成本金额</label>
+                <div style="font-size: 1.25rem; font-weight: bold">¥{{ totalCost.toFixed(2) }}</div>
               </div>
-              <div>
-                <label class="block text-sm font-medium mb-2">商品数量</label>
-                <a-input-number v-model:value="quantity" :min="1" placeholder="请输入商品数量" class="w-full" />
+              <div style="background-color: #f9fafb; padding: 1.5rem; border-radius: 0.5rem; text-align: center">
+                <label style="display: block; font-size: 0.875rem; color: #6b7280; margin-bottom: 0.5rem">总销售金额</label>
+                <div style="font-size: 1.25rem; font-weight: bold">¥{{ totalSales.toFixed(2) }}</div>
               </div>
-              <div class="grid grid-cols-4 gap-6 mt-6 col-span-2">
-                <div class="bg-gray-50 p-6 rounded-lg text-center">
-                  <label class="block text-sm text-gray-500 mb-2">总成本金额</label>
-                  <div class="text-xl font-semibold">¥{{ totalCost.toFixed(2) }}</div>
+              <div style="background-color: #f9fafb; padding: 1.5rem; border-radius: 0.5rem; text-align: center">
+                <label style="display: block; font-size: 0.875rem; color: #6b7280; margin-bottom: 0.5rem">总利润</label>
+                <div style="font-size: 1.25rem; font-weight: bold" :style="{ color: profit > 0 ? '#16a34a' : '#dc2626' }">
+                  ¥{{ profit.toFixed(2) }}
                 </div>
-                <div class="bg-gray-50 p-6 rounded-lg text-center">
-                  <label class="block text-sm text-gray-500 mb-2">总销售金额</label>
-                  <div class="text-xl font-semibold">¥{{ totalSales.toFixed(2) }}</div>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-lg text-center">
-                  <label class="block text-sm text-gray-500 mb-2">总利润</label>
-                  <div class="text-xl font-semibold" :class="{ 'text-green-600': profit > 0, 'text-red-600': profit < 0 }">
-                    ¥{{ profit.toFixed(2) }}
-                  </div>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-lg text-center">
-                  <label class="block text-sm text-gray-500 mb-2">利润率</label>
-                  <div class="text-xl font-semibold" :class="{ 'text-green-600': profitRate > 0, 'text-red-600': profitRate < 0 }">
-                    {{ profitRate.toFixed(2) }}%
-                  </div>
+              </div>
+              <div style="background-color: #f9fafb; padding: 1.5rem; border-radius: 0.5rem; text-align: center">
+                <label style="display: block; font-size: 0.875rem; color: #6b7280; margin-bottom: 0.5rem">利润率</label>
+                <div style="font-size: 1.25rem; font-weight: bold" :style="{ color: profitRate > 0 ? '#16a34a' : '#dc2626' }">
+                  {{ profitRate.toFixed(2) }}%
                 </div>
               </div>
             </div>
           </div>
         </div>
         <!-- 订单节点 -->
-        <div class="mb-8">
-          <h2 class="text-lg font-semibold mb-4 pb-2 border-b">订单节点</h2>
-          <div class="mb-6">
+        <div style="margin-bottom: 2rem">
+          <h2 style="font-size: 1.125rem; font-weight: bold; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e5e7eb"
+            >订单节点</h2
+          >
+          <div style="margin-bottom: 1.5rem">
             <a-steps :current="currentStep" size="small">
               <a-step title="订货" :description="orderTimeStr" />
               <a-step title="定金" :description="depositTimeStr" />
@@ -87,38 +99,38 @@
             </a-steps>
           </div>
           <!-- 交付信息 -->
-          <div class="mb-6">
-            <h3 class="text-base font-medium mb-4">交付信息</h3>
-            <div class="grid grid-cols-2 gap-6">
+          <div style="margin-bottom: 1.5rem">
+            <h3 style="font-size: 1rem; font-weight: bold; margin-bottom: 1rem">交付信息</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem">
               <div>
-                <label class="block text-sm font-medium mb-2">预估交付日期</label>
+                <label style="display: block; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem">预估交付日期</label>
                 <a-date-picker v-model:value="estimatedDeliveryDate" class="w-full" />
               </div>
               <div>
-                <label class="block text-sm font-medium mb-2">实际交付日期</label>
+                <label style="display: block; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem">实际交付日期</label>
                 <a-date-picker v-model:value="actualDeliveryDate" class="w-full" />
               </div>
             </div>
-            <div class="mt-4">
-              <label class="block text-sm font-medium mb-2">交付备注信息</label>
+            <div style="margin-top: 1rem">
+              <label style="display: block; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem">交付备注信息</label>
               <a-textarea v-model:value="deliveryNotes" rows="3" placeholder="请输入交付相关备注信息" />
             </div>
           </div>
           <!-- 回款信息 -->
           <div>
-            <h3 class="text-base font-medium mb-4">回款信息</h3>
-            <div class="grid grid-cols-2 gap-6">
+            <h3 style="font-size: 1rem; font-weight: bold; margin-bottom: 1rem">回款信息</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem">
               <div>
-                <label class="block text-sm font-medium mb-2">预估回款日期</label>
+                <label style="display: block; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem">预估回款日期</label>
                 <a-date-picker v-model:value="estimatedPaymentDate" class="w-full" />
               </div>
               <div>
-                <label class="block text-sm font-medium mb-2">实际回款日期</label>
+                <label style="display: block; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem">实际回款日期</label>
                 <a-date-picker v-model:value="actualPaymentDate" class="w-full" />
               </div>
             </div>
-            <div class="mt-4">
-              <label class="block text-sm font-medium mb-2">回款方式</label>
+            <div style="margin-top: 1rem">
+              <label style="display: block; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem">回款方式</label>
               <a-radio-group v-model:value="paymentMethod">
                 <a-radio value="cash">现金</a-radio>
                 <a-radio value="transfer">转账</a-radio>
@@ -126,15 +138,17 @@
                 <a-radio value="other">其他</a-radio>
               </a-radio-group>
             </div>
-            <div class="mt-4">
-              <label class="block text-sm font-medium mb-2">回款备注信息</label>
+            <div style="margin-top: 1rem">
+              <label style="display: block; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem">回款备注信息</label>
               <a-textarea v-model:value="paymentNotes" rows="3" placeholder="请输入回款相关备注信息" />
             </div>
           </div>
         </div>
         <!-- 订单标签 -->
-        <div class="mb-8">
-          <h2 class="text-lg font-semibold mb-4 pb-2 border-b">订单标签</h2>
+        <div style="margin-bottom: 2rem">
+          <h2 style="font-size: 1.125rem; font-weight: bold; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e5e7eb"
+            >订单标签</h2
+          >
           <a-select
             v-model:value="selectedTags"
             mode="multiple"
@@ -146,7 +160,7 @@
           />
         </div>
         <!-- 操作按钮 -->
-        <div class="flex justify-end space-x-4 pt-6 border-t">
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb">
           <a-button class="!rounded-button whitespace-nowrap" @click="handleCancel">取消</a-button>
           <a-button class="!rounded-button whitespace-nowrap" @click="handleSaveAndNew" type="default">保存并新建 </a-button>
           <a-button class="!rounded-button whitespace-nowrap" @click="handleSave" type="primary">保存</a-button>
@@ -267,20 +281,3 @@
     // 处理取消逻辑
   };
 </script>
-<style scoped>
-  .ant-select-selector {
-    @apply border border-gray-300 !important;
-  }
-
-  .ant-input {
-    @apply border border-gray-300 !important;
-  }
-
-  .ant-picker {
-    @apply border border-gray-300 !important;
-  }
-
-  .ant-input-number {
-    @apply border border-gray-300 !important;
-  }
-</style>

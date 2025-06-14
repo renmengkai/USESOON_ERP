@@ -11,7 +11,7 @@
   </RadioGroup>
 </template>
 <script lang="ts">
-  import { defineComponent, PropType, computed } from 'vue';
+  import { computed, defineComponent, PropType } from 'vue';
   import { Radio } from 'ant-design-vue';
   import { isString } from '/@/utils/is';
   import { useRuleFormItem } from '/@/hooks/component/useFormItem';

@@ -1,6 +1,6 @@
 import { watch } from 'vue';
-import { isFunction, isPromise, isArray } from '/@/utils/is';
-import { JVxeColumn, JVxeDataProps, JVxeTableProps, JVxeLinkageConfig } from '../types';
+import { isArray, isFunction, isPromise } from '/@/utils/is';
+import { JVxeColumn, JVxeDataProps, JVxeLinkageConfig, JVxeTableProps } from '../types';
 
 /**
  * 多级联动

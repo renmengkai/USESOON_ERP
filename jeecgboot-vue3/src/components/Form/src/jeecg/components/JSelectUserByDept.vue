@@ -6,15 +6,15 @@
   </div>
 </template>
 <script lang="ts">
-  import { unref } from 'vue';
+  import { defineComponent, provide, reactive, ref, unref, watch, watchEffect } from 'vue';
   import UserSelectByDepModal from './modal/UserSelectByDepModal.vue';
   import JSelectBiz from './base/JSelectBiz.vue';
-  import { defineComponent, ref, reactive, watchEffect, watch, provide } from 'vue';
   import { useModal } from '/@/components/Modal';
   import { propTypes } from '/@/utils/propTypes';
   import { useRuleFormItem } from '/@/hooks/component/useFormItem';
   import { useAttrs } from '/@/hooks/core/useAttrs';
   import { SelectValue } from 'ant-design-vue/es/select';
+
   export default defineComponent({
     name: 'JSelectUserByDept',
     components: {

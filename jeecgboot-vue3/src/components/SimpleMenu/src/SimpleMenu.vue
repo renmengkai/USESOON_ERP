@@ -16,19 +16,18 @@
   import type { MenuState } from './types';
   import type { Menu as MenuType } from '/@/router/types';
   import type { RouteLocationNormalizedLoaded } from 'vue-router';
-  import { defineComponent, computed, ref, unref, reactive, toRefs, watch } from 'vue';
+  import { useRouter } from 'vue-router';
+  import { computed, defineComponent, reactive, ref, toRefs, unref, watch } from 'vue';
   import { useDesign } from '/@/hooks/web/useDesign';
   import Menu from './components/Menu.vue';
   import SimpleSubMenu from './SimpleSubMenu.vue';
   import { listenerRouteChange } from '/@/logics/mitt/routeChange';
   import { propTypes } from '/@/utils/propTypes';
   import { REDIRECT_NAME } from '/@/router/constant';
-  import { useRouter } from 'vue-router';
   import { isFunction, isUrl } from '/@/utils/is';
-  import { openWindow } from '/@/utils';
+  import { URL_HASH_TAB } from '/@/utils';
 
   import { useOpenKeys } from './useOpenKeys';
-  import { URL_HASH_TAB } from '/@/utils';
   import { useAppStore } from '/@/store/modules/app';
 
   export default defineComponent({

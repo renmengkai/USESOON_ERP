@@ -1,12 +1,11 @@
-import { computed, ref, watch, defineComponent, h } from 'vue';
+import { computed, defineComponent, h, ref, watch } from 'vue';
 import { cloneDeep, debounce } from 'lodash-es';
 import { defHttp } from '/@/utils/http/axios';
 import { filterDictText } from '/@/utils/dict/JDictSelectUtil';
 import { ajaxGetDictItems, getDictItemsByCode } from '/@/utils/dict';
 import { JVxeComponent } from '/@/components/jeecg/JVxeTable/types';
 import { dispatchEvent } from '/@/components/jeecg/JVxeTable/utils';
-import { useResolveComponent as rc } from '/@/components/jeecg/JVxeTable/hooks';
-import { useJVxeComponent, useJVxeCompProps } from '/@/components/jeecg/JVxeTable/hooks';
+import { useJVxeComponent, useJVxeCompProps, useResolveComponent as rc } from '/@/components/jeecg/JVxeTable/hooks';
 import { useMessage } from '/@/hooks/web/useMessage';
 
 /** value - label map，防止重复查询（刷新清空缓存） */

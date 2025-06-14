@@ -20,7 +20,7 @@
    * 评论区域
    */
   import { propTypes } from '/@/utils/propTypes';
-  import { computed, ref, nextTick } from 'vue';
+  import { computed, nextTick, ref } from 'vue';
   import CommentList from './CommentList.vue';
   import CommentFiles from './CommentFiles.vue';
   import DataLogList from './DataLogList.vue';

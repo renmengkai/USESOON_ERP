@@ -18,7 +18,7 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, computed, ref } from 'vue';
+  import { computed, defineComponent, ref } from 'vue';
 
   import { Upload } from 'ant-design-vue';
   import { useDesign } from '/@/hooks/web/useDesign';

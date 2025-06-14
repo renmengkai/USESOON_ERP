@@ -13,20 +13,20 @@ import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent';
  * Component list, register here to setting it in the form
  */
 import {
-  Input,
-  Select,
-  Radio,
-  Checkbox,
   AutoComplete,
   Cascader,
+  Checkbox,
   DatePicker,
+  Divider,
+  Input,
   InputNumber,
+  Radio,
+  Rate,
+  Select,
+  Slider,
   Switch,
   TimePicker,
   TreeSelect,
-  Slider,
-  Rate,
-  Divider,
 } from 'ant-design-vue';
 import ApiRadioGroup from './components/ApiRadioGroup.vue';
 import RadioButtonGroup from './components/RadioButtonGroup.vue';
@@ -75,7 +75,7 @@ import JRangeDate from './jeecg/components/JRangeDate.vue';
 import JRangeTime from './jeecg/components/JRangeTime.vue';
 import JInputSelect from './jeecg/components/JInputSelect.vue';
 import RoleSelectInput from './jeecg/components/roleSelect/RoleSelectInput.vue';
-import { DatePickerInFilter, CascaderPcaInFilter } from '@/components/InFilter';
+import { CascaderPcaInFilter, DatePickerInFilter } from '@/components/InFilter';
 
 const componentMap = new Map<ComponentType, Component>();
 

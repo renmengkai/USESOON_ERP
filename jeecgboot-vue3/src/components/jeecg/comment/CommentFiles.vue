@@ -62,16 +62,12 @@
 </template>
 
 <script>
-  import { UploadOutlined, FolderOutlined, DownloadOutlined, PaperClipOutlined, DeleteOutlined } from '@ant-design/icons-vue';
+  import { DeleteOutlined, DownloadOutlined, FolderOutlined, PaperClipOutlined, UploadOutlined } from '@ant-design/icons-vue';
   import JUpload from '/@/components/Form/src/jeecg/components/JUpload/JUpload.vue';
-  import { uploadFileUrl } from './useComment';
+  import { fileList, uploadFileUrl, useCommentWithFile, useFileList } from './useComment';
   import { propTypes } from '/@/utils/propTypes';
-  import { computed, watchEffect, unref, ref } from 'vue';
-  import { useMessage } from '/@/hooks/web/useMessage';
-  import { fileList } from './useComment';
-  import { getFileAccessHttpUrl } from '/@/utils/common/compUtils';
+  import { ref, watchEffect } from 'vue';
   import { useUserStore } from '/@/store/modules/user';
-  import { saveOne, useCommentWithFile, useFileList } from './useComment';
   import { useModal } from '/@/components/Modal';
 
   import { Tooltip } from 'ant-design-vue';

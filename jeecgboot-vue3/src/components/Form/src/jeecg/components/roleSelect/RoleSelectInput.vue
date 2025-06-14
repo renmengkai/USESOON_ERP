@@ -27,7 +27,7 @@
 <script lang="ts">
   import { useModal } from '/@/components/Modal';
   import { defHttp } from '/@/utils/http/axios';
-  import { computed, ref, watch, watchEffect, defineComponent } from 'vue';
+  import { computed, defineComponent, ref, watch, watchEffect } from 'vue';
   import RoleSelectModal from './RoleSelectModal.vue';
   import SelectedUserItem from '../userSelect/SelectedUserItem.vue';
   import { Form } from 'ant-design-vue';

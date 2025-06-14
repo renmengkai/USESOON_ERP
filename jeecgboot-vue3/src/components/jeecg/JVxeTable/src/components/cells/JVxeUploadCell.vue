@@ -57,7 +57,7 @@
   import { LoadingOutlined } from '@ant-design/icons-vue';
   import { JVxeComponent } from '/@/components/jeecg/JVxeTable/types';
   import { useJVxeCompProps } from '/@/components/jeecg/JVxeTable/hooks';
-  import { useJVxeUploadCell, fileGetValue, fileSetValue } from '../../hooks/cells/useJVxeUploadCell';
+  import { fileGetValue, fileSetValue, useJVxeUploadCell } from '../../hooks/cells/useJVxeUploadCell';
 
   export default defineComponent({
     name: 'JVxeUploadCell',

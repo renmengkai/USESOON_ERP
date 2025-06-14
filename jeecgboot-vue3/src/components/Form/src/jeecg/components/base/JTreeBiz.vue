@@ -19,7 +19,7 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, ref, inject, reactive } from 'vue';
+  import { defineComponent, inject, ref } from 'vue';
   import { propTypes } from '/@/utils/propTypes';
   import { useAttrs } from '/@/hooks/core/useAttrs';
 

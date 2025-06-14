@@ -28,6 +28,7 @@
 <script setup name="JInputSelect" lang="ts">
   import { ref, watchEffect } from 'vue';
   import { propTypes } from '/@/utils/propTypes';
+
   const props = defineProps({
     value: propTypes.string.def(''),
     options: propTypes.array.def([]),

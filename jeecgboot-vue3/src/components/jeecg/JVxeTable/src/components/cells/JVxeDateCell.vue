@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-  import { ref, computed, watch, defineComponent } from 'vue';
+  import { computed, defineComponent, ref, watch } from 'vue';
   import dayjs from 'dayjs';
   import { JVxeComponent, JVxeTypes } from '/@/components/jeecg/JVxeTable/types';
   import { useJVxeComponent, useJVxeCompProps } from '/@/components/jeecg/JVxeTable/hooks';

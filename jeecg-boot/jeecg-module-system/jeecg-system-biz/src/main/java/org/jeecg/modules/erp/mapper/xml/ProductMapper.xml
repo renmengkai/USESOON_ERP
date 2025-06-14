@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.erp.mapper.ProductMapper">
+
+    <!-- 查询所有商品 -->
+    <select id="selectAll" resultType="org.jeecg.modules.erp.entity.Product">
+        SELECT * FROM erp_product
+    </select>
+
+    <!-- 根据 ID 查询商品 -->
+    <select id="selectById" resultType="org.jeecg.modules.erp.entity.Product">
+        SELECT * FROM erp_product WHERE id = #{id}
+    </select>
+
+    <!-- 插入商品 -->
+    <insert id="insert">
+        INSERT INTO erp_product (
+            id, productCode, productName, price, stock, status,
+            description, createdTime, updatedTime
+        ) VALUES (
+            #{id}, #{productCode}, #{productName}, #{price}, #{stock}, #{status},
+            #{description}, #{createdTime}, #{updatedTime}
+        )
+    </insert>
+
+    <!-- 更新商品 -->
+    <update id="updateById">
+        UPDATE erp_product
+        SET
+            productCode = #{productCode},
+            productName = #{productName},
+            price = #{price},
+            stock = #{stock},
+            status = #{status},
+            description = #{description},
+            createdTime = #{createdTime},
+            updatedTime = #{updatedTime}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除商品 -->
+    <delete id="deleteById">
+        DELETE FROM erp_product WHERE id = #{id}
+    </delete>
+</mapper>

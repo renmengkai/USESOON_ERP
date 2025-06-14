@@ -1,5 +1,4 @@
 import { computed, nextTick, unref, watchEffect } from 'vue';
-import { router } from '/@/router';
 import { useRoute } from 'vue-router';
 import { createLocalStorage } from '/@/utils/cache';
 import { useTableContext } from './useTableContext';

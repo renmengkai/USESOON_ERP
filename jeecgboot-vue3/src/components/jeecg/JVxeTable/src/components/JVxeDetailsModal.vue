@@ -8,7 +8,7 @@
   </BasicModal>
 </template>
 <script lang="ts">
-  import { ref, defineComponent } from 'vue';
+  import { defineComponent, ref } from 'vue';
   import { cloneDeep } from 'lodash-es';
   import { useModal } from '/@/components/Modal/src/hooks/useModal';
   import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent';

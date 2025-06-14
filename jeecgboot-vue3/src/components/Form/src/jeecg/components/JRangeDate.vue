@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import { defineComponent, ref, watch, computed } from 'vue';
+  import { computed, defineComponent, ref, watch } from 'vue';
   import { propTypes } from '/@/utils/propTypes';
   import { Form } from 'ant-design-vue';
 

@@ -17,7 +17,7 @@
 <script lang="ts">
   import PositionSelectModal from './modal/PositionSelectModal.vue';
   import JSelectBiz from './base/JSelectBiz.vue';
-  import { defineComponent, ref, reactive, watchEffect, watch, provide, computed, unref } from 'vue';
+  import { defineComponent, provide, reactive, ref, unref, watch } from 'vue';
   import { useModal } from '/@/components/Modal';
   import { propTypes } from '/@/utils/propTypes';
   import { useRuleFormItem } from '/@/hooks/component/useFormItem';

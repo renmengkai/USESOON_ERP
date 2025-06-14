@@ -1,4 +1,4 @@
-import type { Component, Ref, ComputedRef, ExtractPropTypes } from 'vue';
+import type { Component, ComputedRef, ExtractPropTypes, Ref } from 'vue';
 import type { VxeColumnProps } from 'vxe-table/types/column';
 import type { JVxeComponent } from './JVxeComponent';
 import type { VxeGridInstance, VxeTablePropTypes } from 'vxe-table';

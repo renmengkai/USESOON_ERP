@@ -99,7 +99,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed, reactive, ref, watch, provide } from 'vue';
+  import { computed, provide, reactive, ref, watch } from 'vue';
   import { useDesign } from '/@/hooks/web/useDesign';
   import CronParser from 'cron-parser';
   import SecondUI from './tabs/SecondUI.vue';

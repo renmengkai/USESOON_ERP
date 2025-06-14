@@ -130,13 +130,14 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, reactive } from 'vue';
-  import { RightOutlined, HomeOutlined, CloseOutlined } from '@ant-design/icons-vue';
+  import { reactive, ref } from 'vue';
+  import { CloseOutlined, HomeOutlined, RightOutlined } from '@ant-design/icons-vue';
   import { BasicModal, useModalInner } from '/@/components/Modal';
-  import { queryTreeList, getTableList as getTableListOrigin } from '/@/api/common/api';
+  import { getTableList as getTableListOrigin, queryTreeList } from '/@/api/common/api';
   import { getFileAccessHttpUrl } from '/@/utils/common/compUtils';
   import { isArray } from '/@/utils/is';
   import { defHttp } from '/@/utils/http/axios';
+  import { useMessage } from '/@/hooks/web/useMessage';
 
   defineOptions({ name: 'JSelectUserByDepartmentModal' });
   const props = defineProps({
@@ -176,7 +177,6 @@
     },
   });
   const emit = defineEmits(['close', 'register', 'change']);
-  import { useMessage } from '/@/hooks/web/useMessage';
   const { createMessage } = useMessage();
   // 搜索文本
   const searchText = ref('');

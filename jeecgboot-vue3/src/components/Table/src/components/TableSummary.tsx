@@ -1,12 +1,12 @@
 import type { PropType, VNode } from 'vue';
-import { defineComponent, unref, computed, isVNode } from 'vue';
+import { computed, defineComponent, isVNode, unref } from 'vue';
 import { cloneDeep, pick } from 'lodash-es';
 import { isFunction } from '/@/utils/is';
 import type { BasicColumn } from '../types/table';
 import { INDEX_COLUMN_FLAG } from '../const';
 import { propTypes } from '/@/utils/propTypes';
 import { useTableContext } from '../hooks/useTableContext';
-import { TableSummary, TableSummaryRow, TableSummaryCell } from 'ant-design-vue';
+import { TableSummary, TableSummaryCell, TableSummaryRow } from 'ant-design-vue';
 
 const SUMMARY_ROW_KEY = '_row';
 const SUMMARY_INDEX_KEY = '_index';

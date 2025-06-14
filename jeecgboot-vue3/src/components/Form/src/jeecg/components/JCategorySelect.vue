@@ -17,7 +17,7 @@
   </a-tree-select>
 </template>
 <script lang="ts">
-  import { defineComponent, ref, unref, watch, nextTick } from 'vue';
+  import { defineComponent, nextTick, ref, watch } from 'vue';
   import { useRuleFormItem } from '/@/hooks/component/useFormItem';
   import { propTypes } from '/@/utils/propTypes';
   import { useAttrs } from '/@/hooks/core/useAttrs';

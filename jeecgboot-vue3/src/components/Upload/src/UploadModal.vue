@@ -32,8 +32,8 @@
   </BasicModal>
 </template>
 <script lang="ts">
-  import { defineComponent, reactive, ref, toRefs, unref, computed, PropType } from 'vue';
-  import { Upload, Alert } from 'ant-design-vue';
+  import { computed, defineComponent, PropType, reactive, ref, toRefs, unref } from 'vue';
+  import { Alert, Upload } from 'ant-design-vue';
   import { BasicModal, useModalInner } from '/@/components/Modal';
   //   import { BasicTable, useTable } from '/@/components/Table';
   // hooks
@@ -42,7 +42,7 @@
   //   types
   import { FileItem, UploadResultStatus } from './typing';
   import { basicProps } from './props';
-  import { createTableColumns, createActionColumn } from './data';
+  import { createActionColumn, createTableColumns } from './data';
   // utils
   import { checkFileType, checkImgType, getBase64WithFile } from './helper';
   import { buildUUID } from '/@/utils/uuid';

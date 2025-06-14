@@ -1,5 +1,5 @@
 import type { JPromptProps } from '../typing';
-import { render, createVNode, nextTick } from 'vue';
+import { createVNode, nextTick, render } from 'vue';
 import { error } from '/@/utils/log';
 import { getAppContext } from '@/store';
 import JPrompt from '../JPrompt.vue';

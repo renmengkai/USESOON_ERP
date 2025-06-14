@@ -48,8 +48,8 @@
 
 <script lang="ts">
   import type { CSSProperties, PropType } from 'vue';
+  import { computed, defineComponent, getCurrentInstance, inject, onBeforeMount, provide, reactive, toRefs, unref } from 'vue';
   import type { SubMenuProvider } from './types';
-  import { defineComponent, computed, unref, getCurrentInstance, toRefs, reactive, provide, onBeforeMount, inject } from 'vue';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { propTypes } from '/@/utils/propTypes';
   import { useMenuItem } from './useMenu';

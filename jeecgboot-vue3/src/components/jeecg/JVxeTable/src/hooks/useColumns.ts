@@ -1,4 +1,5 @@
 import type { JVxeColumn, JVxeDataProps, JVxeTableProps } from '../types';
+import { JVxeTableMethods } from '../types';
 import { computed, nextTick, toRaw } from 'vue';
 import { isArray, isEmpty, isPromise } from '/@/utils/is';
 import { cloneDeep } from 'lodash-es';
@@ -9,7 +10,6 @@ import { getEnhanced } from '../utils/enhancedUtils';
 import { isRegistered } from '../utils/registerUtils';
 import { JVxeComponent } from '../types/JVxeComponent';
 import { useValidateRules } from './useValidateRules';
-import { JVxeTableMethods } from '../types';
 
 // handle 方法参数
 export interface HandleArgs {

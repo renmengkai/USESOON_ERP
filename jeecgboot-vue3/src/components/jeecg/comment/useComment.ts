@@ -1,9 +1,7 @@
 import { useMessage } from '/@/hooks/web/useMessage';
 import { defHttp } from '/@/utils/http/axios';
 import { useGlobSetting } from '/@/hooks/setting';
-const globSetting = useGlobSetting();
-const baseUploadUrl = globSetting.uploadUrl;
-import { ref, toRaw, unref, reactive } from 'vue';
+import { reactive, ref, toRaw, unref } from 'vue';
 import { uploadMyFile } from '/@/api/common/api';
 
 import excel from '/@/assets/svg/fileType/excel.svg';
@@ -17,6 +15,9 @@ import { createImgPreview } from '/@/components/Preview';
 import data from 'emoji-mart-vue-fast/data/apple.json';
 import { EmojiIndex } from 'emoji-mart-vue-fast/src';
 import { encryptByBase64 } from '/@/utils/cipher';
+
+const globSetting = useGlobSetting();
+const baseUploadUrl = globSetting.uploadUrl;
 
 enum Api {
   list = '/sys/comment/listByForm',

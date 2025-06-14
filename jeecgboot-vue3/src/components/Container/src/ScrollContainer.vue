@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref, unref, nextTick } from 'vue';
+  import { defineComponent, nextTick, ref, unref } from 'vue';
   import { Scrollbar, ScrollbarType } from '/@/components/Scrollbar';
   import { useScrollTo } from '/@/hooks/event/useScrollTo';
 

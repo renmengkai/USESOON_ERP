@@ -33,7 +33,7 @@
 </template>
 <script lang="ts">
   import JPopupOnlReportModal from './modal/JPopupOnlReportModal.vue';
-  import { defineComponent, ref, reactive, onMounted, watchEffect, watch, computed, unref } from 'vue';
+  import { computed, defineComponent, onMounted, ref, watch } from 'vue';
   import { useModal } from '/@/components/Modal';
   import { propTypes } from '/@/utils/propTypes';
   import { useAttrs } from '/@/hooks/core/useAttrs';

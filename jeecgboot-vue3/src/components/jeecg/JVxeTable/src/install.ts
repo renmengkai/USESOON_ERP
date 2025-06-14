@@ -2,7 +2,7 @@ import type { App } from 'vue';
 // 引入 vxe-table
 import 'xe-utils';
 import VxeUIAll from 'vxe-pc-ui';
-import VXETable /*Grid*/ from 'vxe-table';
+import VXETable from 'vxe-table';
 import VXETablePluginAntd from 'vxe-table-plugin-antd';
 import 'vxe-pc-ui/lib/style.css';
 import 'vxe-table/lib/style.css';

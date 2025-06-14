@@ -57,7 +57,7 @@
   import { toRaw, watch } from 'vue';
   import { useFileList } from './useComment';
   import { Tooltip } from 'ant-design-vue';
-  import { UploadOutlined, FolderOutlined, DownloadOutlined, PaperClipOutlined, DeleteOutlined } from '@ant-design/icons-vue';
+  import { DeleteOutlined, DownloadOutlined, FolderOutlined, PaperClipOutlined, UploadOutlined } from '@ant-design/icons-vue';
   import { useModal } from '/@/components/Modal';
 
   export default {
