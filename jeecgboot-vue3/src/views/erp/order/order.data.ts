@@ -86,4 +86,4 @@ export const formSchema: FormSchema[] = [
     label: '备注',
     component: 'InputTextArea',
   },
-];
+]
