@@ -1,10 +1,10 @@
 import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
-  list = '/erp/order/list',
-  save = '/erp/order/add',
-  edit = '/erp/order/edit',
-  delete = '/erp/order/delete',
+  list = '/erp/supplier/list',
+  save = '/erp/supplier/add',
+  edit = '/erp/supplier/edit',
+  delete = '/erp/supplier/delete',
 }
 
 /**
@@ -16,19 +16,19 @@ export const list = (params) => {
 };
 
 /**
- * 删除订单
+ * 删除供应商
  */
-export const deleteOrder = (params, handleSuccess) => {
+export const deleteSupplier = (params, handleSuccess) => {
   return defHttp.delete({ url: Api.delete, params }, { joinParamsToUrl: true }).then(() => {
     handleSuccess();
   });
 };
 
 /**
- * 保存或更新订单
+ * 保存或更新供应商
  * @param params
  */
-export const saveOrUpdateOrder = (params, isUpdate) => {
+export const saveOrUpdateSupplier = (params, isUpdate) => {
   let url = isUpdate ? Api.edit : Api.save;
   return defHttp.post({ url: url, params });
 };

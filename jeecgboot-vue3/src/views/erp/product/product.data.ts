@@ -3,23 +3,23 @@ import { FormSchema } from '/@/components/Table';
 
 export const columns: BasicColumn[] = [
   {
-    title: '订单类型',
-    dataIndex: 'orderType',
+    title: '商品名称',
+    dataIndex: 'productName',
     width: 150,
   },
   {
-    title: '订单编号',
-    dataIndex: 'orderNumber',
+    title: '商品类型',
+    dataIndex: 'productType',
     width: 150,
   },
   {
-    title: '客户名称',
-    dataIndex: 'customerName',
+    title: '价格',
+    dataIndex: 'price',
     width: 150,
   },
   {
-    title: '订单金额',
-    dataIndex: 'amount',
+    title: '库存',
+    dataIndex: 'stock',
     width: 150,
   },
   {
@@ -31,16 +31,22 @@ export const columns: BasicColumn[] = [
 
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'orderNumber',
-    label: '订单编号',
+    field: 'productName',
+    label: '商品名称',
     component: 'Input',
     colProps: { span: 8 },
   },
   {
-    field: 'customerName',
-    label: '客户名称',
-    component: 'Input',
+    field: 'productType',
+    label: '商品类型',
+    component: 'Select',
     colProps: { span: 8 },
+    componentProps: {
+      options: [
+        { label: '食品', value: 'food' },
+        { label: '电子产品', value: 'electronics' },
+      ],
+    },
   },
 ];
 
@@ -52,32 +58,32 @@ export const formSchema: FormSchema[] = [
     show: false,
   },
   {
-    field: 'orderType',
-    label: '订单类型',
+    field: 'productName',
+    label: '商品名称',
+    component: 'Input',
+    required: true,
+  },
+  {
+    field: 'productType',
+    label: '商品类型',
     component: 'Select',
     required: true,
     componentProps: {
       options: [
-        { label: '采购订单', value: 'purchase' },
-        { label: '销售订单', value: 'sales' },
+        { label: '食品', value: 'food' },
+        { label: '电子产品', value: 'electronics' },
       ],
     },
   },
   {
-    field: 'orderNumber',
-    label: '订单编号',
-    component: 'Input',
+    field: 'price',
+    label: '价格',
+    component: 'InputNumber',
     required: true,
   },
   {
-    field: 'customerName',
-    label: '客户名称',
-    component: 'Input',
-    required: true,
-  },
-  {
-    field: 'amount',
-    label: '订单金额',
+    field: 'stock',
+    label: '库存',
     component: 'InputNumber',
     required: true,
   },

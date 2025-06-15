@@ -23,74 +23,74 @@
         />
       </template>
     </BasicTable>
-    <RoleDrawer @register="registerDrawer" @success="handleSuccess" />
+    <OrderDrawer @register="registerDrawer" @success="handleSuccess" />
   </div>
 </template>
+
 <script lang="ts">
-  import { defineComponent } from 'vue';
+import { defineComponent } from 'vue';
+import { BasicTable, TableAction, useTable } from '/@/components/Table';
+import { list } from './order.api';
+import { useDrawer } from '/@/components/Drawer';
+import OrderDrawer from './components/OrderDrawer.vue';
+import { columns, searchFormSchema } from './order.data';
 
-  import { BasicTable, TableAction, useTable } from '/@/components/Table';
-  import { list } from './order.api';
-  import { useDrawer } from '/@/components/Drawer';
-  import OrderDrawer from './components/OrderDrawer.vue';
+export default defineComponent({
+  name: 'ErpOrder',
+  components: { BasicTable, OrderDrawer, TableAction },
+  setup() {
+    const [registerDrawer, { openDrawer }] = useDrawer();
+    const [registerTable, { reload }] = useTable({
+      title: '订单列表',
+      api: list,
+      columns,
+      formConfig: {
+        labelWidth: 120,
+        schemas: searchFormSchema,
+      },
+      useSearchForm: true,
+      showTableSetting: true,
+      bordered: true,
+      showIndexColumn: false,
+      actionColumn: {
+        width: 80,
+        title: '操作',
+        dataIndex: 'action',
+        slots: { customRender: 'action' },
+        fixed: undefined,
+      },
+    });
 
-  import { columns, searchFormSchema } from './order.data';
-
-  export default defineComponent({
-    name: 'ErpOrder',
-    components: { BasicTable, OrderDrawer, TableAction },
-    setup() {
-      const [registerDrawer, { openDrawer }] = useDrawer();
-      const [registerTable, { reload }] = useTable({
-        title: '订单列表',
-        api: list,
-        columns,
-        formConfig: {
-          labelWidth: 120,
-          schemas: searchFormSchema,
-        },
-        useSearchForm: true,
-        showTableSetting: true,
-        bordered: true,
-        showIndexColumn: false,
-        actionColumn: {
-          width: 80,
-          title: '操作',
-          dataIndex: 'action',
-          slots: { customRender: 'action' },
-          fixed: undefined,
-        },
+    function handleCreate() {
+      openDrawer(true, {
+        isUpdate: false,
       });
-
-      function handleCreate() {
-        openDrawer(true, {
-          isUpdate: false,
-        });
-      }
-
-      function handleEdit(record: Recordable) {
-        openDrawer(true, {
-          record,
-          isUpdate: true,
-        });
-      }
-
-      function handleDelete(record: Recordable) {
-        console.log(record);
-      }
-
-      function handleSuccess() {
-        reload();
-      }
-
-      return {
-        registerTable,
-        registerDrawer,
-        handleCreate,
-        handleEdit,
-        handleDelete,
-        handleSuccess,
-      };
     }
-  })
+
+    function handleEdit(record: Recordable) {
+      openDrawer(true, {
+        record,
+        isUpdate: true,
+      });
+    }
+
+    function handleDelete(record: Recordable) {
+      console.log(record);
+      // TODO: 调用API删除订单
+    }
+
+    function handleSuccess() {
+      reload();
+    }
+
+    return {
+      registerTable,
+      registerDrawer,
+      handleCreate,
+      handleEdit,
+      handleDelete,
+      handleSuccess,
+    };
+  },
+});
 </script>
