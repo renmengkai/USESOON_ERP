@@ -32,7 +32,7 @@
 <script lang="ts">
   import { defineComponent } from 'vue';
   import { BasicTable, TableAction, useTable } from '/@/components/Table';
-  import { list } from './accounts.api';
+  import { deleteAccount, list } from './accounts.api';
   import { useDrawer } from '/@/components/Drawer';
   import AccountDrawer from './components/AccountDrawer.vue';
   import { columns, searchFormSchema } from './accounts.data';
@@ -77,8 +77,8 @@
       }
 
       function handleDelete(record: Recordable) {
-        console.log(record);
-        // TODO: 调用API删除账户
+        // 调用API删除账户
+        deleteAccount({ id: record.id }, reload());
       }
 
       function handleSuccess() {
@@ -93,6 +93,6 @@
         handleDelete,
         handleSuccess,
       };
-    }
-  })
+    },
+  });
 </script>

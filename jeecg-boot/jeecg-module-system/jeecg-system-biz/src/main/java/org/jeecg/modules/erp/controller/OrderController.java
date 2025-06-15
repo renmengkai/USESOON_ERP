@@ -41,8 +41,8 @@ public class OrderController {
         return Result.ok(orderService.updateById(order));
     }
 
-    @DeleteMapping("/delete/{id}")
-    public Result<Boolean> delete(@PathVariable String id) {
+    @DeleteMapping("/delete")
+    public Result<Boolean> delete(@RequestParam(name = "id") String id) {
         return Result.ok(orderService.removeById(id));
     }
 }

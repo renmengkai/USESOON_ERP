@@ -41,8 +41,8 @@ public class StockController {
         return Result.ok(stockService.updateById(stock));
     }
 
-    @DeleteMapping("/delete/{id}")
-    public Result<Boolean> delete(@PathVariable String id) {
+    @DeleteMapping("/delete")
+    public Result<Boolean> delete(@RequestParam(name = "id") String id) {
         return Result.ok(stockService.removeById(id));
     }
 }

@@ -1,8 +1,12 @@
 package org.jeecg.modules.erp.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.jeecg.common.api.vo.Result;
+import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.common.system.vo.LoginUser;
 import org.jeecg.common.util.TokenUtils;
 import org.jeecg.common.util.oConvertUtils;
@@ -15,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Date;
-import java.util.List;
 
 /**
  * 公司账户相关
@@ -31,8 +34,11 @@ public class AccountsController {
     private IAccountsService accountsService;
 
     @GetMapping("/list")
-    public Result<List<Accounts>> list() {
-        return Result.ok(accountsService.list());
+    public Result<IPage<Accounts>> list(Accounts accounts, @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo, @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize, HttpServletRequest req) {
+        QueryWrapper<Accounts> queryWrapper = QueryGenerator.initQueryWrapper(accounts, req.getParameterMap());
+        Page<Accounts> page = new Page<>(pageNo, pageSize);
+        IPage<Accounts> pageList = accountsService.page(page, queryWrapper);
+        return Result.ok(pageList);
     }
 
     @GetMapping("/{id}")
@@ -79,8 +85,8 @@ public class AccountsController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
-    public Result<Boolean> delete(@PathVariable String id) {
+    @DeleteMapping("/delete")
+    public Result<Boolean> delete(@RequestParam(name = "id") String id) {
         try {
             LoginUser loginUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
             if (loginUser == null) {
