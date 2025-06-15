@@ -2,18 +2,16 @@
   <div>
     <BasicTable @register="registerTable">
       <template #tableTitle>
-        <a-button type="primary" @click="handleCreate">新增账户</a-button>
+        <a-button type="primary" @click="handleCreate"> 新增客户</a-button>
       </template>
       <template #action="{ record }">
         <TableAction
           :actions="[
             {
-              label: '编辑',
               icon: 'clarity:note-edit-line',
               onClick: handleEdit.bind(null, record),
             },
             {
-              label: '删除',
               icon: 'ant-design:delete-outlined',
               color: 'error',
               popConfirm: {
@@ -25,25 +23,25 @@
         />
       </template>
     </BasicTable>
-    <AccountDrawer @register="registerDrawer" @success="handleSuccess" />
+    <CustomerDrawer @register="registerDrawer" @success="handleSuccess" />
   </div>
 </template>
 
 <script lang="ts">
   import { defineComponent } from 'vue';
   import { BasicTable, TableAction, useTable } from '/@/components/Table';
-  import { list } from './accounts.api';
+  import { list } from './customer.api';
   import { useDrawer } from '/@/components/Drawer';
-  import AccountDrawer from './components/AccountDrawer.vue';
-  import { columns, searchFormSchema } from './accounts.data';
+  import CustomerDrawer from './components/CustomerDrawer.vue';
+  import { columns, searchFormSchema } from './customer.data';
 
   export default defineComponent({
-    name: 'ErpAccounts',
-    components: { BasicTable, AccountDrawer, TableAction },
+    name: 'ErpCustomer',
+    components: { BasicTable, CustomerDrawer, TableAction },
     setup() {
       const [registerDrawer, { openDrawer }] = useDrawer();
       const [registerTable, { reload }] = useTable({
-        title: '账户列表',
+        title: '客户列表',
         api: list,
         columns,
         formConfig: {
@@ -78,7 +76,7 @@
 
       function handleDelete(record: Recordable) {
         console.log(record);
-        // TODO: 调用API删除账户
+        // TODO: 调用API删除客户
       }
 
       function handleSuccess() {
@@ -93,6 +91,6 @@
         handleDelete,
         handleSuccess,
       };
-    }
-  })
+    },
+  });
 </script>

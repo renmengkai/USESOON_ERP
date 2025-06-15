@@ -1,6 +1,7 @@
 package org.jeecg.modules.erp.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.jeecg.common.api.vo.Result;
 import org.jeecg.modules.erp.entity.Order;
 import org.jeecg.modules.erp.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,27 +22,27 @@ public class OrderController {
     private IOrderService orderService;
 
     @GetMapping("/list")
-    public List<Order> list() {
-        return orderService.list();
+    public Result<List<Order>> list() {
+        return Result.ok(orderService.list());
     }
 
     @GetMapping("/{id}")
-    public Order get(@PathVariable String id) {
-        return orderService.getById(id);
+    public Result<Order> get(@PathVariable String id) {
+        return Result.ok(orderService.getById(id));
     }
 
     @PostMapping("/save")
-    public boolean save(@RequestBody Order order) {
-        return orderService.save(order);
+    public Result<Boolean> save(@RequestBody Order order) {
+        return Result.ok(orderService.save(order));
     }
 
     @PutMapping("/update")
-    public boolean update(@RequestBody Order order) {
-        return orderService.updateById(order);
+    public Result<Boolean> update(@RequestBody Order order) {
+        return Result.ok(orderService.updateById(order));
     }
 
     @DeleteMapping("/delete/{id}")
-    public boolean delete(@PathVariable String id) {
-        return orderService.removeById(id);
+    public Result<Boolean> delete(@PathVariable String id) {
+        return Result.ok(orderService.removeById(id));
     }
 }

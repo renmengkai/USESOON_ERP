@@ -1,6 +1,7 @@
 package org.jeecg.modules.erp.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.jeecg.common.api.vo.Result;
 import org.jeecg.modules.erp.entity.Stock;
 import org.jeecg.modules.erp.service.IStockService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,27 +22,27 @@ public class StockController {
     private IStockService stockService;
 
     @GetMapping("/list")
-    public List<Stock> list() {
-        return stockService.list();
+    public Result<List<Stock>> list() {
+        return Result.ok(stockService.list());
     }
 
     @GetMapping("/{id}")
-    public Stock get(@PathVariable String id) {
-        return stockService.getById(id);
+    public Result<Stock> get(@PathVariable String id) {
+        return Result.ok(stockService.getById(id));
     }
 
     @PostMapping("/save")
-    public boolean save(@RequestBody Stock stock) {
-        return stockService.save(stock);
+    public Result<Boolean> save(@RequestBody Stock stock) {
+        return Result.ok(stockService.save(stock));
     }
 
     @PutMapping("/update")
-    public boolean update(@RequestBody Stock stock) {
-        return stockService.updateById(stock);
+    public Result<Boolean> update(@RequestBody Stock stock) {
+        return Result.ok(stockService.updateById(stock));
     }
 
     @DeleteMapping("/delete/{id}")
-    public boolean delete(@PathVariable String id) {
-        return stockService.removeById(id);
+    public Result<Boolean> delete(@PathVariable String id) {
+        return Result.ok(stockService.removeById(id));
     }
 }

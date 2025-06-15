@@ -1,5 +1,7 @@
 package org.jeecg.modules.erp.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -18,6 +20,8 @@ import java.util.Date;
 @Accessors(chain = true)
 @Schema(description="ERP采购单")
 public class Purchase {
+
+    @TableId(type = IdType.ASSIGN_ID)
     @Schema(description = "主键ID")
     private String id;
 

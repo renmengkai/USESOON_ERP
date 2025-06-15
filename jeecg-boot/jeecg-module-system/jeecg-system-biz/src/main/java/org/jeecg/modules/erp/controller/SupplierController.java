@@ -1,6 +1,7 @@
 package org.jeecg.modules.erp.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.jeecg.common.api.vo.Result;
 import org.jeecg.modules.erp.entity.Supplier;
 import org.jeecg.modules.erp.service.ISupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,27 +22,27 @@ public class SupplierController {
     private ISupplierService supplierService;
 
     @GetMapping("/list")
-    public List<Supplier> list() {
-        return supplierService.list();
+    public Result<List<Supplier>> list() {
+        return Result.ok(supplierService.list());
     }
 
     @GetMapping("/{id}")
-    public Supplier get(@PathVariable String id) {
-        return supplierService.getById(id);
+    public Result<Supplier> get(@PathVariable String id) {
+        return Result.ok(supplierService.getById(id));
     }
 
     @PostMapping("/save")
-    public boolean save(@RequestBody Supplier supplier) {
-        return supplierService.save(supplier);
+    public Result<Boolean> save(@RequestBody Supplier supplier) {
+        return Result.ok(supplierService.save(supplier));
     }
 
     @PutMapping("/update")
-    public boolean update(@RequestBody Supplier supplier) {
-        return supplierService.updateById(supplier);
+    public Result<Boolean> update(@RequestBody Supplier supplier) {
+        return Result.ok(supplierService.updateById(supplier));
     }
 
     @DeleteMapping("/delete/{id}")
-    public boolean delete(@PathVariable String id) {
-        return supplierService.removeById(id);
+    public Result<Boolean> delete(@PathVariable String id) {
+        return Result.ok(supplierService.removeById(id));
     }
 }

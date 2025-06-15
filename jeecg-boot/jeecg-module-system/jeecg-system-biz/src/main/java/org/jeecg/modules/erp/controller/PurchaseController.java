@@ -1,6 +1,7 @@
 package org.jeecg.modules.erp.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.jeecg.common.api.vo.Result;
 import org.jeecg.modules.erp.entity.Purchase;
 import org.jeecg.modules.erp.service.IPurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,27 +22,27 @@ public class PurchaseController {
     private IPurchaseService purchaseService;
 
     @GetMapping("/list")
-    public List<Purchase> list() {
-        return purchaseService.list();
+    public Result<List<Purchase>> list() {
+        return Result.ok(purchaseService.list());
     }
 
     @GetMapping("/{id}")
-    public Purchase get(@PathVariable String id) {
-        return purchaseService.getById(id);
+    public Result<Purchase> get(@PathVariable String id) {
+        return Result.ok(purchaseService.getById(id));
     }
 
     @PostMapping("/save")
-    public boolean save(@RequestBody Purchase purchase) {
-        return purchaseService.save(purchase);
+    public Result<Boolean> save(@RequestBody Purchase purchase) {
+        return Result.ok(purchaseService.save(purchase));
     }
 
     @PutMapping("/update")
-    public boolean update(@RequestBody Purchase purchase) {
-        return purchaseService.updateById(purchase);
+    public Result<Boolean> update(@RequestBody Purchase purchase) {
+        return Result.ok(purchaseService.updateById(purchase));
     }
 
     @DeleteMapping("/delete/{id}")
-    public boolean delete(@PathVariable String id) {
-        return purchaseService.removeById(id);
+    public Result<Boolean> delete(@PathVariable String id) {
+        return Result.ok(purchaseService.removeById(id));
     }
 }
