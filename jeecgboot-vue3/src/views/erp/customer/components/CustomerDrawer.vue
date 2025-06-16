@@ -12,57 +12,59 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, unref } from 'vue';
-import { BasicForm, useForm } from '/@/components/Form';
-import { formSchema } from '../customer.data';
-import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
+  import { defineComponent, ref, computed, unref } from 'vue';
+  import { BasicForm, useForm } from '/@/components/Form';
+  import { formSchema } from '../customer.data';
+  import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
+  import { saveOrUpdateCustomer } from '@/views/erp/customer/customer.api';
 
-export default defineComponent({
-  name: 'CustomerDrawer',
-  components: { BasicDrawer, BasicForm },
-  emits: ['success', 'register'],
-  setup(_, { emit }) {
-    const isUpdate = ref(true);
+  export default defineComponent({
+    name: 'CustomerDrawer',
+    components: { BasicDrawer, BasicForm },
+    emits: ['success', 'register'],
+    setup(_, { emit }) {
+      const isUpdate = ref(true);
 
-    const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
-      labelWidth: 90,
-      schemas: formSchema,
-      showActionButtonGroup: false,
-    });
+      const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
+        labelWidth: 90,
+        schemas: formSchema,
+        showActionButtonGroup: false,
+      });
 
-    const [registerDrawer, { setDrawerProps, closeDrawer }] = useDrawerInner(async (data) => {
-      resetFields();
-      setDrawerProps({ confirmLoading: false });
-      isUpdate.value = !!data?.isUpdate;
-
-      if (unref(isUpdate)) {
-        setFieldsValue({
-          ...data.record,
-        });
-      }
-    });
-
-    const getTitle = computed(() => (!unref(isUpdate) ? '新增客户' : '编辑客户'));
-
-    async function handleSubmit() {
-      try {
-        const values = await validate();
-        setDrawerProps({ confirmLoading: true });
-        // TODO: 调用API保存或更新客户信息
-        console.log(values);
-        closeDrawer();
-        emit('success');
-      } finally {
+      const [registerDrawer, { setDrawerProps, closeDrawer }] = useDrawerInner(async (data) => {
+        resetFields();
         setDrawerProps({ confirmLoading: false });
-      }
-    }
+        isUpdate.value = !!data?.isUpdate;
 
-    return {
-      registerDrawer,
-      registerForm,
-      getTitle,
-      handleSubmit,
-    };
-  },
-});
+        if (unref(isUpdate)) {
+          setFieldsValue({
+            ...data.record,
+          });
+        }
+      });
+
+      const getTitle = computed(() => (!unref(isUpdate) ? '新增客户' : '编辑客户'));
+
+      async function handleSubmit() {
+        try {
+          const values = await validate();
+          setDrawerProps({ confirmLoading: true });
+          // 调用API保存或更新客户信息
+          await saveOrUpdateCustomer(values, isUpdate.value);
+          // console.log(values);
+          closeDrawer();
+          emit('success');
+        } finally {
+          setDrawerProps({ confirmLoading: false });
+        }
+      }
+
+      return {
+        registerDrawer,
+        registerForm,
+        getTitle,
+        handleSubmit,
+      };
+    },
+  });
 </script>

@@ -35,8 +35,8 @@ public class Order {
     @Schema(description = "订单金额")
     private BigDecimal amount;
 
-    @Schema(description = "订单状态：0否1是")
-    private String status;
+    @Schema(description = "订单状态：0停止1正常")
+    private String isValid;
 
     @Schema(description = "下单日期")
     private Date orderDate;

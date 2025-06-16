@@ -1,13 +1,17 @@
 package org.jeecg.modules.erp.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.jeecg.common.api.vo.Result;
+import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.modules.erp.entity.Supplier;
 import org.jeecg.modules.erp.service.ISupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 供应商相关
@@ -22,10 +26,12 @@ public class SupplierController {
     private ISupplierService supplierService;
 
     @GetMapping("/list")
-    public Result<List<Supplier>> list() {
-        return Result.ok(supplierService.list());
+    public Result<IPage<Supplier>> list(Supplier supplier, @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo, @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize, HttpServletRequest req) {
+        QueryWrapper<Supplier> queryWrapper = QueryGenerator.initQueryWrapper(supplier, req.getParameterMap());
+        Page<Supplier> page = new Page<>(pageNo, pageSize);
+        IPage<Supplier> pageList = supplierService.page(page, queryWrapper);
+        return Result.ok(pageList);
     }
-
     @GetMapping("/{id}")
     public Result<Supplier> get(@PathVariable String id) {
         return Result.ok(supplierService.getById(id));

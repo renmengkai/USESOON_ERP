@@ -1,13 +1,17 @@
 package org.jeecg.modules.erp.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.jeecg.common.api.vo.Result;
+import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.modules.erp.entity.Stock;
 import org.jeecg.modules.erp.service.IStockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 库存相关
@@ -22,8 +26,11 @@ public class StockController {
     private IStockService stockService;
 
     @GetMapping("/list")
-    public Result<List<Stock>> list() {
-        return Result.ok(stockService.list());
+    public Result<IPage<Stock>> list(Stock stock, @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo, @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize, HttpServletRequest req) {
+        QueryWrapper<Stock> queryWrapper = QueryGenerator.initQueryWrapper(stock, req.getParameterMap());
+        Page<Stock> page = new Page<>(pageNo, pageSize);
+        IPage<Stock> pageList = stockService.page(page, queryWrapper);
+        return Result.ok(pageList);
     }
 
     @GetMapping("/{id}")

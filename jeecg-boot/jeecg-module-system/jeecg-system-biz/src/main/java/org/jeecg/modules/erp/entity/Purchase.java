@@ -44,7 +44,7 @@ public class Purchase {
     private Date purchaseDate;
 
     @Schema(description = "采购状态：0否1是")
-    private String status;
+    private String isValid;
 
     @Schema(description = "备注信息")
     private String remark;

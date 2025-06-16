@@ -1,6 +1,7 @@
 package org.jeecg.modules.erp.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -28,7 +29,8 @@ public class Customer {
     private String name;
 
     @Schema(description = "联系人")
-    private String contactPerson;
+    @TableField(value = "person_name")
+    private String personName;
 
     @Schema(description = "联系电话")
     private String phone;
@@ -43,7 +45,7 @@ public class Customer {
     private String level;
 
     @Schema(description = "客户状态：0停用1启用")
-    private String status;
+    private String isValid;
 
     @Schema(description = "备注信息")
     private String remark;

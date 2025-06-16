@@ -28,7 +28,7 @@ public class Supplier {
     private String name;
 
     @Schema(description = "联系人")
-    private String contactPerson;
+    private String personName;
 
     @Schema(description = "联系电话")
     private String phone;

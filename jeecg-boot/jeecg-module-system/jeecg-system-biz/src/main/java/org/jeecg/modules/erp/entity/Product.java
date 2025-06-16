@@ -34,7 +34,7 @@ public class Product {
     private Integer stock;
 
     @Schema(description = "商品状态：0下架1上架")
-    private String status;
+    private String isValid;
 
     @Schema(description = "商品描述信息")
     private String description;

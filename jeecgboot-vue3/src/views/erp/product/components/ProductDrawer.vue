@@ -13,9 +13,9 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed, unref } from 'vue';
-import { BasicForm, useForm } from '/src/components/Form';
+import { BasicForm, useForm } from '@/components/Form';
 import { formSchema } from '@/views/erp/product/product.data';
-import { BasicDrawer, useDrawerInner } from '/src/components/Drawer';
+import { BasicDrawer, useDrawerInner } from '@/components/Drawer';
 
 export default defineComponent({
   name: 'ProductDrawer',
