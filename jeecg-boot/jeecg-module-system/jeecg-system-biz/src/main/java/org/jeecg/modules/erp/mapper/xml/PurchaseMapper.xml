@@ -1,45 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.jeecg.modules.erp.mapper.PurchaseMapper">
-
-    <!-- 查询所有采购 -->
-    <select id="selectAll" resultType="org.jeecg.modules.erp.entity.Purchase">
-        SELECT * FROM erp_purchase
-    </select>
-
-    <!-- 根据 ID 查询采购 -->
-    <select id="selectById" resultType="org.jeecg.modules.erp.entity.Purchase">
-        SELECT * FROM erp_purchase WHERE id = #{id}
-    </select>
-
-    <!-- 插入采购 -->
-    <insert id="insert">
-        INSERT INTO erp_purchase (
-            id, purchaseNo, supplierName, productId, quantity,
-            costPrice, purchaseDate, status, remark
-        ) VALUES (
-            #{id}, #{purchaseNo}, #{supplierName}, #{productId}, #{quantity},
-            #{costPrice}, #{purchaseDate}, #{status}, #{remark}
-        )
-    </insert>
-
-    <!-- 更新采购 -->
-    <update id="updateById">
-        UPDATE erp_purchase
-        SET
-            purchaseNo = #{purchaseNo},
-            supplierName = #{supplierName},
-            productId = #{productId},
-            quantity = #{quantity},
-            costPrice = #{costPrice},
-            purchaseDate = #{purchaseDate},
-            status = #{status},
-            remark = #{remark}
-        WHERE id = #{id}
-    </update>
-
-    <!-- 删除采购 -->
-    <delete id="deleteById">
-        DELETE FROM erp_purchase WHERE id = #{id}
-    </delete>
 </mapper>
