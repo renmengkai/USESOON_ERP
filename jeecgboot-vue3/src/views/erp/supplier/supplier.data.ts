@@ -5,12 +5,12 @@ export const columns: BasicColumn[] = [
   {
     title: '供应商名称',
     dataIndex: 'name',
-    width: 120,
+    width: 100,
   },
   {
     title: '供应商类型',
     dataIndex: 'type',
-    width: 80,
+    width: 40,
     customRender: ({ record }) => {
       return record.type ? (record.type == '1' ? '国内供应商' : '国外供应商') : '';
     },
@@ -18,17 +18,22 @@ export const columns: BasicColumn[] = [
   {
     title: '联系人',
     dataIndex: 'personName',
-    width: 80,
+    width: 50,
   },
   {
     title: '联系电话',
     dataIndex: 'phone',
-    width: 100,
+    width: 50,
+  },
+  {
+    title: '地址',
+    dataIndex: 'address',
+    width: 150,
   },
   {
     title: '供应商状态',
     dataIndex: 'isValid',
-    width: 50,
+    width: 40,
     customRender: ({ record }) => {
       return record.isValid ? (record.isValid == '1' ? '启用' : '停用') : '';
     },
