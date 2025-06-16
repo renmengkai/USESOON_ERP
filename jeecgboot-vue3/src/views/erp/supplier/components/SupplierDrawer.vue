@@ -1,13 +1,6 @@
 <template>
   <BasicDrawer v-bind="$attrs" @register="registerDrawer" showFooter :title="getTitle" width="500px" @ok="handleSubmit">
-    <BasicForm @register="registerForm">
-      <template #supplierType="{ model, field }">
-        <a-select v-model:value="model[field]" placeholder="请选择供应商类型">
-          <a-select-option value="local">本地供应商</a-select-option>
-          <a-select-option value="international">国际供应商</a-select-option>
-        </a-select>
-      </template>
-    </BasicForm>
+    <BasicForm @register="registerForm"></BasicForm>
   </BasicDrawer>
 </template>
 
@@ -16,6 +9,7 @@
   import { BasicForm, useForm } from '/@/components/Form';
   import { formSchema } from '../supplier.data';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
+  import { saveOrUpdateSupplier } from '@/views/erp/supplier/supplier.api';
 
   export default defineComponent({
     name: 'SupplierDrawer',
@@ -48,8 +42,9 @@
         try {
           const values = await validate();
           setDrawerProps({ confirmLoading: true });
-          // TODO: 调用API保存或更新供应商信息
-          console.log(values);
+          // 调用API保存或更新供应商信息
+          await saveOrUpdateSupplier(values, isUpdate.value)
+          // console.log(values);
           closeDrawer();
           emit('success');
         } finally {

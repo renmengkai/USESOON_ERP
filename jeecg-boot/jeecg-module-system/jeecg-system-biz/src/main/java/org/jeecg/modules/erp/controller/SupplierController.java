@@ -4,14 +4,20 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.SecurityUtils;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.system.query.QueryGenerator;
+import org.jeecg.common.system.vo.LoginUser;
+import org.jeecg.common.util.TokenUtils;
+import org.jeecg.common.util.oConvertUtils;
 import org.jeecg.modules.erp.entity.Supplier;
 import org.jeecg.modules.erp.service.ISupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.util.Date;
 
 /**
  * 供应商相关
@@ -37,18 +43,60 @@ public class SupplierController {
         return Result.ok(supplierService.getById(id));
     }
 
+
     @PostMapping("/save")
-    public Result<Boolean> save(@RequestBody Supplier supplier) {
-        return Result.ok(supplierService.save(supplier));
+    public Result<Boolean> save(HttpServletRequest request, @RequestBody @Valid Supplier supplier) {
+        try {
+            String tenantId = oConvertUtils.getString(TokenUtils.getTenantIdByRequest(request));
+            supplier.setTenantId(tenantId);
+            LoginUser loginUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
+            if (loginUser == null) {
+                log.warn("用户未登录，无法保存账户信息。");
+                return Result.error(401, "用户未登录，无法保存账户信息。");
+            }
+            supplier.setCrter(loginUser.getUsername());
+            supplier.setCrterName(loginUser.getRealname());
+            supplier.setCrteTime(new Date());
+            boolean result = supplierService.save(supplier);
+            log.info("用户 {} 成功保存账户 ID: {}", loginUser.getUsername(), supplier.getId());
+            return Result.ok(result);
+        } catch (Exception e) {
+            log.error("保存账户失败：{}", e.getMessage(), e);
+            return Result.error(e.getMessage());
+        }
     }
 
-    @PutMapping("/update")
-    public Result<Boolean> update(@RequestBody Supplier supplier) {
-        return Result.ok(supplierService.updateById(supplier));
+    @PostMapping("/update")
+    public Result<Boolean> update(@RequestBody @Valid Supplier supplier) {
+        try {
+            LoginUser loginUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
+            if (loginUser == null) {
+                log.warn("用户未登录，无法更新账户信息。");
+                return Result.error(401, "用户未登录，无法保存账户信息。");
+            }
+            boolean result = supplierService.updateById(supplier);
+            log.info("用户 {} 成功更新账户 ID: {}", loginUser.getUsername(), supplier.getId());
+            return Result.ok(result);
+        } catch (Exception e) {
+            log.error("更新账户失败：{}", e.getMessage(), e);
+            return Result.error(e.getMessage());
+        }
     }
 
     @DeleteMapping("/delete")
     public Result<Boolean> delete(@RequestParam(name = "id") String id) {
-        return Result.ok(supplierService.removeById(id));
+        try {
+            LoginUser loginUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
+            if (loginUser == null) {
+                log.warn("用户未登录，无法删除账户。");
+                return Result.error(401, "用户未登录，无法保存账户信息。");
+            }
+            boolean result = supplierService.removeById(id);
+            log.info("用户 {} 成功删除账户 ID: {}", loginUser.getUsername(), id);
+            return Result.ok(result);
+        } catch (Exception e) {
+            log.error("删除账户失败：{}", e.getMessage(), e);
+            return Result.error(e.getMessage());
+        }
     }
 }

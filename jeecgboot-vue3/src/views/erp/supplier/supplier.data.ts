@@ -4,23 +4,34 @@ import { FormSchema } from '/@/components/Table';
 export const columns: BasicColumn[] = [
   {
     title: '供应商名称',
-    dataIndex: 'supplierName',
-    width: 150,
+    dataIndex: 'name',
+    width: 120,
   },
   {
     title: '供应商类型',
-    dataIndex: 'supplierType',
-    width: 150,
+    dataIndex: 'type',
+    width: 80,
+    customRender: ({ record }) => {
+      return record.type ? (record.type == '1' ? '国内供应商' : '国外供应商') : '';
+    },
   },
   {
     title: '联系人',
-    dataIndex: 'contact',
-    width: 150,
+    dataIndex: 'personName',
+    width: 80,
   },
   {
     title: '联系电话',
     dataIndex: 'phone',
-    width: 150,
+    width: 100,
+  },
+  {
+    title: '供应商状态',
+    dataIndex: 'isValid',
+    width: 50,
+    customRender: ({ record }) => {
+      return record.isValid ? (record.isValid == '1' ? '启用' : '停用') : '';
+    },
   },
   {
     title: '备注',
@@ -31,20 +42,32 @@ export const columns: BasicColumn[] = [
 
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'supplierName',
+    field: 'name',
     label: '供应商名称',
     component: 'Input',
     colProps: { span: 8 },
   },
   {
-    field: 'supplierType',
+    field: 'type',
     label: '供应商类型',
     component: 'Select',
-    colProps: { span: 8 },
+    colProps: { span: 4 },
     componentProps: {
       options: [
-        { label: '本地供应商', value: 'local' },
-        { label: '国际供应商', value: 'international' },
+        { label: '国内供应商', value: '1' },
+        { label: '国外供应商', value: '2' },
+      ],
+    },
+  },
+  {
+    field: 'isValid',
+    label: '客户状态',
+    component: 'Select',
+    colProps: { span: 4 },
+    componentProps: {
+      options: [
+        { label: '停用', value: '0' },
+        { label: '启用', value: '1' },
       ],
     },
   },
@@ -58,38 +81,86 @@ export const formSchema: FormSchema[] = [
     show: false,
   },
   {
-    field: 'supplierName',
+    field: 'name',
     label: '供应商名称',
     component: 'Input',
     required: true,
   },
   {
-    field: 'supplierType',
+    field: 'type',
     label: '供应商类型',
     component: 'Select',
+    defaultValue: '1',
     required: true,
     componentProps: {
       options: [
-        { label: '本地供应商', value: 'local' },
-        { label: '国际供应商', value: 'international' },
+        { label: '国内供应商', value: '1' },
+        { label: '国外供应商', value: '2' },
       ],
     },
   },
   {
-    field: 'contact',
+    field: 'personName',
     label: '联系人',
     component: 'Input',
-    required: true,
+    required: false,
   },
   {
     field: 'phone',
     label: '联系电话',
     component: 'Input',
+    required: false,
+  },
+  {
+    field: 'email',
+    label: '邮箱',
+    component: 'Input',
+    required: false,
+  },
+  {
+    field: 'address',
+    label: '地址',
+    component: 'Input',
+    required: false,
+  },
+  {
+    field: 'taxId',
+    label: '税务登记号',
+    component: 'Input',
+    required: false,
+  },
+  {
+    field: 'bankAccount',
+    label: '银行账户',
+    component: 'Input',
+    required: false,
+  },
+  {
+    field: 'bankName',
+    label: '开户银行',
+    component: 'Input',
+    required: false,
+  },
+  {
+    field: 'isValid',
+    label: '供应商状态',
+    component: 'Switch',
     required: true,
+    defaultValue: '1',
+    componentProps: {
+      checkedChildren: '启用',
+      unCheckedChildren: '停用',
+      checkedValue: '1',
+      unCheckedValue: '0',
+    },
   },
   {
     field: 'remark',
     label: '备注',
     component: 'InputTextArea',
+    componentProps: {
+      placeholder: '请输入备注信息',
+      rows: 6,
+    },
   },
 ];

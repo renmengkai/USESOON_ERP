@@ -27,6 +27,9 @@ public class Supplier {
     @Schema(description = "供应商名称")
     private String name;
 
+    @Schema(description = "供应商类型 1：国内供应商，2：国外供应商")
+    private String type;
+
     @Schema(description = "联系人")
     private String personName;
 
