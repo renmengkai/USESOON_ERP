@@ -76,6 +76,9 @@ public class AccountsController {
                 log.warn("用户未登录，无法更新账户信息。");
                 return Result.error(401, "用户未登录，无法保存账户信息。");
             }
+            accounts.setOpter(loginUser.getUsername());
+            accounts.setOpterName(loginUser.getRealname());
+            accounts.setOptTime(new Date());
             boolean result = accountsService.updateById(accounts);
             log.info("用户 {} 成功更新账户 ID: {}", loginUser.getUsername(), accounts.getId());
             return Result.ok(result);

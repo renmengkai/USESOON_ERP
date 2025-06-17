@@ -1,13 +1,6 @@
 <template>
   <BasicDrawer v-bind="$attrs" @register="registerDrawer" showFooter :title="getTitle" width="500px" @ok="handleSubmit">
-    <BasicForm @register="registerForm">
-      <template #productType="{ model, field }">
-        <a-select v-model:value="model[field]" placeholder="请选择商品类型">
-          <a-select-option value="food">食品</a-select-option>
-          <a-select-option value="electronics">电子产品</a-select-option>
-        </a-select>
-      </template>
-    </BasicForm>
+    <BasicForm @register="registerForm"></BasicForm>
   </BasicDrawer>
 </template>
 

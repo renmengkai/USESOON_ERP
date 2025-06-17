@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 供应商相关
@@ -38,11 +39,16 @@ public class SupplierController {
         IPage<Supplier> pageList = supplierService.page(page, queryWrapper);
         return Result.ok(pageList);
     }
+
+    @GetMapping("/allSupplierList")
+    public List<Supplier> allSupplierList() {
+        return supplierService.list();
+    }
+
     @GetMapping("/{id}")
     public Result<Supplier> get(@PathVariable String id) {
         return Result.ok(supplierService.getById(id));
     }
-
 
     @PostMapping("/save")
     public Result<Boolean> save(HttpServletRequest request, @RequestBody @Valid Supplier supplier) {

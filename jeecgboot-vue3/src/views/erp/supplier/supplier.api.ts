@@ -5,7 +5,17 @@ enum Api {
   save = '/erp/supplier/save',
   edit = '/erp/supplier/update',
   delete = '/erp/supplier/delete',
+  allSupplierList = '/erp/supplier/allSupplierList',
 }
+
+/**
+ * 列表接口
+ * @param params
+ */
+export const allSupplierList = () => {
+  return defHttp.get({ url: Api.allSupplierList });
+};
+
 
 /**
  * 列表接口

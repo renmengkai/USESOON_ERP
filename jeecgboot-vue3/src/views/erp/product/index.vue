@@ -28,69 +28,69 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { BasicTable, TableAction, useTable } from '/@/components/Table';
-import { list } from './product.api';
-import { useDrawer } from '/@/components/Drawer';
-import ProductDrawer from './components/ProductDrawer.vue';
-import { columns, searchFormSchema } from './product.data';
+  import { defineComponent } from 'vue';
+  import { BasicTable, TableAction, useTable } from '/@/components/Table';
+  import { list } from './product.api';
+  import { useDrawer } from '/@/components/Drawer';
+  import ProductDrawer from './components/ProductDrawer.vue';
+  import { columns, searchFormSchema } from './product.data';
 
-export default defineComponent({
-  name: 'ErpProduct',
-  components: { BasicTable, ProductDrawer, TableAction },
-  setup() {
-    const [registerDrawer, { openDrawer }] = useDrawer();
-    const [registerTable, { reload }] = useTable({
-      title: '商品列表',
-      api: list,
-      columns,
-      formConfig: {
-        labelWidth: 120,
-        schemas: searchFormSchema,
-      },
-      useSearchForm: true,
-      showTableSetting: true,
-      bordered: true,
-      showIndexColumn: false,
-      actionColumn: {
-        width: 80,
-        title: '操作',
-        dataIndex: 'action',
-        slots: { customRender: 'action' },
-        fixed: undefined,
-      },
-    });
-
-    function handleCreate() {
-      openDrawer(true, {
-        isUpdate: false,
+  export default defineComponent({
+    name: 'ErpProduct',
+    components: { BasicTable, ProductDrawer, TableAction },
+    setup() {
+      const [registerDrawer, { openDrawer }] = useDrawer();
+      const [registerTable, { reload }] = useTable({
+        title: '商品列表',
+        api: list,
+        columns,
+        formConfig: {
+          labelWidth: 120,
+          schemas: searchFormSchema,
+        },
+        useSearchForm: true,
+        showTableSetting: true,
+        bordered: true,
+        showIndexColumn: false,
+        actionColumn: {
+          width: 80,
+          title: '操作',
+          dataIndex: 'action',
+          slots: { customRender: 'action' },
+          fixed: undefined,
+        },
       });
-    }
 
-    function handleEdit(record: Recordable) {
-      openDrawer(true, {
-        record,
-        isUpdate: true,
-      });
-    }
+      function handleCreate() {
+        openDrawer(true, {
+          isUpdate: false,
+        });
+      }
 
-    function handleDelete(record: Recordable) {
-      console.log(record);
-      // TODO: 调用API删除商品
-    }
+      function handleEdit(record: Recordable) {
+        openDrawer(true, {
+          record,
+          isUpdate: true,
+        });
+      }
 
-    function handleSuccess() {
-      reload();
-    }
+      function handleDelete(record: Recordable) {
+        console.log(record);
+        // TODO: 调用API删除商品
+      }
 
-    return {
-      registerTable,
-      registerDrawer,
-      handleCreate,
-      handleEdit,
-      handleDelete,
-      handleSuccess,
-    };
-  },
-});
+      function handleSuccess() {
+        reload();
+      }
+
+      return {
+        registerTable,
+        registerDrawer,
+        handleCreate,
+        handleEdit,
+        handleDelete,
+        handleSuccess,
+      };
+    },
+  });
 </script>
