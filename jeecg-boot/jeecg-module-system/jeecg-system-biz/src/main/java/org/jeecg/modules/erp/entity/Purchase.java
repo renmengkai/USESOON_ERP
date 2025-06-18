@@ -48,4 +48,25 @@ public class Purchase {
 
     @Schema(description = "备注信息")
     private String remark;
+
+    @Schema(description = "租户ID")
+    private String tenantId;
+
+    @Schema(description = "操作人编号")
+    private String opter;
+
+    @Schema(description = "操作人姓名")
+    private String opterName;
+
+    @Schema(description = "操作时间")
+    private Date optTime;
+
+    @Schema(description = "创建人编号")
+    private String crter;
+
+    @Schema(description = "创建人姓名")
+    private String crterName;
+
+    @Schema(description = "创建时间")
+    private Date crteTime;
 }

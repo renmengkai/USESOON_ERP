@@ -43,7 +43,7 @@ public class ProductController {
         return Result.ok(productService.save(product));
     }
 
-    @PutMapping("/update")
+    @PostMapping("/update")
     public Result<Boolean> update(@RequestBody Product product) {
         return Result.ok(productService.updateById(product));
     }

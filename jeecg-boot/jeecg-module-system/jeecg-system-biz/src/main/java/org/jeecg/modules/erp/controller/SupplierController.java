@@ -41,8 +41,10 @@ public class SupplierController {
     }
 
     @GetMapping("/allSupplierList")
-    public List<Supplier> allSupplierList() {
-        return supplierService.list();
+    public Result<List<Supplier>> allSupplierList() {
+        QueryWrapper<Supplier> wrapper = new QueryWrapper<>();
+        wrapper.eq("is_valid", "1");
+        return  Result.ok(supplierService.list(wrapper));
     }
 
     @GetMapping("/{id}")
@@ -80,6 +82,9 @@ public class SupplierController {
                 log.warn("用户未登录，无法更新账户信息。");
                 return Result.error(401, "用户未登录，无法保存账户信息。");
             }
+            supplier.setOpter(loginUser.getUsername());
+            supplier.setOpterName(loginUser.getRealname());
+            supplier.setOptTime(new Date());
             boolean result = supplierService.updateById(supplier);
             log.info("用户 {} 成功更新账户 ID: {}", loginUser.getUsername(), supplier.getId());
             return Result.ok(result);

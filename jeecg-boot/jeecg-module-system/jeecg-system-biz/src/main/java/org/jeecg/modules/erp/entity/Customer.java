@@ -57,7 +57,7 @@ public class Customer {
     private String opter;
 
     @Schema(description = "操作人姓名")
-    private String opterId;
+    private String opterName;
 
     @Schema(description = "操作时间")
     private Date optTime;

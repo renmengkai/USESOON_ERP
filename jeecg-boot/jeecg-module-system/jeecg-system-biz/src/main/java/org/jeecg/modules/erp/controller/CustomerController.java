@@ -74,6 +74,9 @@ public class CustomerController {
                 log.warn("用户未登录，无法更新账户信息。");
                 return Result.error(401, "用户未登录，无法保存账户信息。");
             }
+            customer.setOpter(loginUser.getUsername());
+            customer.setOpterName(loginUser.getRealname());
+            customer.setOptTime(new Date());
             boolean result = customerService.updateById(customer);
             log.info("用户 {} 成功更新账户 ID: {}", loginUser.getUsername(), customer.getId());
             return Result.ok(result);
