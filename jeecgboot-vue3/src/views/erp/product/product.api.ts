@@ -2,9 +2,10 @@ import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
   list = '/erp/product/list',
-  save = '/erp/product/add',
-  edit = '/erp/product/edit',
+  save = '/erp/product/save',
+  edit = '/erp/product/update',
   delete = '/erp/product/delete',
+  getProductTypeList = '',
 }
 
 /**
@@ -29,6 +30,6 @@ export const deleteProduct = (params, handleSuccess) => {
  * @param params
  */
 export const saveOrUpdateProduct = (params, isUpdate) => {
-  let url = isUpdate ? Api.edit : Api.save;
+  const url = isUpdate ? Api.edit : Api.save;
   return defHttp.post({ url: url, params });
 };

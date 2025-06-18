@@ -8,10 +8,12 @@
         <TableAction
           :actions="[
             {
+              label: '编辑',
               icon: 'clarity:note-edit-line',
               onClick: handleEdit.bind(null, record),
             },
             {
+              label: '删除',
               icon: 'ant-design:delete-outlined',
               color: 'error',
               popConfirm: {

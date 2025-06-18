@@ -16,7 +16,6 @@ export const allSupplierList = () => {
   return defHttp.get({ url: Api.allSupplierList });
 };
 
-
 /**
  * 列表接口
  * @param params
@@ -39,6 +38,6 @@ export const deleteSupplier = (params, handleSuccess) => {
  * @param params
  */
 export const saveOrUpdateSupplier = (params, isUpdate) => {
-  let url = isUpdate ? Api.edit : Api.save;
+  const url = isUpdate ? Api.edit : Api.save;
   return defHttp.post({ url: url, params });
 };

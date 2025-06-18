@@ -8,7 +8,6 @@ export const columns: BasicColumn[] = [
     dataIndex: 'type',
     width: 50,
     customRender: ({ record }) => {
-      console.log('record.type', record.type);
       return render.renderDict(record.type, 'account_type');
     },
   },
