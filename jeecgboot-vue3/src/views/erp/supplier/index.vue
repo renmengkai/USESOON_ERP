@@ -83,7 +83,7 @@
       function handleDelete(record: Recordable) {
         // console.log(record);
         // 调用API删除供应商
-        deleteSupplier(record, reload());
+        deleteSupplier({ id: record.id }, reload());
       }
 
       function handleSuccess() {

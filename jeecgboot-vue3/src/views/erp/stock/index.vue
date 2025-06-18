@@ -2,7 +2,7 @@
   <div>
     <BasicTable @register="registerTable">
       <template #tableTitle>
-        <a-button type="primary" @click="handleCreate"> 新增库存</a-button>
+        <a-button type="primary" @click="handleCreate">库存登记</a-button>
       </template>
       <template #action="{ record }">
         <TableAction

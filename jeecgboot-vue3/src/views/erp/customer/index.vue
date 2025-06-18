@@ -79,7 +79,7 @@
       function handleDelete(record: Recordable) {
         console.log(record);
         // 调用API删除客户
-        deleteCustomer(record, reload())
+        deleteCustomer({ id: record.id }, reload())
       }
 
       function handleSuccess() {

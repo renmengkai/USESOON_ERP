@@ -36,6 +36,7 @@
   import { useDrawer } from '/@/components/Drawer';
   import ProductDrawer from './components/ProductDrawer.vue';
   import { columns, searchFormSchema } from './product.data';
+  import { deleteProduct } from './product.api';
 
   export default defineComponent({
     name: 'ErpProduct',
@@ -78,7 +79,8 @@
 
       function handleDelete(record: Recordable) {
         console.log(record);
-        // TODO: 调用API删除商品
+        // 调用API删除商品
+        deleteProduct({ id: record.id }, reload())
       }
 
       function handleSuccess() {
