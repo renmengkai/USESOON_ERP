@@ -8,10 +8,12 @@
         <TableAction
           :actions="[
             {
+              label: '修改库存',
               icon: 'clarity:note-edit-line',
               onClick: handleEdit.bind(null, record),
             },
             {
+              label: '删除',
               icon: 'ant-design:delete-outlined',
               color: 'error',
               popConfirm: {
@@ -23,74 +25,76 @@
         />
       </template>
     </BasicTable>
-    <StockDrawer @register="registerDrawer" @success="handleSuccess" />
+    <StockDrawer @register="registerDrawer" @success="handleSuccess" width="35%" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { BasicTable, TableAction, useTable } from '/@/components/Table';
-import { list } from './stock.api';
-import { useDrawer } from '/@/components/Drawer';
-import StockDrawer from './components/StockDrawer.vue';
-import { columns, searchFormSchema } from './stock.data';
+  import { defineComponent } from 'vue';
+  import { BasicTable, TableAction, useTable } from '/@/components/Table';
+  import { list } from './stock.api';
+  import { useDrawer } from '/@/components/Drawer';
+  import StockDrawer from './components/StockDrawer.vue';
+  import { columns, searchFormSchema } from './stock.data';
+  import { deleteStock } from './stock.api';
 
-export default defineComponent({
-  name: 'ErpStock',
-  components: { BasicTable, StockDrawer, TableAction },
-  setup() {
-    const [registerDrawer, { openDrawer }] = useDrawer();
-    const [registerTable, { reload }] = useTable({
-      title: '库存列表',
-      api: list,
-      columns,
-      formConfig: {
-        labelWidth: 120,
-        schemas: searchFormSchema,
-      },
-      useSearchForm: true,
-      showTableSetting: true,
-      bordered: true,
-      showIndexColumn: false,
-      actionColumn: {
-        width: 80,
-        title: '操作',
-        dataIndex: 'action',
-        slots: { customRender: 'action' },
-        fixed: undefined,
-      },
-    });
-
-    function handleCreate() {
-      openDrawer(true, {
-        isUpdate: false,
+  export default defineComponent({
+    name: 'ErpStock',
+    components: { BasicTable, StockDrawer, TableAction },
+    setup() {
+      const [registerDrawer, { openDrawer }] = useDrawer();
+      const [registerTable, { reload }] = useTable({
+        title: '库存列表',
+        api: list,
+        columns,
+        formConfig: {
+          labelWidth: 120,
+          schemas: searchFormSchema,
+        },
+        useSearchForm: true,
+        showTableSetting: true,
+        bordered: true,
+        showIndexColumn: false,
+        actionColumn: {
+          width: 90,
+          title: '操作',
+          dataIndex: 'action',
+          slots: { customRender: 'action' },
+          fixed: undefined,
+        },
       });
-    }
 
-    function handleEdit(record: Recordable) {
-      openDrawer(true, {
-        record,
-        isUpdate: true,
-      });
-    }
+      function handleCreate() {
+        openDrawer(true, {
+          isUpdate: false,
+        });
+      }
 
-    function handleDelete(record: Recordable) {
-      console.log(record);
-      // TODO: 调用API删除库存
-    }
+      function handleEdit(record: Recordable) {
+        openDrawer(true, {
+          record,
+          isUpdate: true,
+        });
+      }
 
-    function handleSuccess() {
-      reload();
-    }
+      function handleDelete(record: Recordable) {
+        console.log(record);
+        // 调用API删除库存
+        deleteStock({ id: record.id }, reload());
+      }
 
-    return {
-      registerTable,
-      registerDrawer,
-      handleCreate,
-      handleEdit,
-      handleDelete,
-      handleSuccess,
-    };
-  },
-});
+      function handleSuccess() {
+        reload();
+      }
+
+      return {
+        registerTable,
+        registerDrawer,
+        handleCreate,
+        handleEdit,
+        handleDelete,
+        handleSuccess,
+      };
+    },
+  });
 </script>

@@ -2,8 +2,8 @@ import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
   list = '/erp/order/list',
-  save = '/erp/order/add',
-  edit = '/erp/order/edit',
+  save = '/erp/order/save',
+  edit = '/erp/order/update',
   delete = '/erp/order/delete',
 }
 

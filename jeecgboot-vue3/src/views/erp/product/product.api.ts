@@ -5,7 +5,8 @@ enum Api {
   save = '/erp/product/save',
   edit = '/erp/product/update',
   delete = '/erp/product/delete',
-  getProductTypeList = '',
+  getAllProductList = '/erp/product/getAllProductList',
+  getAllProductTree = '/erp/product/getAllProductTree',
 }
 
 /**
@@ -14,6 +15,20 @@ enum Api {
  */
 export const list = (params) => {
   return defHttp.get({ url: Api.list, params });
+};
+
+/**
+ * select 专用接口
+ */
+export const getAllProductList = () => {
+  return defHttp.get({ url: Api.getAllProductList });
+};
+
+/**
+ * Cascader 专用接口
+ */
+export const getAllProductTree = () => {
+  return defHttp.get({ url: Api.getAllProductTree });
 };
 
 /**

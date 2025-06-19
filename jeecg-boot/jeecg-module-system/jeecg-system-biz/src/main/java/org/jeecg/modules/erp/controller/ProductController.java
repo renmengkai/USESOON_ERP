@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 商品相关
@@ -37,6 +39,18 @@ public class ProductController {
         Page<Product> page = new Page<>(pageNo, pageSize);
         IPage<Product> pageList = productService.page(page, queryWrapper);
         return Result.ok(pageList);
+    }
+
+    @GetMapping("/getAllProductList")
+    public Result<List<Product>> getAllProductList() {
+        QueryWrapper<Product> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("is_valid", "1");
+        return Result.ok(productService.list(queryWrapper));
+    }
+
+    @GetMapping("/getAllProductTree")
+    public Result<List<Map<String, Object>>> getAllProductTree() {
+        return Result.ok(productService.getAllProductTree());
     }
 
     @GetMapping("/{id}")

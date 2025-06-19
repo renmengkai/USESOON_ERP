@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -24,20 +25,23 @@ public class Stock {
     @Schema(description = "主键ID")
     private String id;
 
+    @Schema(description = "商品供货商")
+    private String supplierNumber;
+
+    @Schema(description = "商品类型")
+    private String type;
+
     @Schema(description = "商品ID")
     private String productId;
 
+    @Schema(description = "商品批次")
+    private String batch;
+
+    @Schema(description = "商品成本价")
+    private BigDecimal costPrice;
+
     @Schema(description = "库存数量")
-    private Integer quantity;
-
-    @Schema(description = "仓库名称")
-    private String warehouse;
-
-    @Schema(description = "存放位置")
-    private String location;
-
-    @Schema(description = "最后更新时间")
-    private Date lastUpdatedTime;
+    private String quantity;
 
     @Schema(description = "备注信息")
     private String remark;
