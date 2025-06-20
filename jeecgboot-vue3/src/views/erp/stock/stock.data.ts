@@ -11,7 +11,7 @@ export const columns: BasicColumn[] = [
   {
     title: '供应商名称',
     dataIndex: 'supplierNumber',
-    width: 120,
+    width: 100,
     customRender({ record }) {
       let returnText = '';
       supplierList.forEach((item) => {
@@ -25,7 +25,7 @@ export const columns: BasicColumn[] = [
   {
     title: '商品类型',
     dataIndex: 'type',
-    width: 150,
+    width: 60,
     customRender: ({ record }) => {
       return render.renderDict(record.type, 'product_type');
     },
@@ -47,7 +47,7 @@ export const columns: BasicColumn[] = [
   {
     title: '商品规格',
     dataIndex: 'specification',
-    width: 100,
+    width: 80,
     customRender({ record }) {
       let returnText = '';
       productList.forEach((item) => {
@@ -59,9 +59,14 @@ export const columns: BasicColumn[] = [
     },
   },
   {
+    title: '批次',
+    dataIndex: 'batch',
+    width: 40,
+  },
+  {
     title: '数量',
     dataIndex: 'quantity',
-    width: 50,
+    width: 40,
   },
   {
     title: '单价（元）',
@@ -71,7 +76,7 @@ export const columns: BasicColumn[] = [
   {
     title: '备注',
     dataIndex: 'remark',
-    width: 200,
+    width: 150,
   },
 ];
 
