@@ -9,8 +9,7 @@ enum Api {
 }
 
 /**
- * 列表接口
- * @param params
+ * select 专用接口
  */
 export const allSupplierList = () => {
   return defHttp.get({ url: Api.allSupplierList });

@@ -7,6 +7,7 @@ enum Api {
   delete = '/erp/product/delete',
   getAllProductList = '/erp/product/getAllProductList',
   getAllProductTree = '/erp/product/getAllProductTree',
+  getValidProductBatch = '/erp/product/getValidProductBatch',
 }
 
 /**

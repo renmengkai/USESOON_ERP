@@ -23,7 +23,7 @@
         />
       </template>
     </BasicTable>
-    <OrderDrawer @register="registerDrawer" @success="handleSuccess" />
+    <OrderDrawer @register="registerDrawer" @success="handleSuccess" width="35%"/>
   </div>
 </template>
 

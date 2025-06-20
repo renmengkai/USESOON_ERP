@@ -2,6 +2,7 @@ package org.jeecg.modules.erp.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import dev.langchain4j.data.document.Metadata;
 import lombok.extern.slf4j.Slf4j;
 import org.jeecg.common.system.vo.DictModel;
 import org.jeecg.modules.erp.entity.Product;
@@ -27,16 +28,13 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> implements IProductService {
 
     @Autowired
-    private final ISupplierService iSupplierService;
-
-    @Autowired
     private ISupplierService supplierService;
 
     @Autowired
     private SysDictMapper sysDictMapper;
 
-    public ProductServiceImpl(ISupplierService iSupplierService) {
-        this.iSupplierService = iSupplierService;
+    public ProductServiceImpl(ISupplierService supplierService) {
+        this.supplierService = supplierService;
     }
 
     @Override

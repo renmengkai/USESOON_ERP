@@ -112,6 +112,7 @@ export const formSchema: FormSchema[] = [
     field: 'productInfo',
     label: '商品信息',
     component: 'Cascader',
+    required: true,
     componentProps: {
       placement: 'bottomLeft',
       showSearch: true,

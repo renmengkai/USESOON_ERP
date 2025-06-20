@@ -5,6 +5,7 @@ enum Api {
   save = '/erp/customer/save',
   edit = '/erp/customer/update',
   delete = '/erp/customer/delete',
+  getAllValidCustomer = '/erp/customer/getAllValidCustomer',
 }
 
 /**
@@ -13,6 +14,13 @@ enum Api {
  */
 export const list = (params) => {
   return defHttp.get({ url: Api.list, params });
+};
+
+/**
+ * selecet 专用接口
+ */
+export const getAllValidCustomer = () => {
+  return defHttp.get({ url: Api.getAllValidCustomer });
 };
 
 /**

@@ -1,5 +1,8 @@
 import { BasicColumn } from '/@/components/Table';
 import { FormSchema } from '/@/components/Table';
+import { getAllProductTree } from '/@/views/erp/product/product.api';
+
+const productTree = await getAllProductTree();
 
 export const columns: BasicColumn[] = [
   {
@@ -52,26 +55,25 @@ export const formSchema: FormSchema[] = [
     show: false,
   },
   {
-    field: 'orderType',
-    label: '订单类型',
-    component: 'Select',
+    field: 'productInfo',
+    label: '商品信息',
+    component: 'Cascader',
     required: true,
     componentProps: {
-      options: [
-        { label: '采购订单', value: 'purchase' },
-        { label: '销售订单', value: 'sales' },
-      ],
+      placement: 'bottomLeft',
+      showSearch: true,
+      options: productTree,
     },
   },
   {
     field: 'orderNumber',
-    label: '订单编号',
+    label: '商品售价',
     component: 'Input',
     required: true,
   },
   {
     field: 'customerName',
-    label: '客户名称',
+    label: '商品数量',
     component: 'Input',
     required: true,
   },
