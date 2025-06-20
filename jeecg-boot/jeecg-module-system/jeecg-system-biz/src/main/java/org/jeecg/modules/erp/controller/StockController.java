@@ -2,6 +2,8 @@ package org.jeecg.modules.erp.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -34,6 +37,8 @@ public class StockController {
     @GetMapping("/list")
     public Result<IPage<Stock>> list(Stock stock, @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo, @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize, HttpServletRequest req) {
         QueryWrapper<Stock> queryWrapper = QueryGenerator.initQueryWrapper(stock, req.getParameterMap());
+        queryWrapper.orderByDesc("opt_time");
+        queryWrapper.orderByDesc("crte_time");
         Page<Stock> page = new Page<>(pageNo, pageSize);
         IPage<Stock> pageList = stockService.page(page, queryWrapper);
         return Result.ok(pageList);
@@ -48,17 +53,36 @@ public class StockController {
     @PostMapping("/save")
     public Result<Boolean> save(HttpServletRequest request, @RequestBody @Valid Stock stock) {
         try {
-            String tenantId = oConvertUtils.getString(TokenUtils.getTenantIdByRequest(request));
-            stock.setTenantId(tenantId);
             LoginUser loginUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
             if (loginUser == null) {
                 log.warn("用户未登录，无法保存账户信息。");
                 return Result.error(401, "用户未登录，无法保存账户信息。");
             }
-            stock.setCrter(loginUser.getUsername());
-            stock.setCrterName(loginUser.getRealname());
-            stock.setCrteTime(new Date());
-            boolean result = stockService.save(stock);
+            boolean result;
+            // 判断是否是已存在的商品以及批次
+            Stock stockDatabase = stockService.getOne(new QueryWrapper<Stock>().eq("product_id", stock.getProductId()).eq("batch", stock.getBatch()).eq("cost_price", stock.getCostPrice()));
+            if(ObjectUtils.isNotEmpty(stockDatabase)) {
+                // 计算新的数量
+                int newQuantity = stockDatabase.getQuantity() + stock.getQuantity();
+                stockDatabase.setQuantity(newQuantity);
+                stockDatabase.setOpter(loginUser.getUsername());
+                stockDatabase.setOpterName(loginUser.getRealname());
+                Date date = new Date();
+                stockDatabase.setOptTime(date);
+                // 合并备注信息
+                if(StringUtils.isNotEmpty(stock.getRemark())) {
+                    String newRemark = stockDatabase.getRemark() + "；\n" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date) + ": " + stock.getRemark();
+                    stockDatabase.setRemark(newRemark);
+                }
+                result = stockService.updateById(stockDatabase);
+            } else {
+                String tenantId = oConvertUtils.getString(TokenUtils.getTenantIdByRequest(request));
+                stock.setTenantId(tenantId);
+                stock.setCrter(loginUser.getUsername());
+                stock.setCrterName(loginUser.getRealname());
+                stock.setCrteTime(new Date());
+                result = stockService.save(stock);
+            }
             log.info("用户 {} 成功保存账户 ID: {}", loginUser.getUsername(), stock.getId());
             return Result.ok(result);
         } catch (Exception e) {

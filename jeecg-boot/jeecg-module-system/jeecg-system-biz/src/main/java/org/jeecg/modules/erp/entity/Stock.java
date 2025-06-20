@@ -41,7 +41,7 @@ public class Stock {
     private BigDecimal costPrice;
 
     @Schema(description = "库存数量")
-    private String quantity;
+    private Integer quantity;
 
     @Schema(description = "备注信息")
     private String remark;

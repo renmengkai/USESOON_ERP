@@ -1,6 +1,6 @@
 import { BasicColumn } from '/@/components/Table';
 import { FormSchema } from '/@/components/Table';
-import { getAllProductTree,getAllProductList } from '/@/views/erp/product/product.api';
+import { getAllProductTree, getAllProductList } from '/@/views/erp/product/product.api';
 import { allSupplierList } from '/@/views/erp/supplier/supplier.api';
 import { render } from '@/utils/common/renderUtils';
 
@@ -134,6 +134,12 @@ export const formSchema: FormSchema[] = [
       addonAfter: '元',
       // formatter: (value) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
     },
+    // ifShow: ({ values }) => {
+    //   return values.type == '1';
+    // },
+    // required: ({ values }) => {
+    //   return values.type == '1';
+    // },
   },
   {
     label: '商品数量',

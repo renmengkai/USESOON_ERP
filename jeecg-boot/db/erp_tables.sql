@@ -92,41 +92,18 @@ CREATE TABLE `erp_product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='ERP商品';
 
 -- ----------------------------
--- Table structure for erp_purchase
--- ----------------------------
-DROP TABLE IF EXISTS `erp_purchase`;
-CREATE TABLE `erp_purchase` (
-  `id` varchar(36) NOT NULL COMMENT '主键ID',
-  `name` varchar(255) DEFAULT NULL COMMENT '商品名称',
-  `supplier_number` varchar(255) DEFAULT NULL COMMENT '商品供货商',
-  `type` varchar(255) DEFAULT NULL COMMENT '商品类型',
-  `specification` varchar(255) DEFAULT NULL COMMENT '商品规格',
-  `product_id` varchar(255) DEFAULT NULL COMMENT '商品ID',
-  `batch` varchar(255) DEFAULT NULL COMMENT '商品批次',
-  `cost_price` decimal(10,2) DEFAULT NULL COMMENT '商品成本价',
-  `quantity` varchar(255) DEFAULT NULL COMMENT '商品数量',
-  `remark` varchar(255) DEFAULT NULL COMMENT '备注信息',
-  `tenant_id` varchar(255) DEFAULT NULL COMMENT '租户ID',
-  `opter` varchar(255) DEFAULT NULL COMMENT '操作人编号',
-  `opter_name` varchar(255) DEFAULT NULL COMMENT '操作人姓名',
-  `opt_time` datetime DEFAULT NULL COMMENT '操作时间',
-  `crter` varchar(255) DEFAULT NULL COMMENT '创建人编号',
-  `crter_name` varchar(255) DEFAULT NULL COMMENT '创建人姓名',
-  `crte_time` datetime DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='ERP采购单';
-
--- ----------------------------
 -- Table structure for erp_stock
 -- ----------------------------
 DROP TABLE IF EXISTS `erp_stock`;
 CREATE TABLE `erp_stock` (
   `id` varchar(36) NOT NULL COMMENT '主键ID',
+  `supplier_number` varchar(255) DEFAULT NULL COMMENT '商品供货商',
+  `type` varchar(255) DEFAULT NULL COMMENT '商品类型',
   `product_id` varchar(255) DEFAULT NULL COMMENT '商品ID',
   `batch` varchar(255) DEFAULT NULL COMMENT '商品批次',
   `cost_price` decimal(10,2) DEFAULT NULL COMMENT '商品成本价',
-  `quantity` int DEFAULT NULL COMMENT '库存数量',
-  `remark` varchar(255) DEFAULT NULL COMMENT '备注信息',
+  `quantity` int(11) DEFAULT NULL COMMENT '库存数量',
+  `remark` varchar(500) DEFAULT NULL COMMENT '备注信息',
   `tenant_id` varchar(255) DEFAULT NULL COMMENT '租户ID',
   `opter` varchar(255) DEFAULT NULL COMMENT '操作人编号',
   `opter_name` varchar(255) DEFAULT NULL COMMENT '操作人姓名',
