@@ -6,15 +6,23 @@
         <a-cascader v-model:value="model[field]" :options="categoryOptions" placeholder="请选择商品" class="w-full" />
       </template>
       <template #salePrice="{ model, field }">
-        <a-input-number v-model:value="model[field]" :min="0" :precision="2" addon-after="元" placeholder="请输入售价" class="w-full" @change="calculateProfit" />
+        <a-input-number
+          v-model:value="model[field]"
+          :min="0"
+          :precision="2"
+          addon-after="元"
+          placeholder="请输入售价"
+          class="w-full"
+          @change="calculateProfit"
+        />
       </template>
       <template #quantity="{ model, field }">
         <a-input-number v-model:value="model[field]" :min="1" placeholder="请输入商品数量" class="w-full" @change="calculateProfitAndStock" />
         <div style="margin-top: 20px; display: flex; justify-content: space-evenly">
-          <div style="flex: 1; height: 70px; background: #bbbbbb; display: inline-block; margin-right: 20px"></div>
-          <div style="flex: 1; height: 70px; background: #bbbbbb; display: inline-block; margin-right: 20px"></div>
-          <div style="flex: 1; height: 70px; background: #bbbbbb; display: inline-block; margin-right: 20px"></div>
-          <div style="flex: 1; height: 70px; background: #bbbbbb; display: inline-block; margin-right: 20px"></div>
+          <div style="flex: 1; height: 70px; background: #f8f8f8; display: inline-block; margin-right: 20px; border-radius: 5px"></div>
+          <div style="flex: 1; height: 70px; background: #f8f8f8; display: inline-block; margin-right: 20px; border-radius: 5px"></div>
+          <div style="flex: 1; height: 70px; background: #f8f8f8; display: inline-block; margin-right: 20px; border-radius: 5px"></div>
+          <div style="flex: 1; height: 70px; background: #f8f8f8; display: inline-block; margin-right: 20px; border-radius: 5px"></div>
         </div>
       </template>
 
@@ -97,7 +105,7 @@
         }
       });
 
-      const getTitle = computed(() => (!unref(isUpdate) ? '新增订单' : '编辑订单'));
+      const getTitle = computed(() => (!unref(isUpdate) ? '创建订单' : '编辑订单'));
 
       // 客户名称选项
       let customerOptions = ref([]);
@@ -106,7 +114,7 @@
 
       function initOption() {
         // 初始化商品级联选择
-        getAllProductTree().then(res => {
+        getAllProductTree().then((res) => {
           categoryOptions.value = res;
         });
         // 初始化客户名称选项
