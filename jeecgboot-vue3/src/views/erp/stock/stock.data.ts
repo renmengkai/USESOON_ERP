@@ -82,21 +82,14 @@ export const columns: BasicColumn[] = [
 
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'stockName',
-    label: '库存名称',
-    component: 'Input',
-    colProps: { span: 8 },
-  },
-  {
-    field: 'stockType',
-    label: '库存类型',
-    component: 'Select',
+    field: 'productInfo',
+    label: '商品信息',
+    component: 'Cascader',
     colProps: { span: 8 },
     componentProps: {
-      options: [
-        { label: '原材料', value: 'raw' },
-        { label: '成品', value: 'finished' },
-      ],
+      placement: 'bottomLeft',
+      showSearch: true,
+      options: productTree,
     },
   },
 ];
