@@ -37,6 +37,12 @@ public class StockController {
     @GetMapping("/list")
     public Result<IPage<Stock>> list(Stock stock, @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo, @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize, HttpServletRequest req) {
         QueryWrapper<Stock> queryWrapper = QueryGenerator.initQueryWrapper(stock, req.getParameterMap());
+        // 如果入参不为空
+        if (StringUtils.isNotEmpty(stock.getProductInfo())){
+            String[] split = stock.getProductInfo().split(",");
+            String productId = split[split.length - 1];
+            queryWrapper.eq("product_id", productId);
+        }
         queryWrapper.orderByDesc("opt_time");
         queryWrapper.orderByDesc("crte_time");
         Page<Stock> page = new Page<>(pageNo, pageSize);

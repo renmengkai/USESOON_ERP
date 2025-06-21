@@ -1,6 +1,7 @@
 package org.jeecg.modules.erp.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -24,6 +25,10 @@ public class Stock {
     @TableId(type = IdType.ASSIGN_ID)
     @Schema(description = "主键ID")
     private String id;
+
+    @Schema(description = "商品信息")
+    @TableField(exist = false)
+    private String productInfo;
 
     @Schema(description = "商品供货商")
     private String supplierNumber;
