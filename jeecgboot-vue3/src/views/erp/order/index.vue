@@ -23,7 +23,7 @@
         />
       </template>
     </BasicTable>
-    <OrderDrawer @register="registerDrawer" @success="handleSuccess" width="35%"/>
+    <OrderDrawer @register="registerDrawer" @success="handleSuccess" width="45%" />
   </div>
 </template>
 
@@ -32,7 +32,7 @@
   import { BasicTable, TableAction, useTable } from '/@/components/Table';
   import { list } from './order.api';
   import { useDrawer } from '/@/components/Drawer';
-  import OrderDrawer from './components/OrderDrawer.vue';
+  import OrderDrawer from './components/OrderDrawerOld.vue';
   import { columns, searchFormSchema } from './order.data';
 
   export default defineComponent({

@@ -1,8 +1,6 @@
 import { BasicColumn } from '/@/components/Table';
 import { FormSchema } from '/@/components/Table';
-import { getAllProductTree } from '/@/views/erp/product/product.api';
-
-const productTree = await getAllProductTree();
+import { getAllValidCustomer } from '/@/views/erp/customer/customer.api';
 
 export const columns: BasicColumn[] = [
   {
@@ -49,43 +47,111 @@ export const searchFormSchema: FormSchema[] = [
 
 export const formSchema: FormSchema[] = [
   {
-    label: 'id',
-    field: 'id',
-    component: 'Input',
-    show: false,
-  },
-  {
-    field: 'productInfo',
+    field: 'orderTitle',
     label: '商品信息',
-    component: 'Cascader',
-    required: true,
+    component: 'Divider',
+    slot: 'orderTitle',
     componentProps: {
-      placement: 'bottomLeft',
-      showSearch: true,
-      options: productTree,
+      //是否虚线
+      dashed: true,
+      //分割线标题的位置（left | right | center）
+      orientation: 'left',
+      //文字是否显示为普通正文样式
+      plain: true,
+      //水平还是垂直类型（horizontal | vertical）
+      type: 'horizontal',
     },
   },
   {
-    field: 'orderNumber',
+    field: 'customerId',
+    label: '客户名称',
+    component: 'ApiSelect',
+    required: true,
+    componentProps: {
+      api: getAllValidCustomer,
+      labelField: 'name',
+      valueField: 'id',
+    },
+  },
+  {
+    field: 'productInfo',
+    label: '商品名称',
+    component: 'Cascader',
+    required: true,
+    slot: 'productInfo',
+  },
+  {
+    field: 'salePrice',
     label: '商品售价',
-    component: 'Input',
-    required: true,
-  },
-  {
-    field: 'customerName',
-    label: '商品数量',
-    component: 'Input',
-    required: true,
-  },
-  {
-    field: 'amount',
-    label: '订单金额',
     component: 'InputNumber',
+    slot: 'salePrice',
     required: true,
   },
   {
-    field: 'remark',
-    label: '备注',
-    component: 'InputTextArea',
+    field: 'quantity',
+    label: '商品数量',
+    component: 'InputNumber',
+    slot: 'quantity',
+    required: true,
   },
-]
+  {
+    field: 'orderTitle',
+    label: '交付信息',
+    component: 'Divider',
+    slot: 'orderTitle',
+  },
+  {
+    field: 'estimatedDeliveryDate',
+    label: '预估交付日期',
+    component: 'DatePicker',
+    slot: 'estimatedDeliveryDate',
+  },
+  {
+    field: 'actualDeliveryDate',
+    label: '实际交付日期',
+    component: 'DatePicker',
+    slot: 'actualDeliveryDate',
+  },
+  {
+    field: 'deliveryNotes',
+    label: '交付备注信息',
+    component: 'InputTextArea',
+    slot: 'deliveryNotes',
+  },
+  {
+    field: 'orderTitle',
+    label: '回款信息',
+    component: 'Divider',
+    slot: 'orderTitle',
+  },
+  {
+    field: 'estimatedPaymentDate',
+    label: '预估回款日期',
+    component: 'DatePicker',
+    slot: 'estimatedPaymentDate',
+  },
+  {
+    field: 'actualPaymentDate',
+    label: '实际回款日期',
+    component: 'DatePicker',
+    slot: 'actualPaymentDate',
+  },
+  {
+    field: 'paymentMethod',
+    label: '回款方式',
+    component: 'Input',
+    slot: 'paymentMethod',
+  },
+  {
+    field: 'paymentNotes',
+    label: '回款备注信息',
+    component: 'InputTextArea',
+    slot: 'paymentNotes',
+  },
+  {
+    field: 'selectedTags',
+    label: '订单标签',
+    component: 'Input',
+    slot: 'selectedTags',
+  },
+];
