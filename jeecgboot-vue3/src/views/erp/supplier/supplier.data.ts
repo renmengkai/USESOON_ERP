@@ -50,13 +50,13 @@ export const searchFormSchema: FormSchema[] = [
     field: 'name',
     label: '供应商名称',
     component: 'Input',
-    colProps: { span: 8 },
+    colProps: { span: 6 },
   },
   {
     field: 'type',
     label: '供应商类型',
     component: 'Select',
-    colProps: { span: 4 },
+    colProps: { span: 6 },
     componentProps: {
       options: [
         { label: '国内供应商', value: '1' },
@@ -68,7 +68,8 @@ export const searchFormSchema: FormSchema[] = [
     field: 'isValid',
     label: '客户状态',
     component: 'Select',
-    colProps: { span: 4 },
+    colProps: { span: 6 },
+    defaultValue: '1',
     componentProps: {
       options: [
         { label: '停用', value: '0' },

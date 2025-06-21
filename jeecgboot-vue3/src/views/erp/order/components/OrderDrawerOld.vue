@@ -11,10 +11,10 @@
       <template #quantity="{ model, field }">
         <a-input-number v-model:value="model[field]" :min="1" placeholder="请输入商品数量" class="w-full" @change="calculateProfitAndStock" />
         <div style="margin-top: 20px; display: flex; justify-content: space-evenly">
-          <div style="flex: 1; height: 70px; background: red; display: inline-block; margin-right: 20px"></div>
-          <div style="flex: 1; height: 70px; background: red; display: inline-block; margin-right: 20px"></div>
-          <div style="flex: 1; height: 70px; background: red; display: inline-block; margin-right: 20px"></div>
-          <div style="flex: 1; height: 70px; background: red; display: inline-block; margin-right: 20px"></div>
+          <div style="flex: 1; height: 70px; background: #bbbbbb; display: inline-block; margin-right: 20px"></div>
+          <div style="flex: 1; height: 70px; background: #bbbbbb; display: inline-block; margin-right: 20px"></div>
+          <div style="flex: 1; height: 70px; background: #bbbbbb; display: inline-block; margin-right: 20px"></div>
+          <div style="flex: 1; height: 70px; background: #bbbbbb; display: inline-block; margin-right: 20px"></div>
         </div>
       </template>
 
