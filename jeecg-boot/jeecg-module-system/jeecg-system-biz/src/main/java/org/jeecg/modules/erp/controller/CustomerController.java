@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 客户相关
@@ -37,6 +38,12 @@ public class CustomerController {
         Page<Customer> page = new Page<>(pageNo, pageSize);
         IPage<Customer> pageList = customerService.page(page, queryWrapper);
         return Result.ok(pageList);
+    }
+
+    @GetMapping("/getAllValidCustomer")
+    public Result<List<Customer>> getAllValidCustomer() {
+        QueryWrapper<Customer> queryWrapper = new QueryWrapper<Customer>().eq("is_valid", "1");
+        return Result.ok(customerService.list(queryWrapper));
     }
 
     @GetMapping("/{id}")
