@@ -2,48 +2,89 @@ import { BasicColumn } from '/@/components/Table';
 import { FormSchema } from '/@/components/Table';
 import { getAllValidCustomer } from '/@/views/erp/customer/customer.api';
 import { getDictItemsByCode } from '@/utils/dict';
+import { getAllProductList } from '@/views/erp/product/product.api';
 
 const paybackOption = getDictItemsByCode('payback_method') || [];
+const validCustomer = await getAllValidCustomer();
+const customerList = validCustomer.map((item) => ({
+  value: item.id,
+  label: item.name,
+}));
+const productList = await getAllProductList();
 export const columns: BasicColumn[] = [
   {
-    title: '订单类型',
-    dataIndex: 'orderType',
-    width: 150,
-  },
-  {
     title: '订单编号',
-    dataIndex: 'orderNumber',
-    width: 150,
+    dataIndex: 'id',
+    width: 80,
   },
   {
     title: '客户名称',
-    dataIndex: 'customerName',
-    width: 150,
+    dataIndex: 'customerId',
+    width: 80,
+    customRender: ({ record }) => {
+      let returnText = '';
+      for (let i = 0; i < validCustomer.length; i++) {
+        if (validCustomer[i].id === record.customerId) {
+          returnText = validCustomer[i].name;
+        }
+      }
+      return returnText;
+    },
+  },
+  {
+    title: '商品名称',
+    dataIndex: 'productInfo',
+    width: 60,
+    customRender: ({ record }) => {
+      let returnText = '';
+      for (let i = 0; i < productList.length; i++) {
+        if (productList[i].id === record.productId) {
+          returnText = productList[i].name;
+        }
+      }
+      return returnText;
+    },
+  },
+  {
+    title: '商品规格',
+    dataIndex: 'specification',
+    width: 60,
+    customRender({ record }) {
+      let returnText = '';
+      productList.forEach((item) => {
+        if (item.id === record.productId) {
+          returnText = item.specification;
+        }
+      });
+      return returnText;
+    },
+  },
+  {
+    title: '商品数量',
+    dataIndex: 'quantity',
+    width: 50,
   },
   {
     title: '订单金额',
-    dataIndex: 'amount',
-    width: 150,
+    dataIndex: 'totalSalePrice',
+    width: 50,
   },
   {
     title: '备注',
     dataIndex: 'remark',
-    width: 200,
+    width: 120,
   },
 ];
 
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'orderNumber',
-    label: '订单编号',
-    component: 'Input',
-    colProps: { span: 8 },
-  },
-  {
-    field: 'customerName',
+    field: 'customerId',
     label: '客户名称',
-    component: 'Input',
+    component: 'Select',
     colProps: { span: 8 },
+    componentProps: {
+      options: customerList,
+    },
   },
 ];
 
@@ -95,6 +136,14 @@ export const formSchema: FormSchema[] = [
     component: 'InputNumber',
     slot: 'quantity',
     required: true,
+  },
+  {
+    field: 'remark',
+    label: '备注',
+    component: 'InputTextArea',
+    componentProps: {
+      placeholder: '请输入订单备注信息',
+    },
   },
   {
     field: 'orderTitle',

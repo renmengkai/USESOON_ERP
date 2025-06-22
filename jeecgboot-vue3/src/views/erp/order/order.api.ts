@@ -29,6 +29,6 @@ export const deleteOrder = (params, handleSuccess) => {
  * @param params
  */
 export const saveOrUpdateOrder = (params, isUpdate) => {
-  let url = isUpdate ? Api.edit : Api.save;
+  const url = isUpdate ? Api.edit : Api.save;
   return defHttp.post({ url: url, params });
 };

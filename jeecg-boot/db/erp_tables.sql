@@ -59,6 +59,7 @@ CREATE TABLE `erp_order` (
   `sale_price` decimal(10,2) NOT NULL COMMENT '商品售价',
   `quantity` int NOT NULL COMMENT '商品数量',
   `node_code` varchar(2) DEFAULT NULL COMMENT '订单节点：订货、定金、收款、交货、收货（节点字典）',
+  `remark` varchar(200) DEFAULT NULL COMMENT '订单备注信息',
   `estimated_delivery_date` datetime DEFAULT NULL COMMENT '预估交付日期',
   `actual_delivery_date` datetime DEFAULT NULL COMMENT '实际交付日期',
   `delivery_remark` varchar(200) DEFAULT NULL COMMENT '交付备注信息',

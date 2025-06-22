@@ -44,6 +44,9 @@ public class Order {
     @Schema(description = "订单节点：订货、定金、收款、交货、收货（节点字典）")
     private String nodeCode;
 
+    @Schema(description = "订单备注信息")
+    private String remark;
+
     @Schema(description = "预估交付日期")
     private Date estimatedDeliveryDate;
 

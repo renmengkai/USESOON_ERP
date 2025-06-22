@@ -69,7 +69,7 @@
   import { useMessage } from '@/hooks/web/useMessage';
   import { getAllProductTree } from '/@/views/erp/product/product.api';
   import { formSchema } from '../order.data';
-  import {saveOrUpdateOrder} from "@/views/erp/order/order.api";
+  import { saveOrUpdateOrder } from '@/views/erp/order/order.api';
 
   export default defineComponent({
     name: 'OrderDrawer',
@@ -90,7 +90,8 @@
         resetFields();
         setDrawerProps({ confirmLoading: false });
         isUpdate.value = !!data?.isUpdate;
-
+        data.record.productInfo = data.record.productInfo.split(',');
+        data.record.tags = data.record.tags.split(',');
         if (unref(isUpdate)) {
           setFieldsValue({
             ...data.record,
@@ -133,7 +134,7 @@
           const productInfo = values.productInfo.split(',');
           values.productId = productInfo[2];
           // 调用API保存或更新订单信息
-          await saveOrUpdateOrder(values, isUpdate.value)
+          await saveOrUpdateOrder(values, isUpdate.value);
           closeDrawer();
           emit('success');
         } finally {

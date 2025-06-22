@@ -8,10 +8,12 @@
         <TableAction
           :actions="[
             {
+              label: '编辑',
               icon: 'clarity:note-edit-line',
               onClick: handleEdit.bind(null, record),
             },
             {
+              label: '删除',
               icon: 'ant-design:delete-outlined',
               color: 'error',
               popConfirm: {
@@ -30,9 +32,9 @@
 <script lang="ts">
   import { defineComponent } from 'vue';
   import { BasicTable, TableAction, useTable } from '/@/components/Table';
-  import { list } from './order.api';
+  import { deleteOrder, list } from './order.api';
   import { useDrawer } from '/@/components/Drawer';
-  import OrderDrawer from './components/OrderDrawerOld.vue';
+  import OrderDrawer from './components/OrderDrawer.vue';
   import { columns, searchFormSchema } from './order.data';
 
   export default defineComponent({
@@ -75,8 +77,8 @@
       }
 
       function handleDelete(record: Recordable) {
-        console.log(record);
-        // TODO: 调用API删除订单
+        // 调用API删除订单
+        deleteOrder({ id: record.id }, reload())
       }
 
       function handleSuccess() {
