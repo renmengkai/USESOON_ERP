@@ -8,4 +8,5 @@ import org.jeecg.modules.erp.entity.Order;
  */
 public interface IOrderService extends IService<Order> {
     boolean createOrder(Order order, String userName, String realName);
+    void deleteOrder(String id);
 }

@@ -9,10 +9,7 @@ import org.jeecg.modules.erp.service.IStockService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 库存服务实现类
@@ -23,11 +20,10 @@ public class StockServiceImpl extends ServiceImpl<StockMapper, Stock> implements
 
     /**
      * 添加库存
-     * @param productId 商品ID
-     * @param quantity 商品数量
+     * @param stockId 库存ID
      */
     @Override
-    public void addStock(String productId, Integer quantity) {
+    public void addStock(String stockId) {
 
     }
 
@@ -48,7 +44,7 @@ public class StockServiceImpl extends ServiceImpl<StockMapper, Stock> implements
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public Map<String, Integer> deductStock(String productId, Integer quantity, String userName, String realName) {
+    public Map<String, Object> deductStock(String productId, Integer quantity, String userName, String realName) {
         // 按照操作时间或者创建时间顺序扣库存
         // 查询该产品的库存
         QueryWrapper<Stock> queryWrapper = new QueryWrapper<Stock>()
@@ -58,7 +54,9 @@ public class StockServiceImpl extends ServiceImpl<StockMapper, Stock> implements
         List<Stock> stockList = this.list(queryWrapper);
         // 遍历库存列表
         List<Stock> updatedStocks = new java.util.ArrayList<>();
+        Map<String, Object> stockInfo = new HashMap<>();
         Map<String, Integer> stockResult = new HashMap<>();
+        List<Map<String, Object>> costList = new ArrayList<>();
         int remainingQuantity = quantity;
         for (Stock stock : stockList) {
             if (remainingQuantity <= 0) break;
@@ -81,6 +79,11 @@ public class StockServiceImpl extends ServiceImpl<StockMapper, Stock> implements
             stock.setOpterName(realName); // 替换为实际的操作人姓名
             updatedStocks.add(stock);
             stockResult.put(stock.getId(), deductStockQuantity);
+            costList.add(new HashMap<>() {{
+                put("id", stock.getId());
+                put("quantity", deductStockQuantity);
+                put("costPrice", stock.getCostPrice());
+            }});
         }
         if (remainingQuantity > 0) {
             // 剩余数量无法满足扣除需求
@@ -90,6 +93,8 @@ public class StockServiceImpl extends ServiceImpl<StockMapper, Stock> implements
         if (!updatedStocks.isEmpty()) {
             this.updateBatchById(updatedStocks);
         }
-        return stockResult;
+        stockInfo.put("stockResult", stockResult);
+        stockInfo.put("costList", costList);
+        return stockInfo;
     }
 }

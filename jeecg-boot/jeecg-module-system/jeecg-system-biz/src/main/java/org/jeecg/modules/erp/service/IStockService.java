@@ -9,9 +9,9 @@ import java.util.Map;
  * 库存服务接口
  */
 public interface IStockService extends IService<Stock> {
-    Map<String, Integer> deductStock(String productId, Integer quantity, String userName, String realName);
+    Map<String, Object> deductStock(String productId, Integer quantity, String userName, String realName);
 
-    void addStock(String productId, Integer quantity);
+    void addStock(String stockId);
 
     void checkStock(String productId, Integer quantity);
 }

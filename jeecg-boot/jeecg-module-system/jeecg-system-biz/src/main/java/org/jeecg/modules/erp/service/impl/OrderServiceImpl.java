@@ -1,6 +1,7 @@
 package org.jeecg.modules.erp.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.jeecg.modules.erp.entity.Order;
@@ -11,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,11 +31,44 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     @Transactional(rollbackFor = Exception.class)
     public boolean createOrder(Order order, String userName, String realName) {
         // 扣库存
-        Map<String, Integer> stockResult = stockService.deductStock(order.getProductId(), order.getQuantity(), userName, realName);
+        Map<String, Object> stockInfo = stockService.deductStock(order.getProductId(), order.getQuantity(), userName, realName);
+        Map<String, Integer> stockResult = (Map<String, Integer>) stockInfo.get("stockResult");
+        List<Map<String, Object>> costList = (List<Map<String, Object>>) stockInfo.get("costList");
         String stockResultJson = JSON.toJSONString(stockResult);
         log.info("库存扣减结果: {}", stockResultJson);
         order.setStockResult(stockResultJson);
-        // 保存订单
+        // 计算订单金额等值
+        BigDecimal totalSalePrice = order.getSalePrice().multiply(new BigDecimal(order.getQuantity()));
+        order.setTotalSalePrice(totalSalePrice);
+        // 计算总成本
+        BigDecimal totalCostPrice = new BigDecimal(0);
+        for (Map<String, Object> costMap : costList){
+            JSONObject jsonObject = JSONObject.from(costMap);
+            BigDecimal costPrice = jsonObject.getBigDecimal("costPrice");
+            Integer quantity = jsonObject.getInteger("quantity");
+            BigDecimal totalCost = costPrice.multiply(new BigDecimal(quantity));
+            totalCostPrice = totalCostPrice.add(totalCost);
+        }
+        order.setTotalCostPrice(totalCostPrice);
+        // 计算利润
+        order.setTotalMargins(totalSalePrice.subtract(totalCostPrice));
+        if (totalCostPrice.compareTo(BigDecimal.ZERO) != 0) {
+            BigDecimal profitMargin = totalSalePrice.subtract(totalCostPrice)
+                .divide(totalCostPrice, 4, RoundingMode.HALF_UP)
+                .multiply(new BigDecimal(100));
+            order.setProfitMargin(profitMargin);
+        } else {
+            order.setProfitMargin(BigDecimal.ZERO);
+        }
         return this.save(order);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteOrder(String id) {
+        // 重置库存
+        stockService.addStock(id);
+        // 保存订单
+        this.removeById(id);
     }
 }

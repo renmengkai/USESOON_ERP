@@ -88,16 +88,16 @@ public class OrderController {
     }
 
     @DeleteMapping("/delete")
-    public Result<Boolean> delete(@RequestParam(name = "id") String id) {
+    public Result<?> delete(@RequestParam(name = "id") String id) {
         try {
             LoginUser loginUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
             if (loginUser == null) {
                 log.warn("用户未登录，无法删除订单。");
                 return Result.error(401, "用户未登录，无法删除订单信息。");
             }
-            boolean result = orderService.removeById(id);
+            orderService.deleteOrder(id);
             log.info("用户 {} 成功删除订单 ID: {}", loginUser.getUsername(), id);
-            return Result.ok(result);
+            return Result.ok();
         } catch (Exception e) {
             log.error("删除订单失败：{}", e.getMessage(), e);
             return Result.error(e.getMessage());
