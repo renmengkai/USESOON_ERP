@@ -1,7 +1,9 @@
 import { BasicColumn } from '/@/components/Table';
 import { FormSchema } from '/@/components/Table';
 import { getAllValidCustomer } from '/@/views/erp/customer/customer.api';
+import { getDictItemsByCode } from '@/utils/dict';
 
+const paybackOption = getDictItemsByCode('payback_method') || [];
 export const columns: BasicColumn[] = [
   {
     title: '订单类型',
@@ -113,10 +115,10 @@ export const formSchema: FormSchema[] = [
     slot: 'actualDeliveryDate',
   },
   {
-    field: 'deliveryNotes',
+    field: 'deliveryRemark',
     label: '交付备注信息',
     component: 'InputTextArea',
-    slot: 'deliveryNotes',
+    slot: 'deliveryRemark',
   },
   {
     field: 'orderTitle',
@@ -125,33 +127,35 @@ export const formSchema: FormSchema[] = [
     slot: 'orderTitle',
   },
   {
-    field: 'estimatedPaymentDate',
+    field: 'estimatedPaybackDate',
     label: '预估回款日期',
     component: 'DatePicker',
-    slot: 'estimatedPaymentDate',
+    slot: 'estimatedPaybackDate',
   },
   {
-    field: 'actualPaymentDate',
+    field: 'actualPaybackDate',
     label: '实际回款日期',
     component: 'DatePicker',
-    slot: 'actualPaymentDate',
+    slot: 'actualPaybackDate',
   },
   {
-    field: 'paymentMethod',
+    field: 'paybackMethod',
     label: '回款方式',
-    component: 'Input',
-    slot: 'paymentMethod',
+    component: 'RadioGroup',
+    componentProps: {
+      options: paybackOption,
+    },
   },
   {
-    field: 'paymentNotes',
+    field: 'paybackRemark',
     label: '回款备注信息',
     component: 'InputTextArea',
-    slot: 'paymentNotes',
+    slot: 'paybackRemark',
   },
   {
-    field: 'selectedTags',
+    field: 'tags',
     label: '订单标签',
     component: 'Input',
-    slot: 'selectedTags',
+    slot: 'tags',
   },
 ];

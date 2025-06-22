@@ -61,8 +61,8 @@ public class StockController {
         try {
             LoginUser loginUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
             if (loginUser == null) {
-                log.warn("用户未登录，无法保存账户信息。");
-                return Result.error(401, "用户未登录，无法保存账户信息。");
+                log.warn("用户未登录，无法保存库存信息。");
+                return Result.error(401, "用户未登录，无法保存库存信息。");
             }
             boolean result;
             // 判断是否是已存在的商品以及批次
@@ -89,10 +89,10 @@ public class StockController {
                 stock.setCrteTime(new Date());
                 result = stockService.save(stock);
             }
-            log.info("用户 {} 成功保存账户 ID: {}", loginUser.getUsername(), stock.getId());
+            log.info("用户 {} 成功保存库存 ID: {}", loginUser.getUsername(), stock.getId());
             return Result.ok(result);
         } catch (Exception e) {
-            log.error("保存账户失败：{}", e.getMessage(), e);
+            log.error("保存库存失败：{}", e.getMessage(), e);
             return Result.error(e.getMessage());
         }
     }
@@ -102,17 +102,17 @@ public class StockController {
         try {
             LoginUser loginUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
             if (loginUser == null) {
-                log.warn("用户未登录，无法更新账户信息。");
-                return Result.error(401, "用户未登录，无法保存账户信息。");
+                log.warn("用户未登录，无法更新库存信息。");
+                return Result.error(401, "用户未登录，无法更新库存信息。");
             }
             stock.setOpter(loginUser.getUsername());
             stock.setOpterName(loginUser.getRealname());
             stock.setOptTime(new Date());
             boolean result = stockService.updateById(stock);
-            log.info("用户 {} 成功更新账户 ID: {}", loginUser.getUsername(), stock.getId());
+            log.info("用户 {} 成功更新库存 ID: {}", loginUser.getUsername(), stock.getId());
             return Result.ok(result);
         } catch (Exception e) {
-            log.error("更新账户失败：{}", e.getMessage(), e);
+            log.error("更新库存失败：{}", e.getMessage(), e);
             return Result.error(e.getMessage());
         }
     }
@@ -122,14 +122,14 @@ public class StockController {
         try {
             LoginUser loginUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
             if (loginUser == null) {
-                log.warn("用户未登录，无法删除账户。");
-                return Result.error(401, "用户未登录，无法保存账户信息。");
+                log.warn("用户未登录，无法删除库存。");
+                return Result.error(401, "用户未登录，无法删除库存信息。");
             }
             boolean result = stockService.removeById(id);
-            log.info("用户 {} 成功删除账户 ID: {}", loginUser.getUsername(), id);
+            log.info("用户 {} 成功删除库存 ID: {}", loginUser.getUsername(), id);
             return Result.ok(result);
         } catch (Exception e) {
-            log.error("删除账户失败：{}", e.getMessage(), e);
+            log.error("删除库存失败：{}", e.getMessage(), e);
             return Result.error(e.getMessage());
         }
     }

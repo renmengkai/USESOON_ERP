@@ -29,6 +29,9 @@ public class Order {
     @Schema(description = "客户ID")
     private String customerId;
 
+    @Schema(description = "商品信息")
+    private String productInfo;
+
     @Schema(description = "商品ID")
     private String productId;
 
@@ -36,7 +39,7 @@ public class Order {
     private BigDecimal salePrice;
 
     @Schema(description = "商品数量")
-    private Integer number;
+    private Integer quantity;
 
     @Schema(description = "订单节点：订货、定金、收款、交货、收货（节点字典）")
     private String nodeCode;
@@ -65,6 +68,9 @@ public class Order {
     @Schema(description = "订单标签，存储形式：tag1,tag2,tag3")
     private String tags;
 
+    @Schema(description = "库存占用明细")
+    private String stockResult;
+
     @Schema(description = "订单总售价")
     private BigDecimal totalSalePrice;
 
@@ -87,7 +93,7 @@ public class Order {
     private String opter;
 
     @Schema(description = "操作人姓名")
-    private String opterId;
+    private String opterName;
 
     @Schema(description = "操作时间")
     private Date optTime;

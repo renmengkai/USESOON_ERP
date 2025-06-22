@@ -59,17 +59,17 @@ public class SupplierController {
             supplier.setTenantId(tenantId);
             LoginUser loginUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
             if (loginUser == null) {
-                log.warn("用户未登录，无法保存账户信息。");
-                return Result.error(401, "用户未登录，无法保存账户信息。");
+                log.warn("用户未登录，无法保存供应商信息。");
+                return Result.error(401, "用户未登录，无法保存供应商信息。");
             }
             supplier.setCrter(loginUser.getUsername());
             supplier.setCrterName(loginUser.getRealname());
             supplier.setCrteTime(new Date());
             boolean result = supplierService.save(supplier);
-            log.info("用户 {} 成功保存账户 ID: {}", loginUser.getUsername(), supplier.getId());
+            log.info("用户 {} 成功保存供应商 ID: {}", loginUser.getUsername(), supplier.getId());
             return Result.ok(result);
         } catch (Exception e) {
-            log.error("保存账户失败：{}", e.getMessage(), e);
+            log.error("保存供应商失败：{}", e.getMessage(), e);
             return Result.error(e.getMessage());
         }
     }
@@ -79,17 +79,17 @@ public class SupplierController {
         try {
             LoginUser loginUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
             if (loginUser == null) {
-                log.warn("用户未登录，无法更新账户信息。");
-                return Result.error(401, "用户未登录，无法保存账户信息。");
+                log.warn("用户未登录，无法更新供应商信息。");
+                return Result.error(401, "用户未登录，无法更新供应商信息。");
             }
             supplier.setOpter(loginUser.getUsername());
             supplier.setOpterName(loginUser.getRealname());
             supplier.setOptTime(new Date());
             boolean result = supplierService.updateById(supplier);
-            log.info("用户 {} 成功更新账户 ID: {}", loginUser.getUsername(), supplier.getId());
+            log.info("用户 {} 成功更新供应商 ID: {}", loginUser.getUsername(), supplier.getId());
             return Result.ok(result);
         } catch (Exception e) {
-            log.error("更新账户失败：{}", e.getMessage(), e);
+            log.error("更新供应商失败：{}", e.getMessage(), e);
             return Result.error(e.getMessage());
         }
     }
@@ -99,14 +99,14 @@ public class SupplierController {
         try {
             LoginUser loginUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
             if (loginUser == null) {
-                log.warn("用户未登录，无法删除账户。");
-                return Result.error(401, "用户未登录，无法保存账户信息。");
+                log.warn("用户未登录，无法删除供应商。");
+                return Result.error(401, "用户未登录，无法删除供应商信息。");
             }
             boolean result = supplierService.removeById(id);
-            log.info("用户 {} 成功删除账户 ID: {}", loginUser.getUsername(), id);
+            log.info("用户 {} 成功删除供应商 ID: {}", loginUser.getUsername(), id);
             return Result.ok(result);
         } catch (Exception e) {
-            log.error("删除账户失败：{}", e.getMessage(), e);
+            log.error("删除供应商失败：{}", e.getMessage(), e);
             return Result.error(e.getMessage());
         }
     }

@@ -74,7 +74,7 @@ public class AccountsController {
             LoginUser loginUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
             if (loginUser == null) {
                 log.warn("用户未登录，无法更新账户信息。");
-                return Result.error(401, "用户未登录，无法保存账户信息。");
+                return Result.error(401, "用户未登录，无法更新账户信息。");
             }
             accounts.setOpter(loginUser.getUsername());
             accounts.setOpterName(loginUser.getRealname());
@@ -94,7 +94,7 @@ public class AccountsController {
             LoginUser loginUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
             if (loginUser == null) {
                 log.warn("用户未登录，无法删除账户。");
-                return Result.error(401, "用户未登录，无法保存账户信息。");
+                return Result.error(401, "用户未登录，无法删除账户信息。");
             }
             boolean result = accountsService.removeById(id);
             log.info("用户 {} 成功删除账户 ID: {}", loginUser.getUsername(), id);

@@ -7,4 +7,5 @@ import org.jeecg.modules.erp.entity.Order;
  * 订单服务接口
  */
 public interface IOrderService extends IService<Order> {
+    boolean createOrder(Order order, String userName, String realName);
 }

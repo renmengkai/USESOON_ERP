@@ -65,17 +65,17 @@ public class ProductController {
             product.setTenantId(tenantId);
             LoginUser loginUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
             if (loginUser == null) {
-                log.warn("用户未登录，无法保存账户信息。");
-                return Result.error(401, "用户未登录，无法保存账户信息。");
+                log.warn("用户未登录，无法保存商品信息。");
+                return Result.error(401, "用户未登录，无法保存商品信息。");
             }
             product.setCrter(loginUser.getUsername());
             product.setCrterName(loginUser.getRealname());
             product.setCrteTime(new Date());
             boolean result = productService.save(product);
-            log.info("用户 {} 成功保存账户 ID: {}", loginUser.getUsername(), product.getId());
+            log.info("用户 {} 成功保存商品 ID: {}", loginUser.getUsername(), product.getId());
             return Result.ok(result);
         } catch (Exception e) {
-            log.error("保存账户失败：{}", e.getMessage(), e);
+            log.error("保存商品失败：{}", e.getMessage(), e);
             return Result.error(e.getMessage());
         }
     }
@@ -85,17 +85,17 @@ public class ProductController {
         try {
             LoginUser loginUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
             if (loginUser == null) {
-                log.warn("用户未登录，无法更新账户信息。");
-                return Result.error(401, "用户未登录，无法保存账户信息。");
+                log.warn("用户未登录，无法更新商品信息。");
+                return Result.error(401, "用户未登录，无法更新商品信息。");
             }
             product.setOpter(loginUser.getUsername());
             product.setOpterName(loginUser.getRealname());
             product.setOptTime(new Date());
             boolean result = productService.updateById(product);
-            log.info("用户 {} 成功更新账户 ID: {}", loginUser.getUsername(), product.getId());
+            log.info("用户 {} 成功更新商品 ID: {}", loginUser.getUsername(), product.getId());
             return Result.ok(result);
         } catch (Exception e) {
-            log.error("更新账户失败：{}", e.getMessage(), e);
+            log.error("更新商品失败：{}", e.getMessage(), e);
             return Result.error(e.getMessage());
         }
     }
@@ -105,14 +105,14 @@ public class ProductController {
         try {
             LoginUser loginUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
             if (loginUser == null) {
-                log.warn("用户未登录，无法删除账户。");
-                return Result.error(401, "用户未登录，无法保存账户信息。");
+                log.warn("用户未登录，无法删除商品。");
+                return Result.error(401, "用户未登录，无法删除商品信息。");
             }
             boolean result = productService.removeById(id);
-            log.info("用户 {} 成功删除账户 ID: {}", loginUser.getUsername(), id);
+            log.info("用户 {} 成功删除商品 ID: {}", loginUser.getUsername(), id);
             return Result.ok(result);
         } catch (Exception e) {
-            log.error("删除账户失败：{}", e.getMessage(), e);
+            log.error("删除商品失败：{}", e.getMessage(), e);
             return Result.error(e.getMessage());
         }
     }
