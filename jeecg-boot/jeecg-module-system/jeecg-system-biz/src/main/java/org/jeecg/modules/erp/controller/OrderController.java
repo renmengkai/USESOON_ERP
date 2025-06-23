@@ -34,6 +34,7 @@ public class OrderController {
     @GetMapping("/list")
     public Result<IPage<Order>> list(Order order, @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo, @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize, HttpServletRequest req) {
         QueryWrapper<Order> queryWrapper = QueryGenerator.initQueryWrapper(order, req.getParameterMap());
+        queryWrapper.orderByDesc("crte_time");
         Page<Order> page = new Page<>(pageNo, pageSize);
         IPage<Order> pageList = orderService.page(page, queryWrapper);
         return Result.ok(pageList);

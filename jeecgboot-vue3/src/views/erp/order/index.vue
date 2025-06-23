@@ -4,6 +4,11 @@
       <template #tableTitle>
         <a-button type="primary" @click="handleCreate">创建订单</a-button>
       </template>
+      <template #bodyCell="{ column, record }">
+        <Tag v-if="column.key === 'estimatedDeliveryDate'" color="green">
+          {{ record.estimatedDeliveryDate }}
+        </Tag>
+      </template>
       <template #action="{ record }">
         <TableAction
           :actions="[

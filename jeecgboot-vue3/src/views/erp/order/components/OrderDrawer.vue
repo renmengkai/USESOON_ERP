@@ -27,10 +27,10 @@
       </template>
       <!-- 订单节点 -->
       <template #estimatedDeliveryDate="{ model, field }">
-        <a-date-picker v-model:value="model[field]" class="w-full" />
+        <a-date-picker v-model:value="model[field]" class="w-full" :format="dateFormat" />
       </template>
       <template #actualDeliveryDate="{ model, field }">
-        <a-date-picker v-model:value="model[field]" class="w-full" />
+        <a-date-picker v-model:value="model[field]" class="w-full" :format="dateFormat" />
       </template>
       <template #deliveryRemark="{ model, field }">
         <a-textarea v-model:value="model[field]" rows="3" placeholder="请输入交付相关备注信息" />
@@ -160,7 +160,7 @@
         // TODO: 检查库存逻辑
         // TODO: 实现利润计算逻辑
       };
-
+      const dateFormat = 'YYYY-MM-DD';
       return {
         registerDrawer,
         registerForm,
@@ -172,6 +172,7 @@
         calculateProfit,
         calculateProfitAndStock,
         customerOptions, // 新增客户选项
+        dateFormat,
       };
     },
   });

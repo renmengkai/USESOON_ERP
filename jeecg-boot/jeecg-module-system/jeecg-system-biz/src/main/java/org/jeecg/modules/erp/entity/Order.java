@@ -3,6 +3,7 @@ package org.jeecg.modules.erp.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -48,18 +49,22 @@ public class Order {
     private String remark;
 
     @Schema(description = "预估交付日期")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date estimatedDeliveryDate;
 
     @Schema(description = "实际交付日期")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date actualDeliveryDate;
 
     @Schema(description = "交付备注信息")
     private String deliveryRemark;
 
     @Schema(description = "预估回款日期")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date estimatedPaybackDate;
 
     @Schema(description = "实际回款日期")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date actualPaybackDate;
 
     @Schema(description = "回款方式（回款方式字典）")
