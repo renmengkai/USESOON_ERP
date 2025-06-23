@@ -83,7 +83,7 @@ export const columns: BasicColumn[] = [
       const estimatedDate = dayjs(record.estimatedDeliveryDate);
       const diffDays = estimatedDate.diff(dayjs(), 'day');
       const isUrgent = diffDays <= 7;
-      return h('span',{style: {color: isUrgent ? 'red' : '',},}, estimatedDate.format('YYYY-MM-DD') + '（剩 ' + diffDays + ' 天）');
+      return h('span', { style: { color: isUrgent ? 'red' : '' } }, estimatedDate.format('YYYY-MM-DD') + '（剩 ' + diffDays + ' 天）');
     },
   },
   {
@@ -307,5 +307,11 @@ export const formSchema: FormSchema[] = [
     label: '订单标签',
     component: 'Input',
     slot: 'tags',
+  },
+  {
+    label: 'crter',
+    field: 'crter',
+    component: 'Input',
+    show: false,
   },
 ];

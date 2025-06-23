@@ -69,6 +69,7 @@
   import { getAllProductTree } from '/@/views/erp/product/product.api';
   import { formSchema } from '../order.data';
   import { saveOrUpdateOrder } from '@/views/erp/order/order.api';
+  import { useUserStoreWithOut } from '@/store/modules/user';
 
   export default defineComponent({
     name: 'OrderDrawer',
@@ -129,7 +130,17 @@
 
       async function handleSubmit() {
         try {
+          const userStore = useUserStoreWithOut();
+          let userInfo = userStore.getUserInfo;
+          if (!userInfo) {
+            createMessage.error('获取用户信息失败');
+            return;
+          }
           const values = await validate();
+          if(userInfo['username'] != values.crter){
+            createMessage.error('仅能修改自己的订单信息');
+            return;
+          }
           setDrawerProps({ confirmLoading: true });
           const productInfo = values.productInfo.split(',');
           values.productId = productInfo[2];
