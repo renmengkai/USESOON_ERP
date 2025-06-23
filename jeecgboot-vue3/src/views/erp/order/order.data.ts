@@ -20,7 +20,7 @@ export const columns: BasicColumn[] = [
   {
     title: '订单编号',
     dataIndex: 'id',
-    width: 65,
+    width: 70,
   },
   {
     title: '客户名称',
@@ -80,18 +80,10 @@ export const columns: BasicColumn[] = [
     width: 80,
     sorter: true,
     customRender: ({ record }) => {
-    const estimatedDate = dayjs(record.estimatedDeliveryDate);
-    const diffDays = estimatedDate.diff(dayjs(), 'day');
-    const isUrgent = diffDays <= 7;
-    return h(
-      'span',
-      {
-        style: {
-          color: isUrgent ? 'red' : '',
-        },
-      },
-      estimatedDate.format('YYYY-MM-DD') + '（剩 '+diffDays+' 天）'
-    );
+      const estimatedDate = dayjs(record.estimatedDeliveryDate);
+      const diffDays = estimatedDate.diff(dayjs(), 'day');
+      const isUrgent = diffDays <= 7;
+      return h('span',{style: {color: isUrgent ? 'red' : '',},}, estimatedDate.format('YYYY-MM-DD') + '（剩 ' + diffDays + ' 天）');
     },
   },
   {
@@ -112,7 +104,12 @@ export const columns: BasicColumn[] = [
   {
     title: '备注',
     dataIndex: 'remark',
-    width: 120,
+    width: 110,
+  },
+  {
+    title: '业务员',
+    dataIndex: 'crterName',
+    width: 30,
   },
   {
     title: '订单登记时间',
