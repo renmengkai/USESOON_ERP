@@ -18,14 +18,13 @@
       </template>
       <template #quantity="{ model, field }">
         <a-input-number v-model:value="model[field]" :min="1" placeholder="请输入商品数量" class="w-full" @change="calculateProfitAndStock" />
-        <div style="margin-top: 20px; display: flex; justify-content: space-evenly">
-          <div style="flex: 1; height: 70px; background: #f8f8f8; display: inline-block; margin-right: 20px; border-radius: 5px"></div>
-          <div style="flex: 1; height: 70px; background: #f8f8f8; display: inline-block; margin-right: 20px; border-radius: 5px"></div>
-          <div style="flex: 1; height: 70px; background: #f8f8f8; display: inline-block; margin-right: 20px; border-radius: 5px"></div>
-          <div style="flex: 1; height: 70px; background: #f8f8f8; display: inline-block; margin-right: 20px; border-radius: 5px"></div>
-        </div>
+        <!--        <div style="margin-top: 20px; display: flex; justify-content: space-evenly">-->
+        <!--          <div style="flex: 1; height: 70px; background: #f8f8f8; display: inline-block; margin-right: 20px; border-radius: 5px"></div>-->
+        <!--          <div style="flex: 1; height: 70px; background: #f8f8f8; display: inline-block; margin-right: 20px; border-radius: 5px"></div>-->
+        <!--          <div style="flex: 1; height: 70px; background: #f8f8f8; display: inline-block; margin-right: 20px; border-radius: 5px"></div>-->
+        <!--          <div style="flex: 1; height: 70px; background: #f8f8f8; display: inline-block; margin-right: 20px; border-radius: 5px"></div>-->
+        <!--        </div>-->
       </template>
-
       <!-- 订单节点 -->
       <template #estimatedDeliveryDate="{ model, field }">
         <a-date-picker v-model:value="model[field]" class="w-full" />
@@ -90,8 +89,9 @@
         resetFields();
         setDrawerProps({ confirmLoading: false });
         isUpdate.value = !!data?.isUpdate;
-        data.record.productInfo = data.record.productInfo.split(',');
-        data.record.tags = data.record.tags.split(',');
+        data.record.productInfo =
+          data.record.productInfo && typeof data.record.productInfo === 'string' ? data.record.productInfo.split(',') : data.record.productInfo;
+        data.record.tags = data.record.tags && typeof data.record.tags === 'string' ? data.record.tags.split(',') : (data.record.tags ?? []);
         if (unref(isUpdate)) {
           setFieldsValue({
             ...data.record,

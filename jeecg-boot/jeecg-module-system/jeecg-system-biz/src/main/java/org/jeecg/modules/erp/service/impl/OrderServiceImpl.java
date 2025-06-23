@@ -32,6 +32,12 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public boolean createOrder(Order order, String userName, String realName) {
         // 扣库存
         Map<String, Object> stockInfo = stockService.deductStock(order.getProductId(), order.getQuantity(), userName, realName);
+        // 计算金额等值
+        calculatedAmount(order, stockInfo);
+        return this.save(order);
+    }
+
+    private static void calculatedAmount(Order order, Map<String, Object> stockInfo) {
         Map<String, Integer> stockResult = (Map<String, Integer>) stockInfo.get("stockResult");
         List<Map<String, Object>> costList = (List<Map<String, Object>>) stockInfo.get("costList");
         String stockResultJson = JSON.toJSONString(stockResult);
@@ -60,15 +66,35 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         } else {
             order.setProfitMargin(BigDecimal.ZERO);
         }
-        return this.save(order);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteOrder(String id) {
+        // 查询当前订单
+        Order order = this.getById(id);
+        JSONObject stockResult = JSONObject.parseObject(order.getStockResult());
         // 重置库存
-        stockService.addStock(id);
+        stockService.addStock(stockResult);
         // 保存订单
         this.removeById(id);
+    }
+
+    @Override
+    public void updateOrder(Order order) {
+        // 查询当前订单信息进行对比
+        Order oldOrder = this.getById(order.getId());
+        if(!oldOrder.getQuantity().equals(order.getQuantity()) || 
+                !oldOrder.getProductId().equals(order.getProductId()) || 
+                !oldOrder.getSalePrice().equals(order.getSalePrice())){
+            // 如果修改信息包括库存信息，则进行库存恢复
+            JSONObject stockResult = JSONObject.parseObject(oldOrder.getStockResult());
+            stockService.addStock(stockResult);
+            // 扣库存
+            Map<String, Object> stockInfo = stockService.deductStock(order.getProductId(), order.getQuantity(), order.getOpter(), order.getOpterName());
+            calculatedAmount(order, stockInfo);
+        }
+        // 更新
+        this.updateById(order);
     }
 }

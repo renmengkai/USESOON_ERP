@@ -68,7 +68,7 @@ public class OrderController {
     }
 
     @PostMapping("/update")
-    public Result<Boolean> update(@RequestBody @Valid Order order) {
+    public Result<?> update(@RequestBody @Valid Order order) {
         try {
             LoginUser loginUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
             if (loginUser == null) {
@@ -78,9 +78,9 @@ public class OrderController {
             order.setOpter(loginUser.getUsername());
             order.setOpterName(loginUser.getRealname());
             order.setOptTime(new Date());
-            boolean result = orderService.updateById(order);
+            orderService.updateOrder(order);
             log.info("用户 {} 成功更新订单 ID: {}", loginUser.getUsername(), order.getId());
-            return Result.ok(result);
+            return Result.ok();
         } catch (Exception e) {
             log.error("更新订单失败：{}", e.getMessage(), e);
             return Result.error(e.getMessage());

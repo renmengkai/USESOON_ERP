@@ -78,7 +78,7 @@
 
       function handleDelete(record: Recordable) {
         // 调用API删除订单
-        deleteOrder({ id: record.id }, reload())
+        deleteOrder({ id: record.id }, reload());
       }
 
       function handleSuccess() {

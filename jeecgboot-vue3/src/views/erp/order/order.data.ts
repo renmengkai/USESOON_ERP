@@ -90,13 +90,13 @@ export const searchFormSchema: FormSchema[] = [
 
 export const formSchema: FormSchema[] = [
   {
-    field: 'orderTitle',
+    field: 'orderTitle1',
     label: '商品信息',
     component: 'Divider',
-    slot: 'orderTitle',
+    slot: 'orderTitle1',
     componentProps: {
       //是否虚线
-      dashed: true,
+      dashed: false,
       //分割线标题的位置（left | right | center）
       orientation: 'left',
       //文字是否显示为普通正文样式
@@ -104,6 +104,12 @@ export const formSchema: FormSchema[] = [
       //水平还是垂直类型（horizontal | vertical）
       type: 'horizontal',
     },
+  },
+  {
+    label: 'id',
+    field: 'id',
+    component: 'Input',
+    show: false,
   },
   {
     field: 'customerId',
@@ -146,10 +152,20 @@ export const formSchema: FormSchema[] = [
     },
   },
   {
-    field: 'orderTitle',
+    field: 'orderTitle2',
     label: '交付信息',
     component: 'Divider',
-    slot: 'orderTitle',
+    slot: 'orderTitle2',
+    componentProps: {
+      //是否虚线
+      dashed: false,
+      //分割线标题的位置（left | right | center）
+      orientation: 'left',
+      //文字是否显示为普通正文样式
+      plain: true,
+      //水平还是垂直类型（horizontal | vertical）
+      type: 'horizontal',
+    },
   },
   {
     field: 'estimatedDeliveryDate',
@@ -170,10 +186,20 @@ export const formSchema: FormSchema[] = [
     slot: 'deliveryRemark',
   },
   {
-    field: 'orderTitle',
+    field: 'orderTitle3',
     label: '回款信息',
     component: 'Divider',
-    slot: 'orderTitle',
+    slot: 'orderTitle3',
+    componentProps: {
+      //是否虚线
+      dashed: false,
+      //分割线标题的位置（left | right | center）
+      orientation: 'left',
+      //文字是否显示为普通正文样式
+      plain: true,
+      //水平还是垂直类型（horizontal | vertical）
+      type: 'horizontal',
+    },
   },
   {
     field: 'estimatedPaybackDate',

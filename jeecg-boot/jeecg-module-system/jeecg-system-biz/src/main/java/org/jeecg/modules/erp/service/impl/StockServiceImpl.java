@@ -1,5 +1,6 @@
 package org.jeecg.modules.erp.service.impl;
 
+import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -20,11 +21,21 @@ public class StockServiceImpl extends ServiceImpl<StockMapper, Stock> implements
 
     /**
      * 添加库存
-     * @param stockId 库存ID
+     * @param stockResult 订单ID
      */
     @Override
-    public void addStock(String stockId) {
-
+    @Transactional(rollbackFor = Exception.class)
+    public void addStock(JSONObject stockResult) {
+        ArrayList<Stock> stockList = new ArrayList<>();
+        for (Map.Entry<String, Object> entry : stockResult.entrySet()) {
+            String stockId = entry.getKey();
+            Integer quantity = (Integer) entry.getValue();
+            Stock stock = this.getById(stockId);
+            stock.setQuantity(stock.getQuantity() + quantity);
+            stockList.add(stock);
+        }
+        // 更细库存
+        this.updateBatchById(stockList);
     }
 
     /**
@@ -87,7 +98,7 @@ public class StockServiceImpl extends ServiceImpl<StockMapper, Stock> implements
         }
         if (remainingQuantity > 0) {
             // 剩余数量无法满足扣除需求
-            throw new RuntimeException("库存不足");
+            throw new RuntimeException("当前商品规划的库存不足，请添加库存或者修改订单数量");
         }
         // 批量更新数据库中的库存记录
         if (!updatedStocks.isEmpty()) {
