@@ -32,11 +32,10 @@
 <script lang="ts">
   import { defineComponent } from 'vue';
   import { BasicTable, TableAction, useTable } from '/@/components/Table';
-  import { list } from './stock.api';
+  import { deleteStock, list } from './stock.api';
   import { useDrawer } from '/@/components/Drawer';
   import StockDrawer from './components/StockDrawer.vue';
   import { columns, searchFormSchema } from './stock.data';
-  import { deleteStock } from './stock.api';
 
   export default defineComponent({
     name: 'ErpStock',
