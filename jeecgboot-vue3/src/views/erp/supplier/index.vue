@@ -9,10 +9,6 @@
           :actions="[
             {
               label: '详情',
-              onClick: handleEdit.bind(null, record),
-            },
-            {
-              label: '编辑',
               icon: 'clarity:note-edit-line',
               onClick: handleEdit.bind(null, record),
             },
