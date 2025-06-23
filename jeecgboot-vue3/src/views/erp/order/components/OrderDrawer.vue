@@ -92,7 +92,7 @@
         isUpdate.value = !!data?.isUpdate;
         data.record.productInfo =
           data.record.productInfo && typeof data.record.productInfo === 'string' ? data.record.productInfo.split(',') : data.record.productInfo;
-        data.record.tags = data.record.tags && typeof data.record.tags === 'string' ? data.record.tags.split(',') : (data.record.tags ?? []);
+        data.record.tags = data.record.tags && data.record.tags != "" && typeof data.record.tags === 'string' ? data.record.tags.split(',') : [];
         if (unref(isUpdate)) {
           setFieldsValue({
             ...data.record,
