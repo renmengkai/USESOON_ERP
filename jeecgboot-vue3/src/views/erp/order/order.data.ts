@@ -4,17 +4,24 @@ import { h } from 'vue';
 import dayjs from 'dayjs';
 import { getAllValidCustomer } from '/@/views/erp/customer/customer.api';
 import { getDictItemsByCode } from '@/utils/dict';
-import { getAllProductList } from '@/views/erp/product/product.api';
 import { Tag } from 'ant-design-vue';
+import { getAllProductList } from '@/views/erp/product/product.api';
 
 const paybackOption = getDictItemsByCode('payback_method') || [];
 const nodeCodeOption = getDictItemsByCode('order_node') || [];
-const validCustomer = await getAllValidCustomer();
-const customerList = validCustomer.map((item) => ({
-  value: item.id,
-  label: item.name,
-}));
-const productList = await getAllProductList();
+
+let validCustomer: any[] = [];
+let customerList: any[] = [];
+let productList: any[] = [];
+
+export async function initOrderData() {
+  validCustomer = await getAllValidCustomer();
+  customerList = validCustomer.map((item) => ({
+    value: item.id,
+    label: item.name,
+  }));
+  productList = await getAllProductList();
+}
 
 export const columns: BasicColumn[] = [
   {

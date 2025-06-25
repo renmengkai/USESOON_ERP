@@ -35,17 +35,20 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue';
+  import { defineComponent, onMounted } from 'vue';
   import { BasicTable, TableAction, useTable } from '/@/components/Table';
   import { deleteOrder, list } from './order.api';
   import { useDrawer } from '/@/components/Drawer';
   import OrderDrawer from './components/OrderDrawer.vue';
-  import { columns, searchFormSchema } from './order.data';
+  import { initOrderData, columns, searchFormSchema } from './order.data';
 
   export default defineComponent({
     name: 'ErpOrder',
     components: { BasicTable, OrderDrawer, TableAction },
     setup() {
+      onMounted(async () => {
+        await initOrderData();
+      });
       const [registerDrawer, { openDrawer }] = useDrawer();
       const [registerTable, { reload }] = useTable({
         title: '订单列表',

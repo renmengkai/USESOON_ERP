@@ -3,7 +3,12 @@ import { FormSchema } from '/@/components/Table';
 import { allSupplierList } from '@/views/erp/supplier/supplier.api';
 import { render } from '@/utils/common/renderUtils';
 
-const supplierList = await allSupplierList();
+let supplierList: any[] = [];
+
+export async function initOrderData() {
+  supplierList = await allSupplierList();
+}
+
 export const columns: BasicColumn[] = [
   {
     title: '商品名称',

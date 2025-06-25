@@ -30,17 +30,20 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue';
+  import { defineComponent, onMounted } from 'vue';
   import { BasicTable, TableAction, useTable } from '/@/components/Table';
   import { deleteStock, list } from './stock.api';
   import { useDrawer } from '/@/components/Drawer';
   import StockDrawer from './components/StockDrawer.vue';
-  import { columns, searchFormSchema } from './stock.data';
+  import { initOrderData, columns, searchFormSchema } from './stock.data';
 
   export default defineComponent({
     name: 'ErpStock',
     components: { BasicTable, StockDrawer, TableAction },
     setup() {
+      onMounted(async () => {
+        await initOrderData();
+      });
       const [registerDrawer, { openDrawer }] = useDrawer();
       const [registerTable, { reload }] = useTable({
         title: '库存列表',

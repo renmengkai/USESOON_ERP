@@ -4,9 +4,16 @@ import { getAllProductTree, getAllProductList } from '/@/views/erp/product/produ
 import { allSupplierList } from '/@/views/erp/supplier/supplier.api';
 import { render } from '@/utils/common/renderUtils';
 
-const productTree = await getAllProductTree();
-const productList = await getAllProductList();
-const supplierList = await allSupplierList();
+let productTree: any[] = [];
+let supplierList: any[] = [];
+let productList: any[] = [];
+
+export async function initOrderData() {
+  productTree = await getAllProductTree();
+  supplierList = await allSupplierList();
+  productList = await getAllProductList();
+}
+
 export const columns: BasicColumn[] = [
   {
     title: '供应商名称',
