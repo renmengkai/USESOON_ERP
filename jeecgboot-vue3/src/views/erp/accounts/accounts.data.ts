@@ -25,6 +25,12 @@ export const columns: BasicColumn[] = [
     title: '开户行',
     dataIndex: 'openBank',
     width: 150,
+    customRender: ({ record }) => {
+      if (record.openBank) {
+        return record.openBank;
+      }
+      return '——';
+    },
   },
   {
     dataIndex: 'owner',
@@ -107,7 +113,10 @@ export const formSchema: FormSchema[] = [
     field: 'balance',
     label: '账户余额',
     component: 'InputNumber',
-    suffix: '元',
+    componentProps: {
+      precision: 2,
+      addonAfter: '元',
+    },
   },
   {
     field: 'remark',
