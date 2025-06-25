@@ -32,7 +32,7 @@ export const columns: BasicColumn[] = [
     dataIndex: 'level',
     width: 50,
     customRender: ({ record }) => {
-      return record.level ? (record.level == '1' ? 'VIP客户' : '普通客户') : '';
+      return record.level ? (record.level == '9' ? 'VIP客户' : '普通客户') : '';
     },
   },
   {
