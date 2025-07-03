@@ -1,11 +1,14 @@
 export interface GrowCardItem {
   icon: string;
   title: string;
-  value?: number;
-  total: number;
+  value?: number | string;
+  total: number | string;
+  weekPercent?: number;
+  dayPercent?: number;
   color?: string;
   action?: string;
   footer?: string;
+  desc?: string;
 }
 
 export const growCardList: GrowCardItem[] = [
@@ -45,32 +48,38 @@ export const growCardList: GrowCardItem[] = [
 
 export const chartCardList: GrowCardItem[] = [
   {
-    title: '总销售额',
-    icon: 'visit-count|svg',
-    total: 126560,
-    value: 234.56,
-    footer: '日均销售额',
-  },
-  {
-    title: '订单量',
+    title: '总销售额（本年内）',
     icon: 'total-sales|svg',
-    value: 1234,
-    total: 8846,
+    total: '126560.20',   // 总销售额
+    value: '234.56',   // 日均销售额
+    weekPercent: -12,  // 周浮动比例
+    dayPercent: 10,    // 日浮动比例
+    footer: '月均销售额：',
+  },
+  {
+    title: '总订单量（本年内）',
+    icon: 'order-quantity|svg',
+    total: '8846',   // 总订单量
+    value: '1234',   // 日订单量
+    weekPercent: -12,  // 周浮动比例
+    dayPercent: 10,    // 日浮动比例
     color: 'blue',
-    footer: '日订单量',
+    footer: '月均订单量：',
   },
   {
-    title: '支付笔数',
-    icon: 'download-count|svg',
-    value: 60,
-    total: 6560,
+    title: '总毛利（本年内）',
+    icon: 'gross-profit|svg',
+    value: '60%',
+    total: '6560',
     color: 'orange',
-    footer: '转化率',
+    footer: '利润率：',
   },
   {
-    title: '运营活动效果',
-    icon: 'transaction|svg',
-    total: 78,
+    title: '账户余额',
+    icon: 'account-balance|svg',
+    total: 223733.38,
+    value: 5,
+    footer: '账户数量：',
   },
 ];
 export const bdcCardList: GrowCardItem[] = [

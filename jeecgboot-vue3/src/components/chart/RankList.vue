@@ -3,7 +3,7 @@
     <h4 class="title">{{ title }}</h4>
     <ul class="list" :style="{ height: height ? `${height}px` : 'auto', overflow: 'auto' }">
       <li :key="index" v-for="(item, index) in list">
-        <span :class="index < 3 ? 'active' : null">{{ index + 1 }}</span>
+        <span :class="index < 3 ? 'active-'+ index : null">{{ index + 1 }}</span>
         <span>{{ item.name }}</span>
         <span>{{ item.total }}</span>
       </li>
@@ -35,7 +35,7 @@
 
 <style lang="less" scoped>
   .rank {
-    padding: 0 32px 32px 72px;
+    padding: 0 32px 32px 32px;
 
     .list {
       margin: 25px 0 0;
@@ -62,8 +62,19 @@
             width: 20px;
             text-align: center;
           }
-          &.active {
-            background-color: #314659;
+          &.active-0 {
+            //background-color: #ed3e53;
+            background-color: #1890ff;
+            color: #fff;
+          }
+          &.active-1 {
+            //background-color: #d7dd37;
+            background-color: #1890ff;
+            color: #fff;
+          }
+          &.active-2 {
+            //background-color: #2ead18;
+            background-color: #1890ff;
             color: #fff;
           }
           &:last-child {

@@ -30,6 +30,10 @@
         type: String,
         default: '#1890ff',
       },
+      seriesName: {
+        type: String,
+        default: 'bar',
+      },
       // update-end--author:liaozhiyang---date:20240407---for：【QQYUN-8762】首页默认及echars颜色调整
     },
     setup(props) {
@@ -55,7 +59,7 @@
         },
         series: [
           {
-            name: 'bar',
+            name: props.seriesName,
             type: 'bar',
             data: [],
             color: props.seriesColor,

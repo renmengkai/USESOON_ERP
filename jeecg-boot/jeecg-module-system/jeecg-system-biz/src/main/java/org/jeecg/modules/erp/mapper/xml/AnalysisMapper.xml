@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.erp.mapper.AnalysisMapper">
+
+    <!-- 查询今年内的所有销售额 -->
+    <select id="getSales" resultType="org.jeecg.modules.erp.model.AnalysisInfo">
+        select
+        order_date as orderDate,
+        sum(total_price) as totalPrice,
+        sum(total_num) as totalNum
+        from erp_order
+        where order_status = 2
+        group by order_date
+    </select>
+
+    <!-- 查询今年内总的订单数量 -->
+    <select id="getOrders" resultType="org.jeecg.modules.erp.model.AnalysisInfo">
+            select
+            order_date as orderDate,
+            count(id) as totalNum
+            from erp_order
+            where order_status = 2
+            group by order_date
+    </select>
+
+    <!-- 获取今年内利润 -->
+    <select id="getProfit" resultType="org.jeecg.modules.erp.model.AnalysisInfo">
+
+    </select>
+
+    <!-- 获取账号信息利润 -->
+    <select id="getAccounts" resultType="org.jeecg.modules.erp.model.AnalysisInfo">
+        select
+        account_name as accountName,
+        sum(total_price) as totalPrice,
+        sum(total_num) as totalNum
+        from erp_order
+        where order_status = 2
+        group by account_name
+    </select>
+</mapper>

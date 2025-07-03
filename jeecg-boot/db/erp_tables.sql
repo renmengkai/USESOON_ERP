@@ -9,7 +9,7 @@ CREATE TABLE `erp_accounts` (
   `name` varchar(255) DEFAULT NULL COMMENT '账户名称',
   `number` varchar(255) DEFAULT NULL COMMENT '账户号',
   `open_bank` varchar(255) DEFAULT NULL COMMENT '账户开户行（仅限银行账户类型）',
-  `owner` varchar(255) DEFAULT NULL COMMENT '账户所有人',
+  `owner` varchar(255) DEFAULT NULL COMMENT '账户所有人', 
   `balance` decimal(10,2) DEFAULT NULL COMMENT '账户余额',
   `remark` varchar(255) DEFAULT NULL COMMENT '备注信息',
   `is_valid` varchar(255) DEFAULT NULL COMMENT '是否有效：0否1是',

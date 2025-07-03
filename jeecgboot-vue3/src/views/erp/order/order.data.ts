@@ -11,7 +11,7 @@ const paybackOption = getDictItemsByCode('payback_method') || [];
 const nodeCodeOption = getDictItemsByCode('order_node') || [];
 
 let validCustomer: any[] = [];
-let customerList: any[] = [];
+export let customerList: any[] = [];
 let productList: any[] = [];
 
 export async function initOrderData() {
@@ -122,18 +122,6 @@ export const columns: BasicColumn[] = [
     title: '订单登记时间',
     dataIndex: 'crteTime',
     width: 70,
-  },
-];
-
-export const searchFormSchema: FormSchema[] = [
-  {
-    field: 'customerId',
-    label: '客户名称',
-    component: 'Select',
-    colProps: { span: 8 },
-    componentProps: {
-      options: customerList,
-    },
   },
 ];
 

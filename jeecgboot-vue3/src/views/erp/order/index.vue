@@ -35,19 +35,31 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, onMounted } from 'vue';
-  import { BasicTable, TableAction, useTable } from '/@/components/Table';
+  import { defineComponent, onBeforeMount, ref } from 'vue';
+  import { BasicTable, FormSchema, TableAction, useTable } from '/@/components/Table';
   import { deleteOrder, list } from './order.api';
   import { useDrawer } from '/@/components/Drawer';
   import OrderDrawer from './components/OrderDrawer.vue';
-  import { initOrderData, columns, searchFormSchema } from './order.data';
+  import { initOrderData, columns, customerList } from './order.data';
 
   export default defineComponent({
     name: 'ErpOrder',
     components: { BasicTable, OrderDrawer, TableAction },
     setup() {
-      onMounted(async () => {
+      let searchFormSchema = ref<FormSchema[]>([]);
+      onBeforeMount(async () => {
         await initOrderData();
+        searchFormSchema.value = [
+          {
+            field: 'customerId',
+            label: '客户名称',
+            component: 'Select',
+            colProps: { span: 8 },
+            componentProps: {
+              options: customerList,
+            },
+          },
+        ];
       });
       const [registerDrawer, { openDrawer }] = useDrawer();
       const [registerTable, { reload }] = useTable({

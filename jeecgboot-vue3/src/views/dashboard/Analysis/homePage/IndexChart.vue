@@ -2,27 +2,13 @@
   <div class="p-4">
     <ChartGroupCard class="enter-y" :loading="loading" type="chart" />
     <SaleTabCard class="!my-4 enter-y" :loading="loading" />
-    <a-row>
-      <a-col :span="24">
-        <a-card :loading="loading" :bordered="false" title="最近一周订单量统计">
-          <div class="infoArea">
-            <HeadInfo title="今日订单" :iconColor="ipColor" :content="loginfo.todayIp" icon="environment" />
-            <HeadInfo title="今日访问" :iconColor="visitColor" :content="loginfo.todayVisitCount" icon="team" />
-            <HeadInfo title="总订单量" :iconColor="seriesColor" :content="loginfo.totalVisitCount" icon="rise" />
-          </div>
-          <LineMulti :chartData="lineMultiData" height="33vh" type="line" :option="{ legend: { top: 'bottom' } }" />
-        </a-card>
-      </a-col>
-    </a-row>
   </div>
 </template>
 <script lang="ts" setup>
   import { ref, watch } from 'vue';
   import ChartGroupCard from '../components/ChartGroupCard.vue';
   import SaleTabCard from '../components/SaleTabCard.vue';
-  import LineMulti from '/@/components/chart/LineMulti.vue';
-  import HeadInfo from '/@/components/chart/HeadInfo.vue';
-  import { getLoginfo, getVisitInfo } from '../api.ts';
+  import { getLoginfo } from '../api';
   import { useRootSetting } from '/@/hooks/setting/useRootSetting';
 
   const loading = ref(true);
@@ -33,7 +19,6 @@
   }, 500);
 
   const loginfo = ref({});
-  const lineMultiData = ref([]);
 
   function initLogInfo() {
     getLoginfo(null).then((res) => {
@@ -42,15 +27,6 @@
           res.result[key] = res.result[key] + '';
         });
         loginfo.value = res.result;
-      }
-    });
-    getVisitInfo(null).then((res) => {
-      if (res.success) {
-        lineMultiData.value = [];
-        res.result.forEach((item) => {
-          lineMultiData.value.push({ name: item.type, type: 'ip', value: item.ip, color: ipColor.value });
-          lineMultiData.value.push({ name: item.type, type: 'visit', value: item.visit, color: visitColor.value });
-        });
       }
     });
   }
@@ -68,15 +44,6 @@
     },
     { immediate: true }
   );
-
-  function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
 </script>
 
 <style lang="less" scoped>

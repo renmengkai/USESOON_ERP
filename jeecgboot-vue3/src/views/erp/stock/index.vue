@@ -30,19 +30,33 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, onMounted } from 'vue';
-  import { BasicTable, TableAction, useTable } from '/@/components/Table';
+  import { defineComponent, onMounted, ref } from 'vue';
+  import { BasicTable, FormSchema, TableAction, useTable } from '/@/components/Table';
   import { deleteStock, list } from './stock.api';
   import { useDrawer } from '/@/components/Drawer';
   import StockDrawer from './components/StockDrawer.vue';
-  import { initOrderData, columns, searchFormSchema } from './stock.data';
+  import { initOrderData, columns, productTree } from './stock.data';
 
   export default defineComponent({
     name: 'ErpStock',
     components: { BasicTable, StockDrawer, TableAction },
     setup() {
+      let searchFormSchema = ref<FormSchema[]>([]);
       onMounted(async () => {
         await initOrderData();
+        searchFormSchema.value = [
+          {
+            field: 'productInfo',
+            label: '商品信息',
+            component: 'Cascader',
+            colProps: { span: 8 },
+            componentProps: {
+              placement: 'bottomLeft',
+              showSearch: true,
+              options: productTree,
+            },
+          },
+        ];
       });
       const [registerDrawer, { openDrawer }] = useDrawer();
       const [registerTable, { reload }] = useTable({

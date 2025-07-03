@@ -9,19 +9,19 @@
         :class="[index + 1 < 4 && '!md:mr-4']"
       >
         <template #action>
-          <a-tooltip title="指标说明">
-            <Icon :icon="item.icon" :size="20" />
+          <a-tooltip :title="item.desc">
+            <Icon :icon="item.icon" :size="30" />
           </a-tooltip>
         </template>
         <div v-if="type === 'chart'">
-          <Trend term="周同比" :percentage="12" v-if="index === 0" />
-          <Trend term="日同比" :percentage="11" v-if="index === 0" :type="false" />
+          <Trend term="周同比" :percentage="item.weekPercent ? Math.abs(item.weekPercent) : 0" v-if="index === 0 || index === 1" :type="!item.weekPercent || item.weekPercent > 0"/>
+          <Trend style="margin-left: 10px" term="日同比" :percentage="item.dayPercent ? Math.abs(item.dayPercent) : 0" v-if="index === 0 || index === 1" :type="!item.dayPercent || item.dayPercent>0" />
 
-          <SingleLine v-if="index === 1" :option="option" :chartData="chartData" :seriesColor="seriesColor" height="50px"></SingleLine>
+<!--          <SingleLine v-if="index === 1" :option="option" :chartData="chartData" :seriesColor="seriesColor" height="50px"></SingleLine>-->
 
           <Bar v-if="index === 2" :option="option" :chartData="chartData" :seriesColor="seriesColor" height="50px"></Bar>
 
-          <Progress v-if="index === 3" :percent="78" :show-info="false"></Progress>
+<!--          <Progress v-if="index === 3" :percent="78" :show-info="false"></Progress>-->
         </div>
         <div v-else>
           <SingleLine :seriesColor="seriesColor" v-if="index === 0" :option="option" :chartData="chartData" height="50px"></SingleLine>
@@ -33,11 +33,10 @@
           <Progress v-if="index === 3" :percent="78" :show-info="false"></Progress>
         </div>
         <template #footer v-if="type === 'chart'">
-          <span v-if="index !== 3"
-            >{{ item.footer }}<span>{{ item.value }}</span></span
-          >
-          <Trend term="周同比" :percentage="12" v-if="index === 3" />
-          <Trend term="日同比" :percentage="11" v-if="index === 3" :type="false" />
+          <span>
+            {{ item.footer }}
+            <span>{{ item.value }}</span>
+          </span>
         </template>
         <template #footer v-else>
           <span
@@ -103,6 +102,6 @@
   const dataList = computed(() => (props.type === 'dbc' ? bdcCardList : chartCardList));
 
   function getTotal(total, index) {
-    return index === 0 ? `￥${total}` : index === 3 ? `${total}%` : total;
+    return index === 0 || index === 2 || index === 3 ? `￥${total}` :  total;
   }
 </script>

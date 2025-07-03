@@ -2,44 +2,40 @@
   <a-card :loading="loading" :bordered="false" :body-style="{ padding: '0' }">
     <div class="salesCard">
       <a-tabs default-active-key="1" size="large" :tab-bar-style="{ marginBottom: '24px', paddingLeft: '16px' }">
-        <template #rightExtra>
-          <div class="extra-wrapper">
-            <div class="extra-item">
-              <a>今日</a>
-              <a>本周</a>
-              <a>本月</a>
-              <a>本年</a>
-            </div>
-            <a-range-picker :style="{ width: '256px' }" />
-          </div>
-        </template>
-        <a-tab-pane loading="true" tab="销售额" key="1">
+<!--        <template #rightExtra>-->
+<!--          <div class="extra-wrapper">-->
+<!--            <div class="extra-item">-->
+<!--              <a>今日</a>-->
+<!--              <a>本周</a>-->
+<!--              <a>本月</a>-->
+<!--              <a>本年</a>-->
+<!--            </div>-->
+<!--            <a-range-picker :style="{ width: '256px' }" />-->
+<!--          </div>-->
+<!--        </template>-->
+        <a-tab-pane loading="true" tab="销售额趋势" key="1">
           <a-row>
             <a-col :xl="16" :lg="12" :md="12" :sm="24" :xs="24">
               <Bar
                 :chartData="barData"
-                :option="{ title: { text: '', textStyle: { fontWeight: 'lighter' } } }"
-                height="40vh"
+                :option="{ title: { text: '', textStyle: { fontWeight: 'lighter' } }}"
+                height="50vh"
                 :seriesColor="seriesColor"
+                :seriesName="'销售额'"
               />
             </a-col>
             <a-col :xl="8" :lg="12" :md="12" :sm="24" :xs="24">
-              <RankList title="门店销售排行榜" :list="rankList" />
+              <RankList title="销售额排行榜（自2024年1月1日起）" :list="rankList" />
             </a-col>
           </a-row>
         </a-tab-pane>
-        <a-tab-pane tab="销售趋势" key="2">
+        <a-tab-pane tab="订单量趋势" key="2">
           <a-row>
             <a-col :xl="16" :lg="12" :md="12" :sm="24" :xs="24">
-              <Bar
-                :chartData="barData.reverse()"
-                :option="{ title: { text: '', textStyle: { fontWeight: 'lighter' } } }"
-                height="40vh"
-                :seriesColor="seriesColor"
-              />
+              <SingleLine :chartData="barData.reverse()" height="50vh" :option="{ title: { text: '', left: 'center' } }" :seriesName="'订单数'"></SingleLine>
             </a-col>
             <a-col :xl="8" :lg="12" :md="12" :sm="24" :xs="24">
-              <RankList title="门店销售排行榜" :list="rankList" />
+              <RankList title="订单量排行榜（自2024年1月1日起）" :list="rankList" />
             </a-col>
           </a-row>
         </a-tab-pane>
@@ -48,10 +44,11 @@
   </a-card>
 </template>
 <script lang="ts" setup>
-  import { ref, computed } from 'vue';
+  import { computed } from 'vue';
   import Bar from '/@/components/chart/Bar.vue';
   import RankList from '/@/components/chart/RankList.vue';
   import { useRootSetting } from '/@/hooks/setting/useRootSetting';
+  import SingleLine from '@/components/chart/SingleLine.vue';
 
   defineProps({
     loading: {
@@ -60,7 +57,7 @@
   });
   const { getThemeColor } = useRootSetting();
   const rankList = [];
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 10; i++) {
     rankList.push({
       name: '白鹭岛 ' + (i + 1) + ' 号店',
       total: 1234.56 - i * 100,
@@ -71,7 +68,7 @@
   for (let i = 0; i < 12; i += 1) {
     barData.push({
       name: `${i + 1}月`,
-      value: Math.floor(Math.random() * 1000) + 200,
+      value: i > 6 ? 0: Math.floor(Math.random() * 1000) + 200,
     });
   }
   const seriesColor = computed(() => {

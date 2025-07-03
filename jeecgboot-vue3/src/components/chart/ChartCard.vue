@@ -53,7 +53,7 @@
       width: 100%;
       color: rgba(0, 0, 0, 0.45);
       font-size: 14px;
-      line-height: 22px;
+      line-height: 32px;
     }
   }
 

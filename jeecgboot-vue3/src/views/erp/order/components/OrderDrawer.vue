@@ -70,6 +70,7 @@
   import { formSchema } from '../order.data';
   import { saveOrUpdateOrder } from '@/views/erp/order/order.api';
   import { useUserStoreWithOut } from '@/store/modules/user';
+  import { getDictItemsByCode } from '@/utils/dict';
 
   export default defineComponent({
     name: 'OrderDrawer',
@@ -154,12 +155,7 @@
       }
 
       // 订单标签选项
-      const tagOptions = [
-        { value: 'urgent', label: '加急订单' },
-        { value: 'vip', label: 'VIP客户' },
-        { value: 'special', label: '特殊处理' },
-        { value: 'regular', label: '常规订单' },
-      ];
+      const tagOptions = getDictItemsByCode('order_tags') || [];
 
       // 计算利润
       const calculateProfit = () => {

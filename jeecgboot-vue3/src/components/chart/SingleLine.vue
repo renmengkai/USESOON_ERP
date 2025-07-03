@@ -31,6 +31,10 @@
         default: '#1890ff',
       },
       // update-end--author:liaozhiyang---date:20240407---for：【QQYUN-8762】首页默认及echars颜色调整
+      seriesName: {
+        type: String,
+        default: 'line',
+      },
     },
     setup(props) {
       const chartRef = ref<HTMLDivElement | null>(null);
@@ -55,6 +59,7 @@
         },
         series: [
           {
+            name: props.seriesName,
             type: 'line',
             showSymbol: false,
             smooth: true,

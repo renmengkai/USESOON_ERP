@@ -4,7 +4,7 @@ import { getAllProductTree, getAllProductList } from '/@/views/erp/product/produ
 import { allSupplierList } from '/@/views/erp/supplier/supplier.api';
 import { render } from '@/utils/common/renderUtils';
 
-let productTree: any[] = [];
+export let productTree: any[] = [];
 let supplierList: any[] = [];
 let productList: any[] = [];
 
@@ -84,20 +84,6 @@ export const columns: BasicColumn[] = [
     title: '备注',
     dataIndex: 'remark',
     width: 150,
-  },
-];
-
-export const searchFormSchema: FormSchema[] = [
-  {
-    field: 'productInfo',
-    label: '商品信息',
-    component: 'Cascader',
-    colProps: { span: 8 },
-    componentProps: {
-      placement: 'bottomLeft',
-      showSearch: true,
-      options: productTree,
-    },
   },
 ];
 
